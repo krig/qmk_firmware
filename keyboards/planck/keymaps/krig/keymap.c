@@ -28,6 +28,7 @@ enum planck_layers {
   _RAISE,
   _ADJUST,
   _GAMING,
+  _NUMERIC
 };
 
 #define LOWER MO(_LOWER)
@@ -38,7 +39,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                  KC_TAB,      KC_Q,    KC_W,    KC_E,  KC_R,     KC_T,  KC_Y,   KC_U,     KC_I,    KC_O,      KC_P, KC_BSPACE,
       LCTL_T(KC_ESCAPE),      KC_A,    KC_S,    KC_D,  KC_F,     KC_G,  KC_H,   KC_J,     KC_K,    KC_L, KC_SCOLON,  KC_ENTER,
               KC_LSHIFT,      KC_Z,    KC_X,    KC_C,  KC_V,     KC_B,  KC_N,   KC_M, KC_COMMA,  KC_DOT,  KC_SLASH,  KC_QUOTE,
-                  TG(4), KC_ESCAPE, KC_LALT, KC_LGUI, LOWER, KC_SPACE, KC_NO, RAISE,   KC_LEFT, KC_DOWN,     KC_UP,  KC_RIGHT),
+                  MO(_NUMERIC), KC_ESCAPE, KC_LALT, KC_LGUI, LOWER, KC_SPACE, KC_NO, RAISE,   KC_LEFT, KC_DOWN,     KC_UP,  KC_RIGHT),
 
   [_LOWER] = LAYOUT_planck_grid(
       KC_TILD,KC_EXLM,KC_AT,KC_HASH,KC_DLR,KC_PERC,KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,RALT(KC_W),
@@ -53,16 +54,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_NO,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT),
 
   [_ADJUST] = LAYOUT_planck_grid(
-      KC_PSCREEN,KC_F1,KC_F2,KC_F3,KC_F4,KC_F5,KC_F6,KC_F7,KC_F8,KC_F9,KC_F10,KC_F11,
-      KC_CAPSLOCK,KC_F12,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,RGB_HUD,RGB_HUI,KC_AUDIO_MUTE,KC_AUDIO_VOL_DOWN,KC_AUDIO_VOL_UP,
+      KC_SCROLLLOCK,KC_F1,KC_F2,KC_F3,KC_F4,KC_F5,KC_F6,KC_F7,KC_F8,KC_F9,KC_F10,KC_F11,
+      KC_CAPSLOCK,KC_F12,KC_PSCREEN,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,RGB_HUD,RGB_HUI,KC_AUDIO_MUTE,KC_AUDIO_VOL_DOWN,KC_AUDIO_VOL_UP,
       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,RGB_VAD,RGB_VAI,RGB_TOG,RGB_MOD,RGB_SLD,
-      KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_NO,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT),
+      KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_NO,KC_TRANSPARENT,KC_TRANSPARENT,MU_TOG,MU_MOD,AU_TOG),
 
   [_GAMING] = LAYOUT_planck_grid(
-      KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_1,KC_2,KC_3,
-      KC_LCTRL,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_4,KC_5,KC_6,
+      KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
+      KC_LCTRL,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
+      KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
+      KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_NO,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT),
+
+  [_NUMERIC] = LAYOUT_planck_grid(
+      TG(_GAMING),KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_1,KC_2,KC_3,
+      KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_4,KC_5,KC_6,
       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_7,KC_8,KC_9,
-      KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_NO,KC_TRANSPARENT,KC_TRANSPARENT,MU_TOG,MU_MOD,AU_TOG),
+      KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,         KC_NO,KC_TRANSPARENT,KC_TRANSPARENT,KC_DOT,KC_0,KC_COMMA),
 
 };
 
@@ -70,50 +77,58 @@ extern bool g_suspend_state;
 extern rgb_config_t rgb_matrix_config;
 
 
-#define WASD_COLOR 248, 191, 244
+#define KRIG_ANIM RGB_MATRIX_SOLID_REACTIVE_SIMPLE
+#define WASD_COLOR 0xeb, 0x2f, 0x06
+#define NUM_COLOR 0x78, 0xe0, 0x8f
 
 void keyboard_post_init_user(void) {
   rgb_matrix_enable();
-  rgb_matrix_sethsv_noeeprom(WASD_COLOR);
-  rgb_matrix_mode_noeeprom(RGB_MATRIX_TYPING_HEATMAP);
+  rgb_matrix_mode_noeeprom(KRIG_ANIM);
 }
 
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
-    [4] = { {0,0,0}, {0,0,0}, {WASD_COLOR}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
+    [_GAMING] = { {0,0,0}, {0,0,0}, {WASD_COLOR}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
             {0,0,0}, {WASD_COLOR}, {WASD_COLOR}, {WASD_COLOR}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
             {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0},
             {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
-
+    [_NUMERIC] = { {WASD_COLOR}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {NUM_COLOR}, {NUM_COLOR}, {NUM_COLOR},
+            {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {NUM_COLOR}, {NUM_COLOR}, {NUM_COLOR},
+            {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {NUM_COLOR}, {NUM_COLOR}, {NUM_COLOR},
+            {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {NUM_COLOR}, {0,0,0} },
 };
 
-void set_layer_color(int layer) {
+void set_layer_color(void) {
+  const bool gaming = layer_state_is(_GAMING);
+  const bool numeric = layer_state_is(_NUMERIC);
   for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
-    HSV hsv = {
-      .h = pgm_read_byte(&ledmap[layer][i][0]),
-      .s = pgm_read_byte(&ledmap[layer][i][1]),
-      .v = pgm_read_byte(&ledmap[layer][i][2]),
-    };
-    if (!hsv.h && !hsv.s && !hsv.v) {
-        rgb_matrix_set_color( i, 0, 0, 0 );
-    } else {
-        RGB rgb = hsv_to_rgb( hsv );
-        float f = (float)rgb_matrix_config.hsv.v / UINT8_MAX;
-        rgb_matrix_set_color( i, f * rgb.r, f * rgb.g, f * rgb.b );
-    }
+      uint8_t r = 0, g = 0, b = 0;
+      if (gaming) {
+          r = ledmap[_GAMING][i][0];
+          g = ledmap[_GAMING][i][1];
+          b = ledmap[_GAMING][i][2];
+      }
+      if (numeric && (ledmap[_NUMERIC][i][0] || ledmap[_NUMERIC][i][1] || ledmap[_NUMERIC][i][2])) {
+          r = ledmap[_NUMERIC][i][0];
+          g = ledmap[_NUMERIC][i][1];
+          b = ledmap[_NUMERIC][i][2];
+      }
+      rgb_matrix_set_color(i, r, g, b);
   }
 }
 
 void rgb_matrix_indicators_user(void) {
-  if (g_suspend_state || keyboard_config.disable_layer_led) { return; }
-  switch (biton32(layer_state)) {
-    case 4:
-      set_layer_color(4);
-      break;
-   default:
-    if (rgb_matrix_get_flags() == LED_FLAG_NONE)
-      rgb_matrix_set_color_all(0, 0, 0);
-    break;
+  if (g_suspend_state || keyboard_config.disable_layer_led) {
+      return;
   }
+
+  if (layer_state_is(_GAMING) || layer_state_is(_NUMERIC))
+    set_layer_color();
+  else if (layer_state_is(_ADJUST))
+    rgb_matrix_set_color_all(0xb7, 0x15, 0x40);
+  else if (rgb_matrix_get_flags() == LED_FLAG_NONE)
+    rgb_matrix_set_color_all(0, 0, 0);
+  else if (rgb_matrix_get_mode() != KRIG_ANIM)
+    rgb_matrix_mode_noeeprom(KRIG_ANIM);
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
