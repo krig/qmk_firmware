@@ -42,38 +42,44 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , BL_DEC  , BL_INC  , KC_TRNS
     ),
 	[_GAME] = LAYOUT_ortho_5x12(
-        KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,
+        KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS , KC_TRNS , KC_TRNS , KC_F9 ,
         KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,
         KC_LCTL , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,
         KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,
         KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS
     ),
 	[_NUMERIC] = LAYOUT_ortho_5x12(
-        TG(_GAME) , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,
-        KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,
-        KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,
-        KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,
+        TG(_GAME) , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_1 , KC_2 , KC_3 , KC_TRNS ,
+        KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_4 , KC_5 , KC_6 , KC_TRNS ,
+        KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_7 , KC_8 , KC_9 , KC_PENT ,
+        KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_DOT , KC_0 , KC_COMMA , KC_TRNS ,
         KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS
     )
 };
+
+#define HSV_ORANGE2 18, 255, 255
 
 const rgblight_segment_t PROGMEM krig_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM, HSV_RED}
 );
 const rgblight_segment_t PROGMEM krig_base_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, HSV_TURQUOISE}
+
+    {0, RGBLED_NUM, HSV_PURPLE}
 );
 const rgblight_segment_t PROGMEM krig_lower_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, HSV_PINK}
+    {0, RGBLED_NUM, HSV_BLUE}
 );
 const rgblight_segment_t PROGMEM krig_raise_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, HSV_ORANGE}
+    {0, RGBLED_NUM, HSV_GREEN}
 );
 const rgblight_segment_t PROGMEM krig_adjust_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, HSV_SPRINGGREEN}
+    {0, RGBLED_NUM, HSV_MAGENTA}
 );
 const rgblight_segment_t PROGMEM krig_game_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, HSV_AZURE}
+    {0, RGBLED_NUM, HSV_ORANGE2}
+);
+const rgblight_segment_t PROGMEM krig_numeric_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, RGBLED_NUM, HSV_SPRINGGREEN}
 );
 
 
@@ -83,8 +89,9 @@ const rgblight_segment_t* const PROGMEM krig_rgb_layers[] = RGBLIGHT_LAYERS_LIST
     krig_capslock_layer,
     krig_lower_layer,
     krig_raise_layer,
-    krig_adjust_layer,
-    krig_game_layer
+    krig_game_layer,
+    krig_numeric_layer,
+    krig_adjust_layer
 );
 
 void keyboard_post_init_user(void) {
@@ -105,7 +112,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
     rgblight_set_layer_state(2, layer_state_cmp(state, _LOWER));
     rgblight_set_layer_state(3, layer_state_cmp(state, _RAISE));
-    rgblight_set_layer_state(4, layer_state_cmp(state, _ADJUST));
-    rgblight_set_layer_state(5, layer_state_cmp(state, _GAME));
+    rgblight_set_layer_state(4, layer_state_cmp(state, _GAME));
+    rgblight_set_layer_state(5, layer_state_cmp(state, _NUMERIC));
+    rgblight_set_layer_state(6, layer_state_cmp(state, _ADJUST));
     return state;
 }
