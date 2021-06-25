@@ -32,7 +32,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS , KC_TRNS , KC_LCBR , KC_RCBR , KC_TRNS , KC_TRNS , KC_TRNS ,
         KC_TRNS , KC_LBRC , KC_RBRC , KC_LPRN , KC_RPRN  , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_QUOT , KC_DQUO , KC_TRNS ,
         KC_TRNS , KC_TRNS , KC_TRNS , KC_LCBR , KC_RCBR  , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,
-        KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS
+        KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS , KC_TRNS , KC_TRNS , KC_HOME , KC_PGDN , KC_PGUP , KC_END
     ),
 	[_ADJUST] = LAYOUT_ortho_5x12(
         KC_SLCK , KC_F1   , KC_F2   , KC_F3   , KC_F4   , KC_F5   , KC_F6   , KC_F7   , KC_F8   , KC_F9   , KC_F10  , KC_F11  ,
@@ -42,18 +42,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , BL_DEC  , BL_INC  , KC_TRNS
     ),
 	[_GAME] = LAYOUT_ortho_5x12(
-        KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS , KC_TRNS , KC_TRNS , KC_F9 ,
+        KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS , KC_TRNS , KC_TRNS , KC_F9   ,
         KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,
         KC_LCTL , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,
         KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,
         KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS
     ),
 	[_NUMERIC] = LAYOUT_ortho_5x12(
-        TG(_GAME) , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_1 , KC_2 , KC_3 , KC_TRNS ,
-        KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_4 , KC_5 , KC_6 , KC_TRNS ,
-        KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_7 , KC_8 , KC_9 , KC_PENT ,
-        KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_DOT , KC_0 , KC_COMMA , KC_TRNS ,
-        KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_HOME , KC_PGDN , KC_PGUP , KC_END
+      TG(_GAME) , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_1    , KC_2    , KC_3     , KC_TRNS ,
+        KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_4    , KC_5    , KC_6     , KC_TRNS ,
+        KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_7    , KC_8    , KC_9     , KC_PENT ,
+        KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_DOT  , KC_0    , KC_COMMA , KC_TRNS ,
+        KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_HOME , KC_PGDN , KC_PGUP  , KC_END
     )
 };
 
@@ -82,8 +82,16 @@ const rgblight_segment_t PROGMEM krig_numeric_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM, HSV_SPRINGGREEN}
 );
 
+enum light_layers {
+    _L_BASE,
+    _L_CAPS,
+    _L_LOWER,
+    _L_RAISE,
+    _L_GAME,
+    _L_NUMERIC,
+    _L_ADJUST
+};
 
-// Now define the array of layers. Later layers take precedence
 const rgblight_segment_t* const PROGMEM krig_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     krig_base_layer,
     krig_capslock_layer,
@@ -99,21 +107,21 @@ void keyboard_post_init_user(void) {
 }
 
 bool led_update_user(led_t led_state) {
-    rgblight_set_layer_state(1, led_state.caps_lock);
+    rgblight_set_layer_state(_L_CAPS, led_state.caps_lock);
     return true;
 }
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(0, layer_state_cmp(state, _BASE));
+    rgblight_set_layer_state(_L_BASE, layer_state_cmp(state, _BASE));
     return state;
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-    rgblight_set_layer_state(2, layer_state_cmp(state, _LOWER));
-    rgblight_set_layer_state(3, layer_state_cmp(state, _RAISE));
-    rgblight_set_layer_state(4, layer_state_cmp(state, _GAME));
-    rgblight_set_layer_state(5, layer_state_cmp(state, _NUMERIC));
-    rgblight_set_layer_state(6, layer_state_cmp(state, _ADJUST));
+    rgblight_set_layer_state(_L_LOWER, layer_state_cmp(state, _LOWER));
+    rgblight_set_layer_state(_L_RAISE, layer_state_cmp(state, _RAISE));
+    rgblight_set_layer_state(_L_GAME, layer_state_cmp(state, _GAME));
+    rgblight_set_layer_state(_L_NUMERIC, layer_state_cmp(state, _NUMERIC));
+    rgblight_set_layer_state(_L_ADJUST, layer_state_cmp(state, _ADJUST));
     return state;
 }
