@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_RAISE] = LAYOUT_planck_grid(
-      KC_TRNS,        KC_1,            KC_2,       KC_3,    KC_4,       KC_5,     KC_6,    KC_7,       KC_8,     KC_9,       KC_0,       KC_DELETE,
+      KC_ESC,         KC_1,            KC_2,       KC_3,    KC_4,       KC_5,     KC_6,    KC_7,       KC_8,     KC_9,       KC_0,       KC_DELETE,
       KC_TRNS,        KC_TRNS,         KC_TRNS,    KC_LCBR, KC_RCBR,    KC_LABK,  KC_RABK, KC_LBRC,    KC_RBRC,  KC_QUOT,    KC_DQUO,    KC_INSERT,
       KC_TRNS,        KC_TRNS,         KC_TRNS,    KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS,    KC_TRNS,    KC_TRNS,
       KC_TRNS,        KC_TRNS,         KC_TRNS,    KC_TRNS, KC_TRNS,    KC_TRNS,  KC_NO,   KC_TRNS,    KC_HOME,  KC_PGDOWN,  KC_PGUP,    KC_END
@@ -77,10 +77,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TRNS,        KC_TRNS,         KC_TRNS,    KC_TRNS, KC_TRNS,    KC_TRNS,  KC_NO,   KC_TRNS,    KC_TRNS,  KC_DOT,     KC_0,       KC_COMMA
   ),
 };
-
-extern bool         g_suspend_state;
-extern rgb_config_t rgb_matrix_config;
-
 
 #define KRIG_ANIM RGB_MATRIX_SOLID_REACTIVE_SIMPLE
 #define WASD_COLOR 0xeb, 0x2f, 0x06
@@ -122,7 +118,7 @@ void set_layer_color(void) {
 }
 
 void rgb_matrix_indicators_user(void) {
-  if (g_suspend_state || keyboard_config.disable_layer_led) {
+  if (keyboard_config.disable_layer_led) {
       return;
   }
 
@@ -154,7 +150,7 @@ uint16_t muse_counter = 0;
 uint8_t muse_offset = 70;
 uint16_t muse_tempo = 50;
 
-void encoder_update(bool clockwise) {
+bool encoder_update_user(uint8_t index, bool clockwise) {
     if (muse_mode) {
         if (IS_LAYER_ON(_RAISE)) {
             if (clockwise) {
@@ -188,6 +184,7 @@ void encoder_update(bool clockwise) {
         #endif
         }
     }
+    return true;
 }
 
 void matrix_scan_user(void) {
