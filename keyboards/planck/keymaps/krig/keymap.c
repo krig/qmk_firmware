@@ -43,38 +43,38 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_LOWER] = LAYOUT_planck_grid(
-      KC_TILD,        KC_EXLM,         KC_AT,      KC_HASH, KC_DLR,     KC_PERC,  KC_CIRC, KC_AMPR,    KC_ASTR,  RALT(KC_P), RALT(KC_Q), KC_TRNS,
-      KC_TRNS,        KC_TRNS,         KC_TRNS,    KC_LPRN, KC_RPRN,    KC_PIPE,  KC_PLUS, KC_MINUS,   KC_UNDS,  KC_EQUAL,   RALT(KC_W), KC_TRNS,
-      KC_TRNS,        KC_TRNS,         KC_TRNS,    KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS,    KC_BSLASH,  KC_GRAVE,
-      KC_TRNS,        KC_TRNS,         KC_TRNS,    KC_TRNS, KC_TRNS,    KC_TRNS,  KC_NO,   KC_TRNS,    KC_HOME,  KC_PGDOWN,  KC_PGUP,    KC_END
+      KC_TILD,        KC_EXLM,         KC_AT,      KC_HASH, KC_DLR,     KC_PERC,  KC_CIRC, KC_AMPR,    KC_ASTR,  RALT(KC_P), RALT(KC_Q), _______,
+      _______,        _______,         _______,    KC_LPRN, KC_RPRN,    KC_PIPE,  KC_PLUS, KC_MINUS,   KC_UNDS,  KC_EQUAL,   RALT(KC_W), _______,
+      _______,        _______,         _______,    _______, _______,    _______,  _______, _______,    _______,  _______,    KC_BSLASH,  KC_GRAVE,
+      _______,        _______,         _______,    _______, _______,    _______,  KC_NO,   _______,    KC_HOME,  KC_PGDOWN,  KC_PGUP,    KC_END
   ),
 
   [_RAISE] = LAYOUT_planck_grid(
       KC_ESC,         KC_1,            KC_2,       KC_3,    KC_4,       KC_5,     KC_6,    KC_7,       KC_8,     KC_9,       KC_0,       KC_DELETE,
-      KC_TRNS,        KC_TRNS,         KC_TRNS,    KC_LCBR, KC_RCBR,    KC_LABK,  KC_RABK, KC_LBRC,    KC_RBRC,  KC_QUOT,    KC_DQUO,    KC_INSERT,
-      KC_TRNS,        KC_TRNS,         KC_TRNS,    KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS,    KC_TRNS,    KC_TRNS,
-      KC_TRNS,        KC_TRNS,         KC_TRNS,    KC_TRNS, KC_TRNS,    KC_TRNS,  KC_NO,   KC_TRNS,    KC_HOME,  KC_PGDOWN,  KC_PGUP,    KC_END
+      _______,        _______,         _______,    KC_LCBR, KC_RCBR,    KC_LABK,  KC_RABK, KC_LBRC,    KC_RBRC,  KC_QUOT,    KC_DQUO,    KC_INSERT,
+      _______,        _______,         _______,    _______, _______,    _______,  _______, _______,    _______,  _______,    _______,    _______,
+      _______,        _______,         _______,    _______, _______,    _______,  KC_NO,   _______,    KC_HOME,  KC_PGDOWN,  KC_PGUP,    KC_END
   ),
 
   [_ADJUST] = LAYOUT_planck_grid(
       KC_SCROLLLOCK,  KC_F1,           KC_F2,      KC_F3,   KC_F4,      KC_F5,    KC_F6,   KC_F7,      KC_F8,    KC_F9,      KC_F10,     KC_F11,
-      KC_CAPSLOCK,    KC_F12,          KC_PSCREEN, KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS, RGB_HUD,    RGB_HUI,  KC_MUTE,    KC_VOLD,    KC_VOLU,
-      KC_TRNS,        KC_TRNS,         KC_TRNS,    KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS, RGB_VAD,    RGB_VAI,  RGB_TOG,    RGB_MOD,    RGB_SLD,
-      KC_TRNS,        KC_TRNS,         KC_TRNS,    KC_TRNS, KC_TRNS,    KC_TRNS,  KC_NO,   KC_TRNS,    KC_TRNS,  MU_TOG,     MU_MOD,     AU_TOG
+      KC_CAPSLOCK,    KC_F12,          KC_PSCREEN, _______, _______,    _______,  _______, RGB_HUD,    RGB_HUI,  KC_MUTE,    KC_VOLD,    KC_VOLU,
+      _______,        _______,         _______,    _______, _______,    _______,  _______, RGB_VAD,    RGB_VAI,  RGB_TOG,    RGB_MOD,    RGB_SLD,
+      _______,        _______,         _______,    _______, _______,    _______,  KC_NO,   _______,    _______,  MU_TOG,     MU_MOD,     AU_TOG
   ),
 
   [_GAME] = LAYOUT_planck_grid(
-      KC_TRNS,        KC_TRNS,         KC_TRNS,    KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS,    KC_TRNS,    KC_TRNS,
-      KC_LCTL,        KC_TRNS,         KC_TRNS,    KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS,    KC_TRNS,    KC_TRNS,
-      KC_TRNS,        KC_TRNS,         KC_TRNS,    KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS,    KC_TRNS,    KC_TRNS,
-      KC_TRNS,        KC_TRNS,         KC_TRNS,    KC_TRNS, KC_TRNS,    KC_TRNS,  KC_NO,   KC_TRNS,    KC_TRNS,  KC_TRNS,    KC_TRNS,    KC_TRNS
+      _______,        _______,         _______,    _______, _______,    _______,  _______, _______,    _______,  _______,    _______,    _______,
+      KC_LCTL,        _______,         _______,    _______, _______,    _______,  _______, _______,    _______,  _______,    _______,    _______,
+      _______,        _______,         _______,    _______, _______,    _______,  _______, _______,    _______,  _______,    _______,    _______,
+      _______,        _______,         _______,    _______, _______,    _______,  KC_NO,   _______,    _______,  _______,    _______,    _______
   ),
 
   [_NUMERIC] = LAYOUT_planck_grid(
-      TG(_GAME),      KC_TRNS,         KC_TRNS,    KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS, KC_TRNS,    KC_TRNS,  KC_1,       KC_2,       KC_3,
-      KC_TRNS,        KC_TRNS,         KC_TRNS,    KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS, KC_TRNS,    KC_TRNS,  KC_4,       KC_5,       KC_6,
-      KC_TRNS,        KC_TRNS,         KC_TRNS,    KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS, KC_TRNS,    KC_TRNS,  KC_7,       KC_8,       KC_9,
-      KC_TRNS,        KC_TRNS,         KC_TRNS,    KC_TRNS, KC_TRNS,    KC_TRNS,  KC_NO,   KC_TRNS,    KC_TRNS,  KC_DOT,     KC_0,       KC_COMMA
+      TG(_GAME),      _______,         _______,    _______, _______,    _______,  _______, _______,    _______,  KC_1,       KC_2,       KC_3,
+      _______,        _______,         _______,    _______, _______,    _______,  _______, _______,    _______,  KC_4,       KC_5,       KC_6,
+      _______,        _______,         _______,    _______, _______,    _______,  _______, _______,    _______,  KC_7,       KC_8,       KC_9,
+      _______,        _______,         _______,    _______, _______,    _______,  KC_NO,   _______,    _______,  KC_DOT,     KC_0,       KC_COMMA
   ),
 };
 
