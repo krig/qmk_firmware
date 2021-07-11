@@ -100,8 +100,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_ADJUST] = LAYOUT(
       _______, KC_SCROLLLOCK,  KC_F1,           KC_F2,      KC_F3,   KC_F4,      KC_F5,    KC_F6,   KC_F7,      KC_F8,    KC_F9,      KC_F10,     KC_F11,
       _______, KC_CAPSLOCK,    KC_F12,          KC_PSCREEN, _______, _______,    _______,  _______, RGB_HUD,    RGB_HUI,  KC_MUTE,    KC_VOLD,    KC_VOLU,
-      _______, _______,        _______,         _______,    _______, _______,    _______,  _______, RGB_VAD,    RGB_VAI,  RGB_TOG,    RGB_MOD,    RGB_SLD,
-      _______, _______,        _______,         _______,    _______, _______,    _______,          _______,    _______,  MU_TOG,     MU_MOD,     _______
+      _______, _______,        _______,         _______,    _______, _______,    _______,  _______, RGB_VAD,    RGB_VAI,  RGB_TOG,    RGB_MOD,    _______,
+      _______, _______,        _______,         _______,    _______, _______,    _______,          _______,    _______,  _______,     _______,     _______
 ),
 
 /* Game
