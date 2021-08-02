@@ -2415,6 +2415,19 @@ void backlight_effect_indicators_set_colors( uint8_t index, HS color )
     }
 }
 
+void backlight_set_indicator_index( uint8_t *index, uint8_t row, uint8_t column );
+
+void backlight_set_wasd(uint8_t r, uint8_t g, uint8_t b) {
+    struct { uint8_t row; uint8_t col; } keys[4] = {
+        {0, 3}, {1, 2}, {1, 3}, {1, 4}
+    };
+    for (int i = 0; i < 4; ++i) {
+        uint8_t index;
+        backlight_set_indicator_index(&index, keys[i].row, keys[i].col);
+        backlight_set_color(index, r, g, b);
+    }
+}
+
 // This runs after another backlight effect and replaces
 // colors already set
 __attribute__ ((weak)) void backlight_effect_indicators(void)
@@ -2433,8 +2446,25 @@ __attribute__ ((weak)) void backlight_effect_indicators(void)
     // still the backlight configuration layer and we don't
     // want "all LEDs" indicators hiding the backlight effect,
     // but still allow end users to do whatever they want.
+    if ( IS_LAYER_ON(4) )
+    {
+        backlight_set_wasd(255, 215, 0);
+    }
+    if ( IS_LAYER_ON(5) )
+    {
+        for (int row = 0; row < 4; ++row) {
+            for (int col = 10; col < 13; ++col) {
+                uint8_t index;
+                backlight_set_indicator_index(&index, row, col);
+                backlight_set_color(index, 0, 255, 127);
+            }
+        }
+    }
     if ( IS_LAYER_ON(3) )
     {
+        uint8_t index;
+        backlight_set_indicator_index(&index, 1, 0);
+        backlight_set_color(index, 255, 255, 255);
         if ( g_config.layer_3_indicator.index != 255 )
         {
             backlight_effect_indicators_set_colors( g_config.layer_3_indicator.index, g_config.layer_3_indicator.color );
@@ -2442,6 +2472,9 @@ __attribute__ ((weak)) void backlight_effect_indicators(void)
     }
     else if ( IS_LAYER_ON(2) )
     {
+        uint8_t index;
+        backlight_set_indicator_index(&index, 2, 0);
+        backlight_set_color(index, 255, 255, 255);
         if ( g_config.layer_2_indicator.index != 255 )
         {
             backlight_effect_indicators_set_colors( g_config.layer_2_indicator.index, g_config.layer_2_indicator.color );
@@ -2449,6 +2482,9 @@ __attribute__ ((weak)) void backlight_effect_indicators(void)
     }
     else if ( IS_LAYER_ON(1) )
     {
+        uint8_t index;
+        backlight_set_indicator_index(&index, 3, 0);
+        backlight_set_color(index, 255, 255, 255);
         if ( g_config.layer_1_indicator.index != 255 )
         {
             backlight_effect_indicators_set_colors( g_config.layer_1_indicator.index, g_config.layer_1_indicator.color );
