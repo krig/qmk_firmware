@@ -45,8 +45,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_BASE] = LAYOUT(
     TG(_GAME), KC_TAB,          KC_Q,             KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
     KC_GESC, LCTL_T(KC_ESC),  KC_A,             KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT,
-    _______, KC_LSHIFT,       KC_Z,             KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_QUOTE,
-    _______, MO(_NUMERIC),  LCTL(KC_LSHIFT), KC_LALT, KC_LGUI,   LOWER,  KC_SPC,            RAISE,    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+    KC_PGUP, KC_LSHIFT,       KC_Z,             KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_QUOTE,
+    KC_PGDOWN, MO(_NUMERIC),  LCTL(KC_LSHIFT), KC_LALT, KC_LGUI,   LOWER,  KC_SPC,            RAISE,    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),
 
 
@@ -63,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT(
     _______, KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR,  KC_ASTR,   RALT(KC_P), RALT(KC_Q), _______,
-    _______, _______, _______, _______, KC_LPRN, KC_LPRN, KC_PIPE, KC_PLUS, KC_MINUS, KC_UNDS,   KC_EQUAL,   RALT(KC_W), _______,
+    _______, _______, _______, _______, KC_LPRN, KC_RPRN, KC_PIPE, KC_PLUS, KC_MINUS, KC_UNDS,   KC_EQUAL,   RALT(KC_W), _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,   _______,    KC_BSLASH,  KC_GRAVE,
     _______, _______, _______, _______, _______, _______, _______,          _______,  KC_HOME, KC_PGDOWN,    KC_PGUP,    KC_END
 ),
@@ -99,9 +99,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_ADJUST] = LAYOUT(
       _______, KC_SCROLLLOCK,  KC_F1,           KC_F2,      KC_F3,   KC_F4,      KC_F5,    KC_F6,   KC_F7,      KC_F8,    KC_F9,      KC_F10,     KC_F11,
-      _______, KC_CAPSLOCK,    KC_F12,          KC_PSCREEN, _______, _______,    _______,  _______, RGB_HUD,    RGB_HUI,  KC_MUTE,    KC_VOLD,    KC_VOLU,
-      _______, _______,        _______,         _______,    _______, _______,    _______,  _______, RGB_VAD,    RGB_VAI,  RGB_TOG,    RGB_MOD,    _______,
-      _______, _______,        _______,         _______,    _______, _______,    _______,          _______,    _______,  _______,     _______,     _______
+      _______, KC_CAPSLOCK,    KC_F12,          KC_PSCREEN, _______, BR_INC,    EF_INC,  ES_INC, H1_INC,    S1_INC,  H2_INC,    S2_INC,    _______,
+      _______, _______,        _______,         _______,    _______, BR_DEC,    EF_DEC,  ES_DEC, H1_DEC,    S1_DEC,  H2_DEC,    S2_DEC,    _______,
+      _______, _______,        _______,         _______,    _______, _______,    _______,          _______,    _______,  KC_VOLD,     KC_VOLU,     _______
 ),
 
 /* Game
