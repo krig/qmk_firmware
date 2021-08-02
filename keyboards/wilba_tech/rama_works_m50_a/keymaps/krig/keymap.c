@@ -101,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, KC_SCROLLLOCK,  KC_F1,           KC_F2,      KC_F3,   KC_F4,      KC_F5,    KC_F6,   KC_F7,      KC_F8,    KC_F9,      KC_F10,     KC_F11,
       _______, KC_CAPSLOCK,    KC_F12,          KC_PSCREEN, _______, BR_INC,    EF_INC,  ES_INC, H1_INC,    S1_INC,  H2_INC,    S2_INC,    _______,
       _______, _______,        _______,         _______,    _______, BR_DEC,    EF_DEC,  ES_DEC, H1_DEC,    S1_DEC,  H2_DEC,    S2_DEC,    _______,
-      _______, _______,        _______,         _______,    _______, _______,    _______,          _______,    _______,  KC_VOLD,     KC_VOLU,     _______
+      RESET, _______,        _______,         _______,    _______, _______,    _______,          _______,    _______,  KC_VOLD,     KC_VOLU,     _______
 ),
 
 /* Game
