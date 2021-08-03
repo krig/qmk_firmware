@@ -2398,6 +2398,20 @@ void backlight_set_wasd(uint8_t r, uint8_t g, uint8_t b) {
     }
 }
 
+void backlight_set_row_rgb(uint8_t row, uint8_t r, uint8_t g, uint8_t b)
+{
+    for (int i = 0; i < MATRIX_COLS; ++i) {
+        backlight_set_rowcol_rgb(row, i, r, g, b);
+    }
+}
+
+void backlight_set_col_rgb(uint8_t col, uint8_t r, uint8_t g, uint8_t b)
+{
+    for (int i = 0; i < MATRIX_ROWS; ++i) {
+        backlight_set_rowcol_rgb(i, col, r, g, b);
+    }
+}
+
 void backlight_effect_synthwave(bool initialize)
 {
     uint8_t breathing = 8 + scale8(abs8(sin8(g_tick << g_config.effect_speed) - 128) * 2, 128);
@@ -2412,16 +2426,39 @@ void backlight_effect_synthwave(bool initialize)
     } else if ( IS_LAYER_ON(1) ) {
         hue = (hue - 4) & 0xff;
     }
-    HSV hsv = { .h = hue, .s = sat, .v = (g_config.color_1.v + (breathing / 2)) & 0xff };
-    RGB rgb = hsv_to_rgb(hsv);
-    backlight_set_color_all(rgb.r, rgb.g, rgb.b);
+    HSV hsv = { .h = hue, .s = sat, .v = 0 };
+    RGB rgb;
+    static uint8_t led_state[BACKLIGHT_LED_COUNT];
+    led_state[g_tick % BACKLIGHT_LED_COUNT] = 255;
+    for (int i = 0; i < BACKLIGHT_LED_COUNT; ++i) {
+        uint8_t val = 255 - g_key_hit[i];
+
+        hsv.v = MIN(g_config.brightness, MAX(val, led_state[i]));
+        rgb = hsv_to_rgb(hsv);
+        backlight_set_color(i, rgb.r, rgb.g, rgb.b);
+
+        if (led_state[i] > 0) {
+            led_state[i] = MAX(led_state[i] - (255/BACKLIGHT_LED_COUNT), 0);
+        }
+    }
+    /* for (int r = 0; r < MATRIX_ROWS; r++) { */
+    /*     for (int c = 0; c < MATRIX_COLS; c++) { */
+    /*         uint8_t led; */
+    /*         map_row_column_to_led(r, c, &led); */
+    /*         uint8_t val = 255 - g_key_hit[led]; */
+
+    /*         hsv.v = MIN(255, val + breathing); */
+    /*         rgb = hsv_to_rgb(hsv); */
+    /*         backlight_set_color(led, rgb.r, rgb.g, rgb.b); */
+    /*     } */
+    /* } */
 
     // highlight WASD if gaming layer is enabled
     if ( IS_LAYER_ON(4) )
     {
         hsv.h = g_config.color_2.h;
         hsv.s = g_config.color_2.s;
-        hsv.v = (g_config.color_2.v + (breathing / 4)) & 0xff;
+        hsv.v = (64 + (breathing / 4)) & 0xff;
         rgb = hsv_to_rgb(hsv);
         backlight_set_wasd(rgb.r, rgb.g, rgb.b);
         backlight_set_rowcol_rgb(3, 0, 255, 255, 255);
@@ -2432,7 +2469,7 @@ void backlight_effect_synthwave(bool initialize)
     {
         hsv.h = g_config.color_2.h;
         hsv.s = g_config.color_2.s;
-        hsv.v = (g_config.color_2.v + (breathing / 4)) & 0xff;
+        hsv.v = (64 + (breathing / 4)) & 0xff;
         rgb = hsv_to_rgb(hsv);
         for (int row = 0; row < 3; ++row) {
             for (int col = 10; col < 13; ++col) {
@@ -2509,8 +2546,6 @@ __attribute__ ((weak)) void backlight_effect_indicators(void)
     // but still allow end users to do whatever they want.
     if ( IS_LAYER_ON(3) )
     {
-        backlight_set_rowcol_rgb(1, 0, 255, 255, 255);
-
         if ( g_config.layer_3_indicator.index != 255 )
         {
             backlight_effect_indicators_set_colors( g_config.layer_3_indicator.index, g_config.layer_3_indicator.color );
@@ -2518,7 +2553,6 @@ __attribute__ ((weak)) void backlight_effect_indicators(void)
     }
     else if ( IS_LAYER_ON(2) )
     {
-        backlight_set_rowcol_rgb(2, 0, 255, 255, 255);
         if ( g_config.layer_2_indicator.index != 255 )
         {
             backlight_effect_indicators_set_colors( g_config.layer_2_indicator.index, g_config.layer_2_indicator.color );
@@ -2526,7 +2560,6 @@ __attribute__ ((weak)) void backlight_effect_indicators(void)
     }
     else if ( IS_LAYER_ON(1) )
     {
-        backlight_set_rowcol_rgb(3, 0, 255, 255, 255);
         if ( g_config.layer_1_indicator.index != 255 )
         {
             backlight_effect_indicators_set_colors( g_config.layer_1_indicator.index, g_config.layer_1_indicator.color );
