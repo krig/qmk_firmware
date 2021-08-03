@@ -2404,7 +2404,7 @@ void backlight_effect_synthwave(bool initialize)
     // low intensity breathing all the colours in the background
     // 0 = red
     uint8_t hue = g_config.color_1.h;
-    uint8_t sat = 245;
+    uint8_t sat = g_config.color_1.s;
     if ( IS_LAYER_ON(3) ) {
         sat = 255;
     } else if ( IS_LAYER_ON(2) ) {
@@ -2412,7 +2412,7 @@ void backlight_effect_synthwave(bool initialize)
     } else if ( IS_LAYER_ON(1) ) {
         hue = (hue - 4) & 0xff;
     }
-    HSV hsv = { .h = hue, .s = sat, .v = (64 + (breathing / 2)) & 0xff };
+    HSV hsv = { .h = hue, .s = sat, .v = (g_config.color_1.v + (breathing / 2)) & 0xff };
     RGB rgb = hsv_to_rgb(hsv);
     backlight_set_color_all(rgb.r, rgb.g, rgb.b);
 
@@ -2421,18 +2421,18 @@ void backlight_effect_synthwave(bool initialize)
     {
         hsv.h = g_config.color_2.h;
         hsv.s = g_config.color_2.s;
-        hsv.v = (192 + (breathing / 4)) & 0xff;
+        hsv.v = (g_config.color_2.v + (breathing / 4)) & 0xff;
         rgb = hsv_to_rgb(hsv);
         backlight_set_wasd(rgb.r, rgb.g, rgb.b);
-        backlight_set_rowcol_rgb(0, 0, 255, 255, 255);
+        backlight_set_rowcol_rgb(3, 0, 255, 255, 255);
     }
 
     // highlight numpad keys if numeric layer is enabled
     if ( IS_LAYER_ON(5) )
     {
-        hsv.h = 0;
-        hsv.s = 0;
-        hsv.v = MIN(breathing + 30, 255);
+        hsv.h = g_config.color_2.h;
+        hsv.s = g_config.color_2.s;
+        hsv.v = (g_config.color_2.v + (breathing / 4)) & 0xff;
         rgb = hsv_to_rgb(hsv);
         for (int row = 0; row < 3; ++row) {
             for (int col = 10; col < 13; ++col) {
@@ -2443,15 +2443,15 @@ void backlight_effect_synthwave(bool initialize)
     }
     if ( IS_LAYER_ON(3) )
     {
-        backlight_set_rowcol_rgb(1, 0, 255, 255, 255);
+        backlight_set_rowcol_rgb(0, 0, 255, 255, 255);
     }
     else if ( IS_LAYER_ON(2) )
     {
-        backlight_set_rowcol_rgb(2, 0, 255, 255, 255);
+        backlight_set_rowcol_rgb(1, 0, 255, 255, 255);
     }
     else if ( IS_LAYER_ON(1) )
     {
-        backlight_set_rowcol_rgb(3, 0, 255, 255, 255);
+        backlight_set_rowcol_rgb(2, 0, 255, 255, 255);
     }
 }
 

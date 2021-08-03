@@ -43,10 +43,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `------------------------------------------------------------------------------------------'
  */
 [_BASE] = LAYOUT(
-    TG(_GAME), KC_TAB,          KC_Q,             KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-    KC_GESC, LCTL_T(KC_ESC),  KC_A,             KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT,
-    KC_PGUP, KC_LSHIFT,       KC_Z,             KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_QUOTE,
-    KC_PGDOWN, MO(_NUMERIC),  LCTL(KC_LSHIFT), KC_LALT, KC_LGUI,   LOWER,  KC_SPC,            RAISE,    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+    KC_ESC, KC_TAB,          KC_Q,             KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
+    KC_GRV, LCTL_T(KC_ESC),  KC_A,             KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT,
+    _______, KC_LSHIFT,       KC_Z,             KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_QUOTE,
+    TG(_GAME), MO(_NUMERIC),  LCTL(KC_LSHIFT), KC_LALT, KC_LGUI,   LOWER,  KC_SPC,            RAISE,    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),
 
 
@@ -98,10 +98,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `------------------------------------------------------------------------------------------'
  */
 [_ADJUST] = LAYOUT(
-      _______, KC_SCROLLLOCK,  KC_F1,           KC_F2,      KC_F3,   KC_F4,      KC_F5,    KC_F6,   KC_F7,      KC_F8,    KC_F9,      KC_F10,     KC_F11,
+        RESET, KC_SCROLLLOCK,  KC_F1,           KC_F2,      KC_F3,   KC_F4,      KC_F5,    KC_F6,   KC_F7,      KC_F8,    KC_F9,      KC_F10,     KC_F11,
       _______, KC_CAPSLOCK,    KC_F12,          KC_PSCREEN, _______, BR_INC,    EF_INC,  ES_INC, H1_INC,    S1_INC,  H2_INC,    S2_INC,    _______,
       _______, _______,        _______,         _______,    _______, BR_DEC,    EF_DEC,  ES_DEC, H1_DEC,    S1_DEC,  H2_DEC,    S2_DEC,    _______,
-      RESET, _______,        _______,         _______,    _______, _______,    _______,          _______,    _______,  KC_VOLD,     KC_VOLU,     _______
+      _______, _______,        _______,         _______,    _______, _______,    _______,          _______,    _______,  KC_VOLD,     KC_VOLU,     _______
 ),
 
 /* Game
