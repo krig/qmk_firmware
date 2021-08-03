@@ -69,7 +69,8 @@ LED_TYPE g_ws2812_leds[WS2812_LED_TOTAL];
 
 #include "progmem.h"
 #include "quantum/color.h"
-#include "eeprom.h"
+#include "tmk_core/common/eeprom.h"
+#include <lib/lib8tion/lib8tion.h>
 
 #include "via.h" // uses EEPROM address, lighting value IDs
 #define RGB_BACKLIGHT_CONFIG_EEPROM_ADDR (VIA_EEPROM_CUSTOM_CONFIG_ADDR)
@@ -110,7 +111,7 @@ LED_TYPE g_ws2812_leds[WS2812_LED_TOTAL];
 #endif
 #endif
 
-#define BACKLIGHT_EFFECT_MAX 10
+#define BACKLIGHT_EFFECT_MAX 11
 
 backlight_config g_config = {
     .use_split_backspace = RGB_BACKLIGHT_USE_SPLIT_BACKSPACE,
@@ -2381,6 +2382,79 @@ void backlight_effect_custom_colors(void)
 }
 #endif
 
+void backlight_set_rowcol_rgb(uint8_t row, uint8_t col, uint8_t r, uint8_t g, uint8_t b)
+{
+    uint8_t index;
+    map_row_column_to_led(row, col, &index );
+    backlight_set_color(index, r, g, b);
+}
+
+void backlight_set_wasd(uint8_t r, uint8_t g, uint8_t b) {
+    struct { uint8_t row; uint8_t col; } keys[4] = {
+        {0, 3}, {1, 2}, {1, 3}, {1, 4}
+    };
+    for (int i = 0; i < 4; ++i) {
+        backlight_set_rowcol_rgb(keys[i].row, keys[i].col, r, g, b);
+    }
+}
+
+void backlight_effect_synthwave(bool initialize)
+{
+    uint8_t breathing = 8 + scale8(abs8(sin8(g_tick << g_config.effect_speed) - 128) * 2, 128);
+    // low intensity breathing all the colours in the background
+    // 0 = red
+    uint8_t hue = g_config.color_1.h;
+    uint8_t sat = 245;
+    if ( IS_LAYER_ON(3) ) {
+        sat = 255;
+    } else if ( IS_LAYER_ON(2) ) {
+        hue = (hue + 4) & 0xff;
+    } else if ( IS_LAYER_ON(1) ) {
+        hue = (hue - 4) & 0xff;
+    }
+    HSV hsv = { .h = hue, .s = sat, .v = (64 + (breathing / 2)) & 0xff };
+    RGB rgb = hsv_to_rgb(hsv);
+    backlight_set_color_all(rgb.r, rgb.g, rgb.b);
+
+    // highlight WASD if gaming layer is enabled
+    if ( IS_LAYER_ON(4) )
+    {
+        hsv.h = g_config.color_2.h;
+        hsv.s = g_config.color_2.s;
+        hsv.v = (192 + (breathing / 4)) & 0xff;
+        rgb = hsv_to_rgb(hsv);
+        backlight_set_wasd(rgb.r, rgb.g, rgb.b);
+        backlight_set_rowcol_rgb(0, 0, 255, 255, 255);
+    }
+
+    // highlight numpad keys if numeric layer is enabled
+    if ( IS_LAYER_ON(5) )
+    {
+        hsv.h = 0;
+        hsv.s = 0;
+        hsv.v = MIN(breathing + 30, 255);
+        rgb = hsv_to_rgb(hsv);
+        for (int row = 0; row < 3; ++row) {
+            for (int col = 10; col < 13; ++col) {
+                backlight_set_rowcol_rgb(row, col, rgb.r, rgb.g, rgb.b);
+            }
+        }
+        backlight_set_rowcol_rgb(3, 11, rgb.r, rgb.g, rgb.b);
+    }
+    if ( IS_LAYER_ON(3) )
+    {
+        backlight_set_rowcol_rgb(1, 0, 255, 255, 255);
+    }
+    else if ( IS_LAYER_ON(2) )
+    {
+        backlight_set_rowcol_rgb(2, 0, 255, 255, 255);
+    }
+    else if ( IS_LAYER_ON(1) )
+    {
+        backlight_set_rowcol_rgb(3, 0, 255, 255, 255);
+    }
+}
+
 void backlight_effect_indicators_set_colors( uint8_t index, HS color )
 {
     HSV hsv = { .h = color.h, .s = color.s, .v = g_config.brightness };
@@ -2415,19 +2489,6 @@ void backlight_effect_indicators_set_colors( uint8_t index, HS color )
     }
 }
 
-void backlight_set_indicator_index( uint8_t *index, uint8_t row, uint8_t column );
-
-void backlight_set_wasd(uint8_t r, uint8_t g, uint8_t b) {
-    struct { uint8_t row; uint8_t col; } keys[4] = {
-        {0, 3}, {1, 2}, {1, 3}, {1, 4}
-    };
-    for (int i = 0; i < 4; ++i) {
-        uint8_t index;
-        backlight_set_indicator_index(&index, keys[i].row, keys[i].col);
-        backlight_set_color(index, r, g, b);
-    }
-}
-
 // This runs after another backlight effect and replaces
 // colors already set
 __attribute__ ((weak)) void backlight_effect_indicators(void)
@@ -2446,25 +2507,10 @@ __attribute__ ((weak)) void backlight_effect_indicators(void)
     // still the backlight configuration layer and we don't
     // want "all LEDs" indicators hiding the backlight effect,
     // but still allow end users to do whatever they want.
-    if ( IS_LAYER_ON(4) )
-    {
-        backlight_set_wasd(255, 215, 0);
-    }
-    if ( IS_LAYER_ON(5) )
-    {
-        for (int row = 0; row < 4; ++row) {
-            for (int col = 10; col < 13; ++col) {
-                uint8_t index;
-                backlight_set_indicator_index(&index, row, col);
-                backlight_set_color(index, 0, 255, 127);
-            }
-        }
-    }
     if ( IS_LAYER_ON(3) )
     {
-        uint8_t index;
-        backlight_set_indicator_index(&index, 1, 0);
-        backlight_set_color(index, 255, 255, 255);
+        backlight_set_rowcol_rgb(1, 0, 255, 255, 255);
+
         if ( g_config.layer_3_indicator.index != 255 )
         {
             backlight_effect_indicators_set_colors( g_config.layer_3_indicator.index, g_config.layer_3_indicator.color );
@@ -2472,9 +2518,7 @@ __attribute__ ((weak)) void backlight_effect_indicators(void)
     }
     else if ( IS_LAYER_ON(2) )
     {
-        uint8_t index;
-        backlight_set_indicator_index(&index, 2, 0);
-        backlight_set_color(index, 255, 255, 255);
+        backlight_set_rowcol_rgb(2, 0, 255, 255, 255);
         if ( g_config.layer_2_indicator.index != 255 )
         {
             backlight_effect_indicators_set_colors( g_config.layer_2_indicator.index, g_config.layer_2_indicator.color );
@@ -2482,9 +2526,7 @@ __attribute__ ((weak)) void backlight_effect_indicators(void)
     }
     else if ( IS_LAYER_ON(1) )
     {
-        uint8_t index;
-        backlight_set_indicator_index(&index, 3, 0);
-        backlight_set_color(index, 255, 255, 255);
+        backlight_set_rowcol_rgb(3, 0, 255, 255, 255);
         if ( g_config.layer_1_indicator.index != 255 )
         {
             backlight_effect_indicators_set_colors( g_config.layer_1_indicator.index, g_config.layer_1_indicator.color );
@@ -2582,6 +2624,9 @@ static void gpt_backlight_timer_task(GPTDriver *gptp)
             break;
         case 10:
             backlight_effect_cycle_radial2();
+            break;
+        case 11:
+            backlight_effect_synthwave( initialize );
             break;
         default:
             backlight_effect_all_off();
