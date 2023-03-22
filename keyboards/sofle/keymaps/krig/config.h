@@ -33,6 +33,7 @@
 
 #define CUSTOM_LAYER_READ //if you remove this it causes issues - needs better guarding
 
+#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 
 #define QUICK_TAP_TERM 0
 #ifdef TAPPING_TERM
