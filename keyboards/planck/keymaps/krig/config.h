@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #ifdef AUDIO_ENABLE
+#undef STARTUP_SONG
 #define STARTUP_SONG SONG(PLANCK_SOUND)
 #endif
 

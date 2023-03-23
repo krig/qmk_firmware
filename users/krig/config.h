@@ -17,7 +17,8 @@
 
 #pragma once
 
-#define TAPPING_TOGGLE 2
+#undef TAPPING_TOGGLE
+#define TAPPING_TOGGLE 1
 #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 
 #ifdef AUDIO_ENABLE
