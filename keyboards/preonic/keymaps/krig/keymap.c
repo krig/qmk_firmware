@@ -1,17 +1,7 @@
 /*
  * Kristoffer Gronlund, 2023
  */
-#include QMK_KEYBOARD_H
-
-
-enum custom_keycodes {
-    SQ_COLN = SAFE_RANGE, // ::
-    SQ_AMPR,
-    SQ_PIPE,
-    SQ_PATH,
-    SQ_PHEX // 0x
-};
-
+#include "krig.h"
 
 enum preonic_layers {
     _BASE,
@@ -22,49 +12,54 @@ enum preonic_layers {
     _LAYERS
 };
 
+#define MO_LOWR MO(_LOWER)
+#define MO_RAIS MO(_RAISE)
+#define MO_LAYR MO(_LAYERS)
+#define TG_GAME TG(_GAME)
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_preonic_grid(
-      QK_GESC,        KC_1,            KC_2,    KC_3,    KC_4,       KC_5,     KC_6,     KC_7,       KC_8,     KC_9,       KC_0,       KC_BSLS,
-      KC_TAB,         KC_Q,            KC_W,    KC_E,    KC_R,       KC_T,     KC_Y,     KC_U,       KC_I,     KC_O,       KC_P,       KC_BSPC,
-      LCTL_T(KC_ESC), KC_A,            KC_S,    KC_D,    KC_F,       KC_G,     KC_H,     KC_J,       KC_K,     KC_L,       KC_SCLN,    KC_ENT,
-      KC_LSFT,        KC_Z,            KC_X,    KC_C,    KC_V,       KC_B,     KC_N,     KC_M,       KC_COMMA, KC_DOT,     KC_SLASH,   RSFT_T(KC_QUOT),
-      MO(_LAYERS),   LCTL(KC_LSFT),   KC_LALT, KC_LGUI, MO(_LOWER), KC_SPACE, KC_SPACE, MO(_RAISE), KC_LEFT,  KC_DOWN,    KC_UP,      KC_RIGHT
+      QK_GESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSLS,
+       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
+      CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN,  KC_ENT,
+      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, SFT_QUO,
+      MO_LAYR, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC,  KC_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RIGHT
     ),
     [_LOWER] = LAYOUT_preonic_grid(
-      _______,        _______,         _______,    _______, _______,    _______,  _______, _______, _______,  _______, _______, KC_INS,
-      _______,        _______,           KC_P7,      KC_P8,   KC_P9,    _______,  _______, SQ_AMPR, KC_UNDS,  KC_HASH, _______, KC_DEL,
-      _______,        SQ_PHEX,           KC_P4,      KC_P5,   KC_P6,    _______,  SQ_PIPE, SQ_COLN, RALT(KC_W),  RALT(KC_P), RALT(KC_Q), _______,
-      _______,          KC_P0,           KC_P1,      KC_P2,   KC_P3,    _______,  _______, SQ_PATH,LGUI(KC_MINS),LGUI(KC_PLUS),KC_BSLS,  KC_GRV,
-      _______,        _______,         _______,    _______, _______,    _______,  _______, _______,    KC_HOME,     KC_PGDN,    KC_PGUP,  KC_END
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_INS,
+      _______, _______, KC_P7,   KC_P8,   KC_P9,   _______, _______, SQ_AMPR, KC_UNDS, KC_HASH, _______, KC_DEL,
+      _______, SQ_PHEX, KC_P4,   KC_P5,   KC_P6,   _______, SQ_PIPE, SQ_COLN, SQ_AA,   SQ_OE,   SQ_AE,   _______,
+      _______, KC_P0,   KC_P1,   KC_P2,   KC_P3,   _______, _______, SQ_PATH, ZOOM_UT, ZOOM_IN, KC_BSLS, KC_GRV,
+      _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END
     ),
     [_RAISE] = LAYOUT_preonic_grid(
-      _______,        _______,         _______, _______, _______,    _______,  _______,  _______,    _______,  _______,    _______,    _______,
-      _______,        KC_CIRC,           KC_LT,      KC_GT, KC_DQUO,    KC_QUOT,   KC_GRV, KC_AMPR,    KC_LBRC,  KC_RBRC,    KC_PERC,  _______,
-      _______,        KC_EXLM,         KC_MINS,    KC_PLUS,  KC_EQL,    KC_UNDS,  KC_PIPE, KC_COLN,    KC_LPRN,  KC_RPRN,    KC_QUES,  _______,
-      _______,        KC_TILD,         KC_SLSH,    KC_ASTR, KC_BSLS,    KC_HASH,  KC_TILD,  KC_DLR,    KC_LCBR,  KC_RCBR,      KC_AT,   KC_GRV,
-      _______,        _______,         _______,    _______, _______,    _______,  _______, _______,    _______,  _______,    _______,  _______
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, KC_CIRC, KC_LT,   KC_GT,   KC_DQUO, KC_QUOT, KC_GRV,  KC_AMPR, KC_LBRC, KC_RBRC, KC_PERC, _______,
+      _______, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_UNDS, KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_QUES, _______,
+      _______, KC_TILD, KC_SLSH, KC_ASTR, KC_BSLS, KC_HASH, KC_TILD, KC_DLR,  KC_LCBR, KC_RCBR, KC_AT,   KC_GRV,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_ADJUST] = LAYOUT_preonic_grid(
-      _______,        KC_F1,           KC_F2,   KC_F3,   KC_F4,      KC_F5,    KC_F6,    KC_F7,      KC_F8,    KC_F9,      KC_F10,     KC_F11,
-      _______,        _______,         _______, _______, _______,    _______,  _______,  _______,    _______,  _______,    _______,    _______,
-      _______,        _______,         _______, _______, _______,    _______,  _______,  _______,    _______,  _______,    _______,    _______,
-      _______,        _______,         _______, _______, _______,    _______,  _______,  _______,    _______,  _______,    _______,    _______,
-      _______,        _______,         _______, _______, _______,    _______,  _______,  _______,    _______,  _______,    _______,    _______
+      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_GAME] = LAYOUT_preonic_grid(
-      _______,        _______,         _______, _______, _______,    _______,  _______,  _______,    _______,  _______,    _______,    _______,
-      _______,        _______,         _______, _______, _______,    _______,  _______,  _______,    _______,  _______,    _______,    _______,
-      KC_LCTL,        _______,         _______, _______, _______,    _______,  _______,  _______,    _______,  _______,    _______,    _______,
-      _______,        _______,         _______, _______, _______,    _______,  _______,  _______,    _______,  _______,    _______,    _______,
-      _______,        _______,         _______, _______, _______,    _______,  _______,  _______,    _______,  _______,    _______,    _______
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      KC_LCTL, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_LAYERS] = LAYOUT_preonic_grid(
-      TG(_GAME),      _______,         _______, _______, _______,    _______,  _______,  _______,    _______,  _______,    _______,    _______,
-      _______,        _______,         _______, _______, _______,    _______,  _______,  _______,    _______,  _______,    _______,    _______,
-      _______,        _______,         _______, _______, _______,    _______,  _______,  _______,    _______,  _______,    _______,    _______,
-      _______,        _______,         _______, _______, _______,    _______,  _______,  _______,    _______,  _______,    _______,    _______,
-      _______,        _______,         _______, _______, _______,    _______,  _______,  _______,    _______,  _______,    _______,    _______
+      TG_GAME, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     )
 };
 
@@ -89,7 +84,7 @@ const rgblight_segment_t PROGMEM krig_adjust_layer[] = RGBLIGHT_LAYER_SEGMENTS(
 const rgblight_segment_t PROGMEM krig_game_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM, HSV_ORANGE2}
 );
-const rgblight_segment_t PROGMEM krig_numeric_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+const rgblight_segment_t PROGMEM krig_layers_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM, HSV_SPRINGGREEN}
 );
 
@@ -109,7 +104,7 @@ const rgblight_segment_t* const PROGMEM krig_rgb_layers[] = RGBLIGHT_LAYERS_LIST
     krig_lower_layer,
     krig_raise_layer,
     krig_game_layer,
-    krig_numeric_layer,
+    krig_layers_layer,
     krig_adjust_layer
 );
 
