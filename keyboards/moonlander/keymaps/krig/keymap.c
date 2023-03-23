@@ -88,24 +88,66 @@ void keyboard_post_init_user(void) {
   rgb_matrix_enable();
 }
 
-const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
-    [1] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {227,218,204}, {0,0,0}, {0,0,0}, {227,218,204}, {227,218,204}, {227,218,204}, {0,0,0}, {0,0,0}, {227,218,204}, {227,218,204}, {227,218,204}, {0,0,0}, {0,0,0}, {227,218,204}, {227,218,204}, {227,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {183,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {183,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {183,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {41,255,255} },
-    [3] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,245,245}, {0,0,0}, {0,0,0}, {0,0,0}, {0,245,245}, {0,245,245}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,245,245}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {219,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {239,218,204} },
-    [5] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {129,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {128,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
-    [6] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {0,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
+#define __off__ {0, 0, 0}
+#define _YELLOW {0xff, 0xea, 0x00}
+#define _RED___ {0xff, 0x24, 0x00}
+#define _BLUE__ {0x00, 0x7f, 0xff}
+#define _CYAN__ {0x14, 0xa3, 0xc7}
+#define _MINT__ {0x9a, 0xe9, 0xa1}
+#define _TANGR_ {0xff, 0x84, 0x00}
+
+const uint8_t PROGMEM ledrgb[][RGB_MATRIX_LED_COUNT][3] = {
+    [_SWEDE] = LED_LAYOUT_moonlander(
+        _TANGR_, _TANGR_, _TANGR_, _TANGR_, _TANGR_, _TANGR_, _TANGR_,  _TANGR_, _TANGR_, _TANGR_, _TANGR_, _TANGR_, _TANGR_, _TANGR_, 
+        __off__, __off__, __off__, __off__, __off__, __off__, __off__,  __off__, __off__, __off__, __off__, __off__, __off__, __off__, 
+        __off__, __off__, __off__, __off__, __off__, __off__, __off__,  __off__, __off__, __off__, __off__, __off__, __off__, __off__, 
+        __off__, __off__, __off__, __off__, __off__, __off__,                    __off__, __off__, __off__, __off__, __off__, __off__, 
+        __off__, __off__, __off__, __off__, __off__,          __off__,  _YELLOW,          __off__, __off__, __off__, __off__, __off__, 
+                                            __off__, __off__, __off__,  __off__, __off__, __off__ 
+    ),
+    [_SYMBOLS] = LED_LAYOUT_moonlander(
+        _CYAN__, _CYAN__, _CYAN__, _CYAN__, _CYAN__, _CYAN__, _CYAN__,  _CYAN__, _CYAN__, _CYAN__, _CYAN__, _CYAN__, _CYAN__, _CYAN__, 
+        __off__, __off__, __off__, __off__, __off__, __off__, __off__,  __off__, __off__, __off__, __off__, __off__, __off__, __off__, 
+        __off__, __off__, __off__, __off__, __off__, __off__, __off__,  __off__, __off__, __off__, __off__, __off__, __off__, __off__, 
+        __off__, __off__, __off__, __off__, __off__, __off__,                    __off__, __off__, __off__, __off__, __off__, __off__, 
+        __off__, __off__, __off__, __off__, __off__,          __off__,  __off__,          __off__, __off__, __off__, __off__, __off__, 
+                                            __off__, __off__, __off__,  __off__, __off__, __off__ 
+    ),
+    [_GAME] = LED_LAYOUT_moonlander(
+        __off__, __off__, __off__, __off__, __off__, __off__, __off__,  __off__, __off__, __off__, __off__, __off__, __off__, __off__, 
+        __off__, __off__, _MINT__, __off__, __off__, __off__, __off__,  __off__, __off__, __off__, __off__, __off__, __off__, __off__, 
+        __off__, _MINT__, _MINT__, _MINT__, __off__, __off__, __off__,  __off__, __off__, __off__, __off__, __off__, __off__, __off__, 
+        __off__, __off__, __off__, __off__, __off__, _YELLOW,                    __off__, __off__, __off__, __off__, __off__, __off__, 
+        __off__, _RED___, __off__, __off__, __off__,          __off__,  __off__,          __off__, __off__, __off__, __off__, __off__, 
+                                            __off__, __off__, __off__,  __off__, __off__, __off__ 
+    ),
+    [_FKEYS] = LED_LAYOUT_moonlander(
+        _BLUE__, _BLUE__, _BLUE__, _BLUE__, _BLUE__, _BLUE__, _BLUE__,  _BLUE__, _BLUE__, _BLUE__, _BLUE__, _BLUE__, _BLUE__, _BLUE__, 
+        __off__, __off__, __off__, __off__, __off__, __off__, __off__,  __off__, __off__, __off__, __off__, __off__, __off__, __off__, 
+        __off__, __off__, __off__, __off__, __off__, __off__, __off__,  __off__, __off__, __off__, __off__, __off__, __off__, __off__, 
+        __off__, __off__, __off__, __off__, __off__, __off__,                    __off__, __off__, __off__, __off__, __off__, __off__, 
+        __off__, __off__, __off__, __off__, __off__,          __off__,  __off__,          __off__, __off__, __off__, __off__, _RED___, 
+                                            __off__, __off__, __off__,  __off__, __off__, __off__ 
+    ),
+    [_QMKSTUFF] = LED_LAYOUT_moonlander(
+        __off__, __off__, __off__, __off__, __off__, __off__, __off__,  __off__, __off__, __off__, __off__, __off__, __off__, _RED___, 
+        __off__, __off__, __off__, __off__, __off__, __off__, __off__,  __off__, __off__, __off__, __off__, __off__, __off__, __off__, 
+        __off__, __off__, __off__, __off__, __off__, __off__, __off__,  __off__, __off__, __off__, __off__, __off__, __off__, __off__, 
+        __off__, __off__, __off__, __off__, __off__, __off__,                    __off__, __off__, __off__, __off__, __off__, __off__, 
+        __off__, __off__, __off__, __off__, __off__,          __off__,  __off__,          __off__, __off__, __off__, __off__, _RED___, 
+                                            __off__, __off__, __off__,  __off__, __off__, __off__ 
+    )
 };
 
 void set_layer_color(int layer) {
   for (int i = 0; i < RGB_MATRIX_LED_COUNT; i++) {
-    HSV hsv = {
-      .h = pgm_read_byte(&ledmap[layer][i][0]),
-      .s = pgm_read_byte(&ledmap[layer][i][1]),
-      .v = pgm_read_byte(&ledmap[layer][i][2]),
-    };
-    if (!hsv.h && !hsv.s && !hsv.v) {
+    RGB rgb;
+    rgb.r = ledrgb[layer][i][0];
+    rgb.g = ledrgb[layer][i][1];
+    rgb.b = ledrgb[layer][i][2];
+    if (!rgb.r && !rgb.g && !rgb.b) {
         rgb_matrix_set_color( i, 0, 0, 0 );
     } else {
-        RGB rgb = hsv_to_rgb( hsv );
         float f = (float)rgb_matrix_config.hsv.v / UINT8_MAX;
         rgb_matrix_set_color( i, f * rgb.r, f * rgb.g, f * rgb.b );
     }
@@ -116,24 +158,16 @@ bool rgb_matrix_indicators_user(void) {
     if (keyboard_config.disable_layer_led) {
         return false;
     }
-    switch (biton32(layer_state)) {
-        case 1:
-            set_layer_color(1);
-            break;
-        case 3:
-            set_layer_color(3);
-            break;
-        case 5:
-            set_layer_color(5);
-            break;
-        case 6:
-            set_layer_color(6);
-            break;
-        default:
-            if (rgb_matrix_get_flags() == LED_FLAG_NONE)
-                rgb_matrix_set_color_all(0, 0, 0);
-            break;
-    }
+
+    uint8_t curr = biton32(layer_state);
+    if (curr == _SWEDE ||
+        curr == _SYMBOLS ||
+        curr == _GAME ||
+        curr == _FKEYS ||
+        curr == _QMKSTUFF)
+        set_layer_color(curr);
+    else if (rgb_matrix_get_flags() == LED_FLAG_NONE)
+        rgb_matrix_set_color_all(0, 0, 0);
     return true;
 }
 
