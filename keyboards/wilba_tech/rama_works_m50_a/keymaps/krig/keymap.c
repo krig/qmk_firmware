@@ -50,8 +50,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_FKEYS] = LAYOUT(
       _______, _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  MO_QMK,
-      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______,  MO_QMK
     ),
     [_QMKSTUFF] = LAYOUT(
       _______, TG_GAME, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, QK_BOOT,
@@ -95,38 +95,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 void backlight_set_color( int index, uint8_t red, uint8_t green, uint8_t blue );
 void backlight_set_color_all( uint8_t red, uint8_t green, uint8_t blue );
 
-#define LC_FN1 15
-#define LC_FN2 16
-#define LC_FN3 (36+15)
-#define LC_FN4 (36+7)
+const uint8_t m50_rowcol_to_led[MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
+    {  0+15,  0+14,  0+13,  0+12,  0+11,  0+10,   0+9,  18+1,  18+2,  18+3,  18+4,  18+5,  18+6 },
+    {  0+16,   0+6,   0+5,   0+4,   0+3,   0+2,   0+1,  18+9, 18+10, 18+11, 18+12, 18+13, 18+14 },
+    { 36+15, 36+14, 36+13, 36+12, 36+11, 36+10,  36+9,  54+1,  54+2,  54+3,  54+4,  54+5,  54+6 },
+    {  36+7,  36+6,  36+5,  36+4,  36+3,  36+2,  36+1,   255, 54+10, 54+11, 54+12, 54+13, 54+14 },
+};
 
-#define LC_W 12
-#define LC_A 5
-#define LC_S 4
-#define LC_D 3
+#define LC_FN1 m50_rowcol_to_led[0][0]
+#define LC_FN2 m50_rowcol_to_led[1][0]
+#define LC_FN3 m50_rowcol_to_led[2][0]
+#define LC_FN4 m50_rowcol_to_led[3][0]
 
-#define LC_NUM (36+6)
-#define LC_NUMP1 (18+4)
-#define LC_NUMP2 (18+5)
-#define LC_NUMP3 (18+6)
-#define LC_NUMP4 (18+12)
-#define LC_NUMP5 (18+13)
-#define LC_NUMP6 (18+14)
-#define LC_NUMP7 (54+4)
-#define LC_NUMP8 (54+5)
-#define LC_NUMP9 (54+6)
-#define LC_NUMP0 (54+13)
+#define LC_W m50_rowcol_to_led[0][3]
+#define LC_A m50_rowcol_to_led[1][2]
+#define LC_S m50_rowcol_to_led[1][3]
+#define LC_D m50_rowcol_to_led[1][4]
 
-#define LC_LOWER (36+2)
-#define LC_RAISE (54+10)
-#define LC_SPACE (36+1)
+#define LC_LOWER m50_rowcol_to_led[3][5]
+#define LC_RAISE m50_rowcol_to_led[3][8]
+#define LC_SPACE m50_rowcol_to_led[3][6]
+#define LC_BOOT m50_rowcol_to_led[0][12]
+#define LC_QMK m50_rowcol_to_led[3][12]
+#define LC_GAME m50_rowcol_to_led[0][1]
 
-static uint8_t modcolor(uint8_t c, float amt) {
-    float cf = c * amt;
-    if (cf < 0) cf = 0;
-    if (cf > 255.f) cf = 255.f;
-    return (uint8_t)cf;
-}
 
 // Override this to replace backlight
 // settings
@@ -136,53 +128,34 @@ void backlight_effect_indicators(void) {
     backlight_set_color(LC_FN4, r/2, g/2, b/2);
     
     if (IS_LAYER_ON(_GAME)) {
+        backlight_set_color(LC_FN4, r, g, b);
         r = 255; g = 0; b = 0;
         backlight_set_color(LC_W, r, g, b);
         backlight_set_color(LC_A, r, g, b);
         backlight_set_color(LC_S, r, g, b);
         backlight_set_color(LC_D, r, g, b);
-        backlight_set_color(LC_FN4, r, g, b);
-    } else if (IS_LAYER_ON(_NAV)) {
-        r = 0x01; g = 0x97; b = 0xf6;
-        backlight_set_color(LC_NUM, r, g, b);
-        
-        backlight_set_color(LC_NUMP1, r, g, b);
-        backlight_set_color(LC_NUMP2, r, g, b);
-        backlight_set_color(LC_NUMP3, r, g, b);
-
-        r = modcolor(r, 0.6);
-        g = modcolor(g, 0.6);
-        b = modcolor(b, 0.6);
-        backlight_set_color(LC_NUMP4, r, g, b);
-        backlight_set_color(LC_NUMP5, r, g, b);
-        backlight_set_color(LC_NUMP6, r, g, b);
-        
-        r = modcolor(r, 0.6);
-        g = modcolor(g, 0.6);
-        b = modcolor(b, 0.6);
-        backlight_set_color(LC_NUMP7, r, g, b);
-        backlight_set_color(LC_NUMP8, r, g, b);
-        backlight_set_color(LC_NUMP9, r, g, b);
-        
-        r = modcolor(r, 0.6);
-        g = modcolor(g, 0.6);
-        b = modcolor(b, 0.6);
-        backlight_set_color(LC_NUMP0, r, g, b);
-
-    } else if (IS_LAYER_ON(_FKEYS)) {
+    } else if (IS_LAYER_ON(_FKEYS) || IS_LAYER_ON(_FKEYS2)) {
         backlight_set_color(LC_FN1, r, g, b);
         r = 0x02; g = 0x30; b = 0x47; 
+        for (int i = 1; i < 12; ++i) {
+            backlight_set_color(m50_rowcol_to_led[0][i], r, g, b);
+        }
         backlight_set_color(LC_LOWER, r, g, b);
         backlight_set_color(LC_RAISE, r, g, b);
-        backlight_set_color(LC_SPACE, 255, 0, 0);
+        backlight_set_color(LC_SPACE, r, g, b);
+        backlight_set_color(LC_QMK, 255, 0, 0);
     } else if (IS_LAYER_ON(_SYMBOLS)) {
         r = 0x02; g = 0x30; b = 0x47; 
         backlight_set_color(LC_RAISE, r, g, b);
-        backlight_set_color(LC_SPACE, 0, 0, 255);
+        backlight_set_color(LC_SPACE, r, g, b);
     } else if (IS_LAYER_ON(_SWEDE)) {
         r = 0x02; g = 0x30; b = 0x47; 
         backlight_set_color(LC_LOWER, r, g, b);
-        backlight_set_color(LC_SPACE, 0, 255, 0);
+        backlight_set_color(LC_SPACE, r, g, b);
+    } else if (IS_LAYER_ON(_QMKSTUFF)) {
+        backlight_set_color(LC_QMK, 255, 0, 0);
+        backlight_set_color(LC_BOOT, 255, 0, 0);
+        backlight_set_color(LC_GAME, 0, 255, 0);
     } else {
     }
 }

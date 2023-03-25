@@ -53,6 +53,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______,          _______, _______,          _______, _______, _______, _______,  MO_QMK,
     _______, _______, _______, _______, _______, _______
   ),
+  [_FKEYS2] = LAYOUT_moonlander(
+    _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5, _______, _______,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11, 
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,      
+    _______, _______, _______, _______, _______,          _______, _______,          _______, _______, _______, _______,  MO_QMK,
+    _______, _______, _______, _______, _______, _______
+  ),
   [_QMKSTUFF] = LAYOUT_moonlander(
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, QK_BOOT,  
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
@@ -111,6 +119,14 @@ const uint8_t PROGMEM ledrgb[][RGB_MATRIX_LED_COUNT][3] = {
         __off__, __off__, __off__, __off__, __off__,          __off__,  __off__,          __off__, __off__, __off__, __off__, _RED___, 
                                             __off__, __off__, __off__,  __off__, __off__, __off__ 
     ),
+    [_FKEYS2] = LED_LAYOUT_moonlander(
+        _BLUE__, _BLUE__, _BLUE__, _BLUE__, _BLUE__, _BLUE__, _BLUE__,  _BLUE__, _BLUE__, _BLUE__, _BLUE__, _BLUE__, _BLUE__, _BLUE__, 
+        __off__, __off__, __off__, __off__, __off__, __off__, __off__,  __off__, __off__, __off__, __off__, __off__, __off__, __off__, 
+        __off__, __off__, __off__, __off__, __off__, __off__, __off__,  __off__, __off__, __off__, __off__, __off__, __off__, __off__, 
+        __off__, __off__, __off__, __off__, __off__, __off__,                    __off__, __off__, __off__, __off__, __off__, __off__, 
+        __off__, __off__, __off__, __off__, __off__,          __off__,  __off__,          __off__, __off__, __off__, __off__, _RED___, 
+                                            __off__, __off__, __off__,  __off__, __off__, __off__ 
+    ),
     [_QMKSTUFF] = LED_LAYOUT_moonlander(
         __off__, __off__, __off__, __off__, __off__, __off__, __off__,  __off__, __off__, __off__, __off__, __off__, __off__, _RED___, 
         __off__, __off__, __off__, __off__, __off__, __off__, __off__,  __off__, __off__, __off__, __off__, __off__, __off__, __off__, 
@@ -146,6 +162,7 @@ bool rgb_matrix_indicators_user(void) {
         curr == _SYMBOLS ||
         curr == _GAME ||
         curr == _FKEYS ||
+        curr == _FKEYS2 ||
         curr == _QMKSTUFF)
         set_layer_color(curr);
     else if (rgb_matrix_get_flags() == LED_FLAG_NONE)
@@ -195,24 +212,25 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     ML_LED_6(false);
 
     switch (get_highest_layer(state)) {
-        case 1:
+        case _SWEDE:
             ML_LED_1(1);
             ML_LED_4(1);
             break;
-        case 2:
+        case _SYMBOLS:
             ML_LED_2(1);
             ML_LED_5(1);
             break;
-        case 3:
+        case _GAME:
             ML_LED_3(1);
             break;
-        case 4:
+        case _NAV:
             ML_LED_4(1);
             break;
-        case 5:
+        case _FKEYS:
+        case _FKEYS2:
             ML_LED_5(1);
             break;
-        case 6:
+        case _QMKSTUFF:
             ML_LED_6(1);
             break;
         default:

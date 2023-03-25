@@ -31,12 +31,13 @@ enum krig_layers {
     _GAME,
     _NAV,
     _FKEYS,
+    _FKEYS2, // Can't have a dedicated fkeys button otherwise
     _QMKSTUFF
 };
 
 #define MO_SWED MO(_SWEDE)
 #define MO_SYMB MO(_SYMBOLS)
-#define MO_FKEY MO(_FKEYS)
+#define MO_FKEY MO(_FKEYS2)
 #define MO_NAV MO(_NAV)
 #define TG_GAME TG(_GAME)
 #define MO_QMK MO(_QMKSTUFF)

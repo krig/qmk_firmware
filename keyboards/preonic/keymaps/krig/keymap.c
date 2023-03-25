@@ -44,11 +44,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  MO_QMK,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  MO_QMK
+    ),
+    [_FKEYS2] = LAYOUT_preonic_grid(
+      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  MO_QMK
     ),
     [_QMKSTUFF] = LAYOUT_preonic_grid(
-      TG_GAME, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      TG_GAME, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, QK_BOOT,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
@@ -56,14 +63,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
-#define HSV_ORANGE2 18, 255, 255
 
 const rgblight_segment_t PROGMEM krig_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM, HSV_RED}
 );
 const rgblight_segment_t PROGMEM krig_base_layer[] = RGBLIGHT_LAYER_SEGMENTS(
 
-    {0, RGBLED_NUM, HSV_PURPLE}
+    {0, RGBLED_NUM, HSV_BLACK}
 );
 const rgblight_segment_t PROGMEM krig_swede_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM, HSV_BLUE}
@@ -72,13 +78,13 @@ const rgblight_segment_t PROGMEM krig_symbols_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM, HSV_GREEN}
 );
 const rgblight_segment_t PROGMEM krig_game_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, HSV_ORANGE2}
+    {0, RGBLED_NUM, HSV_GOLDENROD}
 );
 const rgblight_segment_t PROGMEM krig_nav_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM, HSV_CYAN}
 );
 const rgblight_segment_t PROGMEM krig_fkeys_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, HSV_MAGENTA}
+    {0, RGBLED_NUM, HSV_PINK}
 );
 const rgblight_segment_t PROGMEM krig_qmkstuff_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM, HSV_SPRINGGREEN}
@@ -141,9 +147,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     return true;
 }
 
-bool led_update_user(led_t led_state) {
-    rgblight_set_layer_state(_L_CAPS, led_state.caps_lock);
-    return true;
+void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
+    rgblight_set_layer_state(_L_CAPS, is_caps_word_on());
 }
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
@@ -158,6 +163,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(_L_GAME, layer_state_cmp(state, _GAME));
     rgblight_set_layer_state(_L_NAV, layer_state_cmp(state, _NAV));
     rgblight_set_layer_state(_L_FKEYS, layer_state_cmp(state, _FKEYS));
+    rgblight_set_layer_state(_L_FKEYS, layer_state_cmp(state, _FKEYS2));
     rgblight_set_layer_state(_L_QMKSTUFF, layer_state_cmp(state, _QMKSTUFF));
     return state;
 }
