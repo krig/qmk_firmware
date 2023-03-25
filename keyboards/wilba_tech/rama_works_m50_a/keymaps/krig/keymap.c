@@ -13,83 +13,77 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include QMK_KEYBOARD_H
-
-
-#define LOWER TL_LOWR
-#define RAISE TL_UPPR
-
-
-enum custom_keycodes {
-    DBLCOLN = SAFE_RANGE, // ::
-    HEXPFIX, // 0x
-};
-
-
-enum keyboard_layers {
-    _BASE,
-    _LOWER,
-    _RAISE,
-    _ADJUST,
-    _GAME,
-    _NUMERIC
-};
+#include "krig.h"
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-
     [_BASE] = LAYOUT(
-        LCTL(KC_UP),           KC_TAB,      KC_Q,             KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-        LCTL(KC_RGHT), LCTL_T(KC_ESC),  KC_A,             KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT,
-        LCTL(KC_LEFT),        KC_LSFT,  KC_Z,             KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, RSFT_T(KC_QUOTE) ,
-        TG(_GAME),       MO(_NUMERIC),  LCTL(KC_LSFT), KC_LALT, KC_LGUI,   LOWER,  KC_SPC,            RAISE,    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+       WS_ALL,  KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
+      WS_NEXT, CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, NAV_CLN,  KC_ENT,
+      WS_PREV, KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, SFT_QUO,
+      TG_GAME, MO_FKEY, CTL_SFT, KC_LALT, KC_LGUI, MO_SWED,  KC_SPC,          MO_SYMB, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
-
-
-    [_LOWER] = LAYOUT(
-        _______,   KC_ESC,           KC_1,            KC_2,       KC_3,    KC_4,       KC_5,     KC_6,    KC_7,       KC_8,        KC_9,       KC_0, HEXPFIX,
-        _______,  _______,        _______,         _______,    _______, _______,    _______,  _______, KC_UNDS, RALT(KC_P),  RALT(KC_Q), RALT(KC_W), _______,
-        _______,  _______,        _______,         _______,    _______, _______,    _______,  _______, _______,LGUI(KC_MINS),LGUI(KC_PLUS), KC_BSLS,  KC_GRV,
-        _______,  _______,        _______,         _______,    _______, _______,    _______,           _______,    KC_HOME,     KC_PGDN,    KC_PGUP,  KC_END
+    [_SWEDE] = LAYOUT(
+      _______, _______, _______,  KC_7,   KC_8,    KC_9,    _______, _______, SQ_AMPR, KC_UNDS, KC_HASH, _______, KC_DEL,
+      _______, _______, SQ_PHEX,  KC_4,   KC_5,    KC_6,    _______, SQ_PIPE, SQ_COLN, SQ_AA,   SQ_OE,   SQ_AE,   _______,
+      _______, _______, KC_0,     KC_1,   KC_2,    KC_3,    _______, _______, SQ_PATH, ZOOM_UT, ZOOM_IN, KC_BSLS, KC_GRV,
+      _______, _______, _______, _______, _______, _______, _______,          _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END
     ),
-    [_RAISE] = LAYOUT(
-        _______,  _______,        KC_QUOT,           KC_LT,      KC_GT, KC_DQUO,      KC_AT,  KC_AMPR, DBLCOLN,    KC_LBRC,  KC_RBRC,    KC_PERC,    KC_DEL,
-        _______,  _______,        KC_EXLM,         KC_MINS,    KC_PLUS,  KC_EQL,    KC_HASH,  KC_PIPE, KC_COLN,    KC_LPRN,  KC_RPRN,    KC_QUES,    KC_INS,
-        _______,  _______,        KC_CIRC,         KC_SLSH,    KC_ASTR, KC_BSLS,    KC_UNDS,  KC_TILD,  KC_DLR,    KC_LCBR,  KC_RCBR,    _______,   _______,
-        _______,  _______,        _______,         _______,    _______, _______,    _______,           _______,    KC_HOME,  KC_PGDN,    KC_PGUP,    KC_END
+    [_SYMBOLS] = LAYOUT(
+      _______, _______, KC_CIRC, KC_LT,   KC_GT,   KC_DQUO, KC_QUOT, KC_GRV,  KC_AMPR, KC_LBRC, KC_RBRC, KC_PERC, KC_INS,
+      _______, _______, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_UNDS, KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_QUES, _______,
+      _______, _______, KC_TILD, KC_SLSH, KC_ASTR, KC_BSLS, KC_HASH, KC_TILD, KC_DLR,  KC_LCBR, KC_RCBR, KC_AT,   KC_GRV,
+      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
     ),
-
-    [_ADJUST] = LAYOUT(
-        QK_BOOTLOADER,  KC_ESC,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,   KC_F6,   KC_F7,    KC_F8,    KC_F9,   KC_F10,   KC_F11,
-              _______, KC_CAPS,  KC_F12,  KC_PSCR,  _______,   BR_INC,   EF_INC,  ES_INC,  H1_INC,   S1_INC,   H2_INC,   S2_INC,  _______,
-              _______, _______, _______,  _______,  _______,   BR_DEC,   EF_DEC,  ES_DEC,  H1_DEC,   S1_DEC,   H2_DEC,   S2_DEC,  _______,
-              _______, _______, _______,  _______,  _______,  _______,  _______,          _______,  _______,  KC_VOLD,  KC_VOLU,  _______
-    ),
-
     [_GAME] = LAYOUT(
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, KC_LCTL, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, KC_LCTL, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
     ),
-
-    [_NUMERIC] = LAYOUT(
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_1, KC_2, KC_3,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_4, KC_5, KC_6,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_7, KC_8, KC_9,
-        _______, _______, _______, _______, _______, _______, _______,          _______, HEXPFIX, KC_DOT, KC_0, KC_COMMA
+    [_NAV] = LAYOUT(
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, WS_PREV,  WS_ALL, WS_NEXT, _______, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, KC_PGDN, KC_PGUP, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
+    ),
+    [_FKEYS] = LAYOUT(
+      _______, _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  MO_QMK,
+      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
+    ),
+    [_QMKSTUFF] = LAYOUT(
+      _______, TG_GAME, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, QK_BOOT,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
     )
-
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     switch (keycode) {
-        case DBLCOLN:
+        case SQ_COLN:
             if (record->event.pressed) {
                 SEND_STRING("::");
             }
             return false;
-        case HEXPFIX:
+        case SQ_PIPE:
+            if (record->event.pressed) {
+                SEND_STRING("||");
+            }
+            return false;
+        case SQ_AMPR:
+            if (record->event.pressed) {
+                SEND_STRING("&&");
+            }
+            return false;
+        case SQ_PATH:
+            if (record->event.pressed) {
+                SEND_STRING("../");
+            }
+            return false;
+        case SQ_PHEX:
             if (record->event.pressed) {
                 SEND_STRING("0x");
             }
@@ -97,7 +91,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     }
     return true;
 }
-
 
 void backlight_set_color( int index, uint8_t red, uint8_t green, uint8_t blue );
 void backlight_set_color_all( uint8_t red, uint8_t green, uint8_t blue );
@@ -149,7 +142,7 @@ void backlight_effect_indicators(void) {
         backlight_set_color(LC_S, r, g, b);
         backlight_set_color(LC_D, r, g, b);
         backlight_set_color(LC_FN4, r, g, b);
-    } else if (IS_LAYER_ON(_NUMERIC)) {
+    } else if (IS_LAYER_ON(_NAV)) {
         r = 0x01; g = 0x97; b = 0xf6;
         backlight_set_color(LC_NUM, r, g, b);
         
@@ -176,17 +169,17 @@ void backlight_effect_indicators(void) {
         b = modcolor(b, 0.6);
         backlight_set_color(LC_NUMP0, r, g, b);
 
-    } else if (IS_LAYER_ON(_ADJUST)) {
+    } else if (IS_LAYER_ON(_FKEYS)) {
         backlight_set_color(LC_FN1, r, g, b);
         r = 0x02; g = 0x30; b = 0x47; 
         backlight_set_color(LC_LOWER, r, g, b);
         backlight_set_color(LC_RAISE, r, g, b);
         backlight_set_color(LC_SPACE, 255, 0, 0);
-    } else if (IS_LAYER_ON(_RAISE)) {
+    } else if (IS_LAYER_ON(_SYMBOLS)) {
         r = 0x02; g = 0x30; b = 0x47; 
         backlight_set_color(LC_RAISE, r, g, b);
         backlight_set_color(LC_SPACE, 0, 0, 255);
-    } else if (IS_LAYER_ON(_LOWER)) {
+    } else if (IS_LAYER_ON(_SWEDE)) {
         r = 0x02; g = 0x30; b = 0x47; 
         backlight_set_color(LC_LOWER, r, g, b);
         backlight_set_color(LC_SPACE, 0, 255, 0);

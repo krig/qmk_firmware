@@ -1,16 +1,21 @@
-.PHONY: all planck preonic sofle moonlander
+action = compile
 
-all: planck preonic sofle moonlander
+.PHONY: all planck preonic sofle moonlander ramaworks
+
+all: planck preonic sofle moonlander ramaworks
 
 planck:
-	qmk compile -kb planck/ez/glow -km krig
+	qmk ${action} -kb planck/ez/glow -km krig
 
 preonic:
-	qmk compile -kb preonic/rev3 -km krig
+	qmk ${action} -kb preonic/rev3 -km krig
 
 sofle:
-	qmk compile -kb sofle -km krig
+	qmk ${action} -kb sofle -km krig
 
 moonlander:
-	qmk compile -kb moonlander -km krig
+	qmk ${action} -kb moonlander -km krig
+
+ramaworks:
+	qmk ${action} -kb wilba_tech/rama_works_m50_a -km krig
 
