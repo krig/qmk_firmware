@@ -1,0 +1,16 @@
+.PHONY: all planck preonic sofle moonlander
+
+all: planck preonic sofle moonlander
+
+planck:
+	qmk compile -kb planck/ez/glow -km krig
+
+preonic:
+	qmk compile -kb preonic/rev3 -km krig
+
+sofle:
+	qmk compile -kb sofle -km krig
+
+moonlander:
+	qmk compile -kb moonlander -km krig
+

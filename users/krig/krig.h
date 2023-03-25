@@ -23,3 +23,22 @@ enum custom_keycodes {
 #define WS_PREV LCTL(KC_LEFT)
 #define WS_NEXT LCTL(KC_RIGHT)
 #define WS_ALL LCTL(KC_UP)
+
+enum krig_layers {
+    _BASE,
+    _SWEDE,
+    _SYMBOLS,
+    _GAME,
+    _NAV,
+    _FKEYS,
+    _QMKSTUFF
+};
+
+#define MO_SWED MO(_SWEDE)
+#define MO_SYMB MO(_SYMBOLS)
+#define MO_FKEY MO(_FKEYS)
+#define MO_NAV MO(_NAV)
+#define TG_GAME TG(_GAME)
+#define MO_QMK MO(_QMKSTUFF)
+#define NAV_CLN LT(_NAV, KC_SCLN)
+

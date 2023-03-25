@@ -1,26 +1,8 @@
 #include "krig.h"
-
 #include "eeprom.h"
 
 #define MOON_LED_LEVEL LED_LEVEL
 
-enum moonlander_layers {
-    _BASE = 0,
-    _SWEDE,
-    _SYMBOLS,
-    _GAME,
-    _NAV,
-    _FKEYS,
-    _QMKSTUFF
-};
-
-#define MO_SWED MO(_SWEDE)
-#define MO_SYMB MO(_SYMBOLS)
-#define MO_FKEY MO(_FKEYS)
-#define MO_NAV MO(_NAV)
-#define TG_GAME TG(_GAME)
-#define MO_QMK MO(_QMKSTUFF)
-#define NAV_CLN LT(_NAV, KC_SCLN)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_moonlander(
