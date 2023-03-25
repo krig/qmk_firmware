@@ -1,10 +1,12 @@
 #include QMK_KEYBOARD_H
 
 enum custom_keycodes {
-    SQ_COLN = SAFE_RANGE, // ::
-    SQ_AMPR,
-    SQ_PIPE,
-    SQ_PATH,
+    RGB_SLD = SAFE_RANGE,
+    SQ_COLN, // ::
+    SQ_AMPR, // &&
+    SQ_PIPE, // ||
+    SQ_PATH, // ../
+    SQ_SLAS, // //
     SQ_PHEX // 0x
 };
 
