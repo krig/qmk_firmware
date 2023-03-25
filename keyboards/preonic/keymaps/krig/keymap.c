@@ -162,8 +162,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(_L_SYMBOLS, layer_state_cmp(state, _SYMBOLS));
     rgblight_set_layer_state(_L_GAME, layer_state_cmp(state, _GAME));
     rgblight_set_layer_state(_L_NAV, layer_state_cmp(state, _NAV));
-    rgblight_set_layer_state(_L_FKEYS, layer_state_cmp(state, _FKEYS));
-    rgblight_set_layer_state(_L_FKEYS, layer_state_cmp(state, _FKEYS2));
+    rgblight_set_layer_state(_L_FKEYS, layer_state_cmp(state, _FKEYS) || layer_state_cmp(state, _FKEYS2));
     rgblight_set_layer_state(_L_QMKSTUFF, layer_state_cmp(state, _QMKSTUFF));
     return state;
 }
