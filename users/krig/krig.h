@@ -43,3 +43,4 @@ enum krig_layers {
 #define MO_QMK MO(_QMKSTUFF)
 #define NAV_CLN LT(_NAV, KC_SCLN)
 
+bool krig_handle_sequence_keys(uint16_t keycode, keyrecord_t* record);

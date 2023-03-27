@@ -62,34 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    switch (keycode) {
-        case SQ_COLN:
-            if (record->event.pressed) {
-                SEND_STRING("::");
-            }
-            return false;
-        case SQ_PIPE:
-            if (record->event.pressed) {
-                SEND_STRING("||");
-            }
-            return false;
-        case SQ_AMPR:
-            if (record->event.pressed) {
-                SEND_STRING("&&");
-            }
-            return false;
-        case SQ_PATH:
-            if (record->event.pressed) {
-                SEND_STRING("../");
-            }
-            return false;
-        case SQ_PHEX:
-            if (record->event.pressed) {
-                SEND_STRING("0x");
-            }
-            return false;
-    }
-    return true;
+    return krig_handle_sequence_keys(keycode, record);
 }
 
 void backlight_set_color( int index, uint8_t red, uint8_t green, uint8_t blue );

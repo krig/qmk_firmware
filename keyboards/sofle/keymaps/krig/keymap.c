@@ -220,34 +220,7 @@ bool oled_task_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case SQ_COLN:
-            if (record->event.pressed) {
-                SEND_STRING("::");
-            }
-            return false;
-        case SQ_PIPE:
-            if (record->event.pressed) {
-                SEND_STRING("||");
-            }
-            return false;
-        case SQ_AMPR:
-            if (record->event.pressed) {
-                SEND_STRING("&&");
-            }
-            return false;
-        case SQ_PATH:
-            if (record->event.pressed) {
-                SEND_STRING("../");
-            }
-            return false;
-        case SQ_PHEX:
-            if (record->event.pressed) {
-                SEND_STRING("0x");
-            }
-            return false;
-    }
-    return true;
+    return krig_handle_sequence_keys(keycode, record);
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {

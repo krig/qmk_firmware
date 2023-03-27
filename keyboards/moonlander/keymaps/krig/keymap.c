@@ -171,34 +171,7 @@ bool rgb_matrix_indicators_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case SQ_PHEX:
-            if (record->event.pressed) {
-                SEND_STRING("0x");
-            }
-            break;
-        case SQ_AMPR:
-            if (record->event.pressed) {
-                SEND_STRING("&&");
-            }
-            break;
-        case SQ_PIPE:
-            if (record->event.pressed) {
-                SEND_STRING("||");
-            }
-            break;
-        case SQ_COLN:
-            if (record->event.pressed) {
-                SEND_STRING("::");
-            }
-            break;
-        case SQ_PATH:
-            if (record->event.pressed) {
-                SEND_STRING("../");
-            }
-            break;
-    }
-    return true;
+    return krig_handle_sequence_keys(keycode, record);
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
