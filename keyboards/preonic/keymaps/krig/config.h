@@ -9,3 +9,8 @@
 #define RGBLIGHT_EFFECT_KNIGHT
 #define RGBLIGHT_DEFAULT_HUE 222 // rose
 
+#ifdef AUDIO_ENABLE
+#undef STARTUP_SONG
+#    define STARTUP_SONG SONG(PREONIC_SOUND)
+#endif
+
