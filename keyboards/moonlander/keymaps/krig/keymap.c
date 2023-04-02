@@ -6,18 +6,18 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_moonlander(
-    QK_GESC, KC_1,     KC_2,    KC_3,    KC_4,    KC_5, KC_TILD, KC_AMPR,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSLS,
-    KC_TAB,  KC_Q,     KC_W,    KC_E,    KC_R,    KC_T, KC_MINS, KC_PERC,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
-    CTL_ESC, KC_A,     KC_S,    KC_D,    KC_F,    KC_G, KC_UNDS, KC_HASH,    KC_H,    KC_J,    KC_K,    KC_L, NAV_CLN, KC_QUOT,
+    QK_GESC, KC_1,     KC_2,    KC_3,    KC_4,    KC_5, KC_TILD,   SQ_OE,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSLS,
+    KC_TAB,  KC_Q,     KC_W,    KC_E,    KC_R,    KC_T, KC_MINS,   SQ_AE,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
+    CTL_ESC, KC_A,     KC_S,    KC_D,    KC_F,    KC_G, KC_UNDS,   SQ_AA,    KC_H,    KC_J,    KC_K,    KC_L, NAV_CLN, KC_QUOT,
     KC_LSFT, KC_Z,     KC_X,    KC_C,    KC_V,    KC_B,                      KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
     MO_FKEY, CTL_SFT,  KC_LALT, KC_LGUI, MO_SWED,       KC_CIRC,  KC_DLR,          MO_SYMB, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,
                                      KC_SPC, KC_BSPC, KC_LGUI,  KC_RGUI,  KC_TAB,  KC_ENT
   ),
   [_SWEDE] = LAYOUT_moonlander(
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  KC_INS, 
-    _______, _______, KC_KP_7, KC_KP_8, KC_KP_9, _______, _______, _______, _______, SQ_AMPR, KC_UNDS, KC_HASH, _______,  KC_DEL,
+    _______, _______, KC_KP_1, KC_KP_2, KC_KP_3, _______, _______, _______, _______, SQ_AMPR, KC_UNDS, KC_HASH, _______,  KC_DEL,
     _______, SQ_PHEX, KC_KP_4, KC_KP_5, KC_KP_6, _______, _______, _______, SQ_PIPE, SQ_COLN, SQ_AA,   SQ_OE,     SQ_AE,  KC_GRV,
-    _______, KC_KP_0, KC_KP_1, KC_KP_2, KC_KP_3, _______,                   _______, SQ_PATH, ZOOM_UT, ZOOM_IN, KC_BSLS, _______,
+    _______, KC_KP_0, KC_KP_7, KC_KP_8, KC_KP_9, _______,                   _______, SQ_PATH, ZOOM_UT, ZOOM_IN, KC_BSLS, _______,
     _______, _______, _______, _______, _______,          _______, TG_GAME,          _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END, 
     _______, _______, _______, _______, _______, _______
   ),
