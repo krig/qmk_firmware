@@ -15,9 +15,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_SWEDE] = LAYOUT_moonlander(
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  KC_INS, 
-    _______, _______, KC_KP_1, KC_KP_2, KC_KP_3, _______, _______, _______, _______, SQ_AMPR, KC_UNDS, KC_HASH, _______,  KC_DEL,
+    _______, KC_KP_0, KC_KP_1, KC_KP_2, KC_KP_3, _______, _______, _______, _______, SQ_AMPR, KC_UNDS, KC_HASH, _______,  KC_DEL,
     _______, SQ_PHEX, KC_KP_4, KC_KP_5, KC_KP_6, _______, _______, _______, SQ_PIPE, SQ_COLN, SQ_AA,   SQ_OE,     SQ_AE,  KC_GRV,
-    _______, KC_KP_0, KC_KP_7, KC_KP_8, KC_KP_9, _______,                   _______, SQ_PATH, ZOOM_UT, ZOOM_IN, KC_BSLS, _______,
+    _______,  KC_DOT, KC_KP_7, KC_KP_8, KC_KP_9, _______,                   _______, SQ_PATH, ZOOM_UT, ZOOM_IN, KC_BSLS, _______,
     _______, _______, _______, _______, _______,          _______, TG_GAME,          _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END, 
     _______, _______, _______, _______, _______, _______
   ),
