@@ -20,6 +20,16 @@ enum custom_keycodes {
 #define CTL_SFT LCTL(KC_LSFT)
 #define SFT_QUO RSFT_T(KC_QUOT)
 
+#define MT_Z LSFT_T(KC_Z)
+#define MT_X LALT_T(KC_X)
+#define MT_C LGUI_T(KC_C)
+#define MT_V LCTL_T(KC_V)
+
+#define MT_SLSH LSFT_T(KC_SLSH)
+#define MT_DOT LALT_T(KC_DOT)
+#define MT_COMM LGUI_T(KC_COMM)
+#define MT_M LCTL_T(KC_M)
+
 #define WS_PREV LCTL(KC_LEFT)
 #define WS_NEXT LCTL(KC_RIGHT)
 #define WS_ALL LCTL(KC_UP)
