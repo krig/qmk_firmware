@@ -17,6 +17,7 @@ enum custom_keycodes {
 #define ZOOM_IN LGUI(KC_PLUS)
 #define ZOOM_UT LGUI(KC_MINS)
 #define CTL_ESC LCTL_T(KC_ESC)
+#define CTL_ENT RCTL_T(KC_ENT)
 #define CTL_SFT LCTL(KC_LSFT)
 #define SFT_QUO RSFT_T(KC_QUOT)
 
@@ -52,5 +53,6 @@ enum krig_layers {
 #define TG_GAME TG(_GAME)
 #define MO_QMK MO(_QMKSTUFF)
 #define NAV_CLN LT(_NAV, KC_SCLN)
+#define NAV_MIN LT(_NAV, KC_MINS)
 
 bool krig_handle_sequence_keys(uint16_t keycode, keyrecord_t* record);
