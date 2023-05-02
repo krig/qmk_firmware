@@ -4,112 +4,143 @@
 #include "krig.h"
 
 
+enum combos {
+    CO_OSCAPS,
+    CO_AA,
+    CO_AE,
+    CO_OE,
+    CO_COPY,
+    CO_PASTE,
+    COMBO_LENGTH
+};
+uint16_t COMBO_LEN = COMBO_LENGTH;
+
+const uint16_t PROGMEM oscaps_combo[] = {KC_W, KC_Y, COMBO_END};
+const uint16_t PROGMEM aa_combo[] = {KC_Z, KC_COMM, COMBO_END};
+const uint16_t PROGMEM ae_combo[] = {KC_Z, KC_DOT, COMBO_END};
+const uint16_t PROGMEM oe_combo[] = {KC_Z, KC_MINS, COMBO_END};
+const uint16_t PROGMEM copy_combo[] = {KC_X, KC_C, COMBO_END};
+const uint16_t PROGMEM paste_combo[] = {KC_X, KC_D, COMBO_END};
+
+combo_t key_combos[] = {
+    [CO_OSCAPS] = COMBO(oscaps_combo, OSM(MOD_LSFT)),
+    [CO_AA] = COMBO(aa_combo, SQ_AA),
+    [CO_AE] = COMBO(ae_combo, SQ_AE),
+    [CO_OE] = COMBO(oe_combo, SQ_OE),
+    [CO_COPY] = COMBO(copy_combo, LGUI(KC_C)),
+    [CO_PASTE] = COMBO(paste_combo, LGUI(KC_V)),
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_BASE] = LAYOUT_preonic_grid(
+    [_COLEMAK] = LAYOUT_preonic_grid(
+      QK_GESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSLS,
+       KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y, KC_SLSH, KC_BSPC,
+      CTL_ESC,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O, CTL_ENT,
+      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H, KC_COMM,  KC_DOT, KC_MINS, SFT_QUO,
+      MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, NAV_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+    ),
+    [_QWERTY] = LAYOUT_preonic_grid(
       QK_GESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSLS,
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
-      CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, NAV_MIN, CTL_ENT,
+      CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_MINS, CTL_ENT,
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, SFT_QUO,
-      MO_FKEY, CTL_SFT, KC_LALT, KC_LGUI, MO_SWED,  KC_SPC,  KC_SPC, MO_SYMB, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+      MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, NAV_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
-    [_SWEDE] = LAYOUT_preonic_grid(
+    [_GAME] = LAYOUT_preonic_grid(
+      QK_GESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSLS,
+       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
+      KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_MINS, CTL_ENT,
+      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, SFT_QUO,
+      MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, NAV_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+    ),
+    [_LOWER] = LAYOUT_preonic_grid(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_INS,
       _______, KC_P0,   KC_P1,   KC_P2,   KC_P3,   _______, _______, SQ_AMPR, KC_UNDS, KC_HASH, _______, KC_DEL,
-      _______, SQ_PHEX, KC_P4,   KC_P5,   KC_P6,   _______, SQ_PIPE, SQ_COLN, SQ_AA,   SQ_OE,   SQ_AE,   _______,
+      _______, SQ_PHEX, KC_P4,   KC_P5,   KC_P6,   _______, SQ_PIPE, SQ_COLN, SQ_AA,   SQ_AE,   SQ_OE,   _______,
       _______, KC_DOT,  KC_P7,   KC_P8,   KC_P9,   _______, _______, SQ_PATH, ZOOM_UT, ZOOM_IN, KC_BSLS, KC_GRV,
       _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END
     ),
-    [_SYMBOLS] = LAYOUT_preonic_grid(
+    [_RAISE] = LAYOUT_preonic_grid(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, KC_TILD, KC_CIRC, KC_DQUO,  KC_GRV, _______, KC_AMPR, KC_LBRC, KC_RBRC, _______, _______,
       _______, KC_EXLM, KC_HASH, KC_PLUS, KC_EQL,  KC_QUOT, KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, _______,
       _______,   KC_AT, KC_PERC, KC_ASTR, KC_BSLS, _______, _______,  KC_DLR, KC_LCBR, KC_RCBR, _______,  KC_GRV,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
-    [_GAME] = LAYOUT_preonic_grid(
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      KC_LCTL, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
-    ),
     [_NAV] = LAYOUT_preonic_grid(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, KC_PGDN,   KC_UP, KC_PGUP, _______, _______,
+      _______, _______, WS_PREV,  WS_ALL, WS_NEXT, _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, WS_PREV,  WS_ALL, WS_NEXT, _______, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, KC_PGDN, KC_PGUP, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
-    [_FKEYS] = LAYOUT_preonic_grid(
+    [_FUNS] = LAYOUT_preonic_grid(
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  MO_QMK
-    ),
-    [_FKEYS2] = LAYOUT_preonic_grid(
-      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  MO_QMK
-    ),
-    [_QMKSTUFF] = LAYOUT_preonic_grid(
-      TG_GAME, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, QK_BOOT,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
-    )
+    ),
+    [_FUNS2] = LAYOUT_preonic_grid(
+      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+      _______, DF_QWER, DF_COLE, DF_GAME, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, QK_BOOT
+    ),
 };
 
 
 const rgblight_segment_t PROGMEM krig_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM, HSV_RED}
 );
-const rgblight_segment_t PROGMEM krig_base_layer[] = RGBLIGHT_LAYER_SEGMENTS(
 
+const rgblight_segment_t PROGMEM krig_colemak_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, RGBLED_NUM, HSV_PURPLE}
+);
+const rgblight_segment_t PROGMEM krig_qwerty_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM, HSV_BLACK}
-);
-const rgblight_segment_t PROGMEM krig_swede_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, HSV_BLUE}
-);
-const rgblight_segment_t PROGMEM krig_symbols_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, HSV_GREEN}
 );
 const rgblight_segment_t PROGMEM krig_game_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM, HSV_GOLDENROD}
 );
+
+const rgblight_segment_t PROGMEM krig_lower_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, RGBLED_NUM, HSV_BLUE}
+);
+const rgblight_segment_t PROGMEM krig_raise_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, RGBLED_NUM, HSV_GREEN}
+);
 const rgblight_segment_t PROGMEM krig_nav_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM, HSV_CYAN}
 );
-const rgblight_segment_t PROGMEM krig_fkeys_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+const rgblight_segment_t PROGMEM krig_funs_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM, HSV_PINK}
 );
-const rgblight_segment_t PROGMEM krig_qmkstuff_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+const rgblight_segment_t PROGMEM krig_funs2_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM, HSV_SPRINGGREEN}
 );
 
 enum light_layers {
-    _L_BASE,
     _L_CAPS,
-    _L_SWEDE,
-    _L_SYMBOLS,
+    _L_COLEMAK,
+    _L_QWERTY,
     _L_GAME,
+    _L_LOWER,
+    _L_RAISE,
     _L_NAV,
-    _L_FKEYS,
-    _L_QMKSTUFF
+    _L_FUNS
 };
 
 const rgblight_segment_t* const PROGMEM krig_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    krig_base_layer,
     krig_capslock_layer,
-    krig_swede_layer,
-    krig_symbols_layer,
+    krig_colemak_layer,
+    krig_qwerty_layer,
     krig_game_layer,
+    krig_lower_layer,
+    krig_raise_layer,
     krig_nav_layer,
-    krig_fkeys_layer,
-    krig_qmkstuff_layer
+    krig_funs_layer
 );
 
 void keyboard_post_init_user(void) {
@@ -137,17 +168,17 @@ void caps_word_set_user(bool active) {
 }
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(_L_BASE, layer_state_cmp(state, _BASE));
+    rgblight_set_layer_state(_L_COLEMAK, layer_state_cmp(state, _COLEMAK));
+    rgblight_set_layer_state(_L_QWERTY, layer_state_cmp(state, _QWERTY));
+    rgblight_set_layer_state(_L_GAME, layer_state_cmp(state, _GAME));
     return state;
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    state = update_tri_layer_state(state, _SWEDE, _SYMBOLS, _FKEYS);
-    rgblight_set_layer_state(_L_SWEDE, layer_state_cmp(state, _SWEDE));
-    rgblight_set_layer_state(_L_SYMBOLS, layer_state_cmp(state, _SYMBOLS));
-    rgblight_set_layer_state(_L_GAME, layer_state_cmp(state, _GAME));
+    state = update_tri_layer_state(state, _LOWER, _RAISE, _FUNS);
+    rgblight_set_layer_state(_L_LOWER, layer_state_cmp(state, _LOWER));
+    rgblight_set_layer_state(_L_RAISE, layer_state_cmp(state, _RAISE));
     rgblight_set_layer_state(_L_NAV, layer_state_cmp(state, _NAV));
-    rgblight_set_layer_state(_L_FKEYS, layer_state_cmp(state, _FKEYS) || layer_state_cmp(state, _FKEYS2));
-    rgblight_set_layer_state(_L_QMKSTUFF, layer_state_cmp(state, _QMKSTUFF));
+    rgblight_set_layer_state(_L_FUNS, layer_state_cmp(state, _FUNS) || layer_state_cmp(state, _FUNS2));
     return state;
 }

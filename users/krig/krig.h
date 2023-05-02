@@ -36,23 +36,28 @@ enum custom_keycodes {
 #define WS_ALL LCTL(KC_UP)
 
 enum krig_layers {
-    _BASE,
-    _SWEDE,
-    _SYMBOLS,
+    // default layers
+    _COLEMAK,
+    _QWERTY,
     _GAME,
+
+    // layer stack
+    _LOWER,
+    _RAISE,
     _NAV,
-    _FKEYS,
-    _FKEYS2, // Can't have a dedicated fkeys button otherwise
-    _QMKSTUFF
+    _FUNS,
+    _FUNS2 // Can't have a dedicated fkeys button otherwise
 };
 
-#define MO_SWED MO(_SWEDE)
-#define MO_SYMB MO(_SYMBOLS)
-#define MO_FKEY MO(_FKEYS2)
+#define MO_LOWR MO(_LOWER)
+#define MO_RAIS MO(_RAISE)
+#define MO_FUNS MO(_FUNS2)
 #define MO_NAV MO(_NAV)
-#define TG_GAME TG(_GAME)
-#define MO_QMK MO(_QMKSTUFF)
+#define DF_GAME DF(_GAME)
+#define DF_QWER DF(_QWERTY)
+#define DF_COLE DF(_COLEMAK)
 #define NAV_CLN LT(_NAV, KC_SCLN)
 #define NAV_MIN LT(_NAV, KC_MINS)
+#define NAV_SPC LT(_NAV, KC_SPC)
 
 bool krig_handle_sequence_keys(uint16_t keycode, keyrecord_t* record);

@@ -14,3 +14,4 @@
 #    define STARTUP_SONG SONG(PREONIC_SOUND)
 #endif
 
+#define COMBO_ONLY_FROM_LAYER 0
