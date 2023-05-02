@@ -7,7 +7,8 @@ enum custom_keycodes {
     SQ_PIPE, // ||
     SQ_PATH, // ../
     SQ_SLAS, // //
-    SQ_PHEX // 0x
+    SQ_PHEX, // 0x
+	LLOCK    // layer lock
 };
 
 

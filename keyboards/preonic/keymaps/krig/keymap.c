@@ -34,9 +34,9 @@ combo_t key_combos[] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_COLEMAK] = LAYOUT_preonic_grid(
        KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSLS,
-       KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y, KC_SLSH, KC_BSPC,
+       KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y, KC_MINS, KC_BSPC,
       CTL_ESC,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O, CTL_ENT,
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H, KC_COMM,  KC_DOT, KC_MINS, SFT_QUO,
+      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H, KC_COMM,  KC_DOT, KC_SLSH, SFT_QUO,
       MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, NAV_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_QWERTY] = LAYOUT_preonic_grid(
@@ -54,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, NAV_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_LOWER] = LAYOUT_preonic_grid(
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_INS,
+        LLOCK, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_INS,
       _______, SQ_PHEX,   KC_P1,   KC_P2,   KC_P3,   _______, _______, SQ_AMPR, KC_UNDS, KC_HASH, _______, KC_DEL,
       _______,   KC_P0,   KC_P4,   KC_P5,   KC_P6,   _______, SQ_PIPE, SQ_COLN, SQ_AA,   SQ_AE,   SQ_OE,   _______,
       _______,  KC_DOT,   KC_P7,   KC_P8,   KC_P9,   _______, _______, SQ_PATH, ZOOM_UT, ZOOM_IN, KC_BSLS, KC_GRV,
@@ -68,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_NAV] = LAYOUT_preonic_grid(
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        LLOCK, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, KC_PGDN,   KC_UP, KC_PGUP, _______, _______,
       _______, _______, WS_PREV,  WS_ALL, WS_NEXT, _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
@@ -156,7 +156,70 @@ float caps_word_on_song[][2] = SONG(CAPS_LOCK_ON_SOUND);
 float caps_word_off_song[][2] = SONG(CAPS_LOCK_OFF_SOUND);
 #endif
 
+bool g_caps_word_last_key_was_space = false;
+
+bool caps_word_press_user(uint16_t keycode) {
+	switch (keycode) {
+		// Keycodes that continue Caps Word, without shifting.
+		case KC_LEFT:
+		case KC_RIGHT:
+		case KC_UP:
+		case KC_DOWN:
+		case A(KC_LEFT):
+		case A(KC_RIGHT):
+		case A(KC_UP):
+		case A(KC_DOWN):
+		case G(KC_LEFT):
+		case G(KC_RIGHT):
+		case G(KC_UP):
+		case G(KC_DOWN):
+			add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+			return true;
+
+		case KC_SPACE:
+			// If the last key was NOT a space, then register it having been pressed and
+			// move on as normal
+			if (!g_caps_word_last_key_was_space) {
+				g_caps_word_last_key_was_space = true;
+				return true;
+			}
+				// if this is the second space in a row, delete one and exit Caps Word
+			else {
+				tap_code16(KC_BACKSPACE);
+				return false;
+			}
+
+		// Keys that do NOT break the Caps Word state
+		case KC_A ... KC_Z:
+		case KC_1 ... KC_0:
+		case KC_MINS:
+		case KC_UNDERSCORE:
+		case KC_BACKSPACE:
+			// If we're continuing on after a space, then we need to "address" that prior
+			// space in some way. The way we do that depends on what mode we're in. But
+			// in all cases, first we need to remove that space and then replace it with
+			// another character or another operating mode (ex. OSM)
+			if (g_caps_word_last_key_was_space) {
+				tap_code16(KC_BACKSPACE);
+				tap_code16(KC_UNDERSCORE);
+				g_caps_word_last_key_was_space = false;
+			}
+			if (
+				KC_A <= keycode && keycode <= KC_Z
+			) {
+				add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+			}
+			return true;
+
+		default:
+			return false;  // Deactivate Caps Word
+	}
+}
+
 void caps_word_set_user(bool active) {
+	if (active) {
+		g_caps_word_last_key_was_space = false;
+	}
     rgblight_set_layer_state(_L_CAPS, active);
     #ifdef AUDIO_ENABLE
     if (active) {
@@ -182,3 +245,5 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(_L_FUNS, layer_state_cmp(state, _FUNS) || layer_state_cmp(state, _FUNS2));
     return state;
 }
+
+

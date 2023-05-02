@@ -6,4 +6,5 @@ LTO_ENABLE = yes
 COMBO_ENABLE = yes
 
 SRC += krig.c
+SRC += features/layer_lock.c
 
