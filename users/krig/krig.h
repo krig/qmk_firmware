@@ -60,5 +60,16 @@ enum krig_layers {
 #define NAV_CLN LT(_NAV, KC_SCLN)
 #define NAV_MIN LT(_NAV, KC_MINS)
 #define NAV_SPC LT(_NAV, KC_SPC)
+#define GUI_LFT LGUI(KC_LEFT)
+#define GUI_RGT LGUI(KC_RGHT)
+#define GUI__R   LGUI(KC_R)
+#define GUI__T   LGUI(KC_T)
+#define GUI__N   LGUI(KC_N)
+#define GUI__Q   LGUI(KC_Q)
+#define GUI__W   LGUI(KC_W)
+#define GUI_SPC  LGUI(KC_SPC)
+
+#define LOW_TAB  LT(_LOWER, KC_TAB)
+#define RAI_BSP  LT(_RAISE, KC_BSPC)
 
 bool krig_handle_sequence_keys(uint16_t keycode, keyrecord_t* record);
