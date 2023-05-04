@@ -21,6 +21,7 @@ enum custom_keycodes {
 #define CTL_ENT RCTL_T(KC_ENT)
 #define CTL_SFT LCTL(KC_LSFT)
 #define SFT_QUO RSFT_T(KC_QUOT)
+#define CTL_QUO LCTL_T(KC_QUOT)
 
 #define MT_Z LSFT_T(KC_Z)
 #define MT_X LALT_T(KC_X)
@@ -60,6 +61,7 @@ enum krig_layers {
 #define NAV_CLN LT(_NAV, KC_SCLN)
 #define NAV_MIN LT(_NAV, KC_MINS)
 #define NAV_SPC LT(_NAV, KC_SPC)
+#define NAV_BSP LT(_NAV, KC_BSPC)
 #define GUI_LFT LGUI(KC_LEFT)
 #define GUI_RGT LGUI(KC_RGHT)
 #define GUI__R   LGUI(KC_R)
@@ -71,5 +73,6 @@ enum krig_layers {
 
 #define LOW_TAB  LT(_LOWER, KC_TAB)
 #define RAI_BSP  LT(_RAISE, KC_BSPC)
+#define RAI_ENT  LT(_RAISE, KC_ENT)
 
 bool krig_handle_sequence_keys(uint16_t keycode, keyrecord_t* record);
