@@ -8,7 +8,9 @@ enum custom_keycodes {
     SQ_PATH, // ../
     SQ_SLAS, // //
     SQ_PHEX, // 0x
-	LLOCK    // layer lock
+	LLOCK,   // layer lock
+    REPEAT,  // repeat key
+    ALTREP,  // alternate repeat
 };
 
 
@@ -37,9 +39,12 @@ enum custom_keycodes {
 #define WS_NEXT LCTL(KC_RIGHT)
 #define WS_ALL LCTL(KC_UP)
 
+#define OSM_SFT OSM(MOD_LSFT)
+
 enum krig_layers {
     // default layers
     _COLEMAK,
+    _CTGAP,
     _QWERTY,
     _GAME,
 
@@ -58,6 +63,7 @@ enum krig_layers {
 #define DF_GAME DF(_GAME)
 #define DF_QWER DF(_QWERTY)
 #define DF_COLE DF(_COLEMAK)
+#define DF_CTGA DF(_CTGAP)
 #define NAV_CLN LT(_NAV, KC_SCLN)
 #define NAV_MIN LT(_NAV, KC_MINS)
 #define NAV_SPC LT(_NAV, KC_SPC)

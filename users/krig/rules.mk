@@ -7,4 +7,6 @@ COMBO_ENABLE = yes
 
 SRC += krig.c
 SRC += features/layer_lock.c
+SRC += features/custom_shift_keys.c
+SRC += features/repeat_key.c
 
