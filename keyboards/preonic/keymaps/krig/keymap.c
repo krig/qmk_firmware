@@ -80,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, SQ_PHEX,   KC_P1,   KC_P2,   KC_P3, _______, _______, SQ_AMPR, KC_UNDS, KC_HASH, _______, KC_DEL,
       _______,   KC_P0,   KC_P4,   KC_P5,   KC_P6, _______, SQ_PIPE, SQ_COLN, SQ_AA,   SQ_AE,   SQ_OE,   _______,
       _______,  KC_DOT,   KC_P7,   KC_P8,   KC_P9, _______, _______, SQ_PATH, ZOOM_UT, ZOOM_IN, KC_BSLS, KC_GRV,
-      _______, _______, _______, _______, _______, _______, OSL_NAV, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END
+      _______, _______, _______, _______, _______, _______,  TT_NAV, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END
     ),
     [_RAISE] = LAYOUT_preonic_grid(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  ALTREP,

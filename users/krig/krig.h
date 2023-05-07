@@ -61,7 +61,7 @@ enum krig_layers {
 #define MO_RAIS MO(_RAISE)
 #define MO_FUNS MO(_FUNS2)
 #define MO_NAV MO(_NAV)
-#define OSL_NAV OSL(_NAV)
+#define TT_NAV TT(_NAV)
 #define DF_GAME DF(_GAME)
 #define DF_QWER DF(_QWERTY)
 #define DF_COLE DF(_COLEMAK)
