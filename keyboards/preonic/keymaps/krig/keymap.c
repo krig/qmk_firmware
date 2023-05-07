@@ -1,12 +1,14 @@
 /*
  * Kristoffer Gronlund, 2023
  */
+#include "keycodes.h"
 #include "krig.h"
 #include "features/custom_shift_keys.h"
 #include "features/repeat_key.h"
 
 enum combos {
     CO_OSCAPS,
+    CO_CAPSWORD,
     CO_AA,
     CO_AE,
     CO_OE,
@@ -16,15 +18,17 @@ enum combos {
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
-const uint16_t PROGMEM oscaps_combo[] = {KC_W, KC_F, COMBO_END};
-const uint16_t PROGMEM aa_combo[] = {KC_Z, KC_COMM, COMBO_END};
-const uint16_t PROGMEM ae_combo[] = {KC_Z, KC_DOT, COMBO_END};
-const uint16_t PROGMEM oe_combo[] = {KC_Z, KC_MINS, COMBO_END};
+const uint16_t PROGMEM oscaps_combo[] = {KC_T, KC_S, KC_N, COMBO_END};
+const uint16_t PROGMEM capsword_combo[] = {KC_T, KC_S, KC_E, COMBO_END};
+const uint16_t PROGMEM aa_combo[] = {KC_Z, KC_N, COMBO_END};
+const uint16_t PROGMEM ae_combo[] = {KC_Z, KC_E, COMBO_END};
+const uint16_t PROGMEM oe_combo[] = {KC_Z, KC_I, COMBO_END};
 const uint16_t PROGMEM copy_combo[] = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM paste_combo[] = {KC_X, KC_D, COMBO_END};
 
 combo_t key_combos[] = {
     [CO_OSCAPS] = COMBO(oscaps_combo, OSM(MOD_LSFT)),
+    [CO_CAPSWORD] = COMBO(capsword_combo, QK_CAPS_WORD_TOGGLE),
     [CO_AA] = COMBO(aa_combo, SQ_AA),
     [CO_AE] = COMBO(ae_combo, SQ_AE),
     [CO_OE] = COMBO(oe_combo, SQ_OE),
@@ -37,7 +41,6 @@ const custom_shift_key_t custom_shift_keys[] = {
     {KC_COMM, KC_SCLN},
     {KC_BSPC, KC_DEL},
     {KC_UNDS, KC_MINS},
-    {KC_DQUO, KC_QUOT},
 };
 
 uint8_t NUM_CUSTOM_SHIFT_KEYS =
@@ -45,46 +48,46 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS =
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_COLEMAK] = LAYOUT_preonic_grid(
-       KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSLS,
-       KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y, KC_UNDS, KC_BSPC,
+       KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  REPEAT,
+       KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y, KC_QUOT, KC_BSPC,
       CTL_ESC,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O, CTL_ENT,
-      OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H, KC_COMM,  KC_DOT, KC_SLSH, SFT_QUO,
-      MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC,  REPEAT, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+      OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H, KC_UNDS, KC_COMM,  KC_DOT, RSFT_T(KC_SLSH),
+      MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, SFT_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_CTGAP] = LAYOUT_preonic_grid(
-       KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSLS,
+       KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  REPEAT,
        KC_TAB,    KC_Q,    KC_P,    KC_L,    KC_C,    KC_J,    KC_K,    KC_F,    KC_O,    KC_U, KC_QUOT, KC_BSPC,
       CTL_ESC,    KC_R,    KC_N,    KC_T,    KC_S,    KC_G,    KC_Y,    KC_H,    KC_E,    KC_I,    KC_A, CTL_ENT,
-      OSM_SFT,    KC_Z,    KC_B,    KC_M,    KC_W,    KC_V,    KC_X,    KC_D, KC_UNDS,  KC_COMM, KC_DOT, SFT_QUO,
-      MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC,  REPEAT, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+      OSM_SFT,    KC_Z,    KC_B,    KC_M,    KC_W,    KC_V,    KC_X,    KC_D, KC_UNDS,  KC_COMM, KC_DOT, RSFT_T(KC_SLSH),
+      MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, SFT_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_QWERTY] = LAYOUT_preonic_grid(
-       KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSLS,
+       KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  REPEAT,
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
       CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_UNDS, CTL_ENT,
       OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, SFT_QUO,
-      MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC,  REPEAT, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+      MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, SFT_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_GAME] = LAYOUT_preonic_grid(
-       KC_ESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSLS,
+       KC_ESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  REPEAT,
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
       KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_UNDS, CTL_ENT,
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, SFT_QUO,
-      MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC,  REPEAT, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+      MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, SFT_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_LOWER] = LAYOUT_preonic_grid(
         LLOCK, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_INS,
       _______, SQ_PHEX,   KC_P1,   KC_P2,   KC_P3, _______, _______, SQ_AMPR, KC_UNDS, KC_HASH, _______, KC_DEL,
       _______,   KC_P0,   KC_P4,   KC_P5,   KC_P6, _______, SQ_PIPE, SQ_COLN, SQ_AA,   SQ_AE,   SQ_OE,   _______,
       _______,  KC_DOT,   KC_P7,   KC_P8,   KC_P9, _______, _______, SQ_PATH, ZOOM_UT, ZOOM_IN, KC_BSLS, KC_GRV,
-      _______, _______, _______, _______, _______, _______,  MO_NAV, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END
+      _______, _______, _______, _______, _______, _______, OSL_NAV, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END
     ),
     [_RAISE] = LAYOUT_preonic_grid(
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  ALTREP,
       _______, KC_CIRC,  KC_GRV, KC_QUOT, KC_DQUO,   KC_LT, _______, KC_AMPR, KC_LBRC, KC_RBRC, _______, _______,
       _______, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,    KC_GT, KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, _______,
       _______, KC_TILD, KC_SLSH, KC_ASTR, KC_BSLS, KC_HASH, KC_HASH,  KC_DLR, KC_LCBR, KC_RCBR, KC_PERC,  KC_GRV,
-      _______, _______, _______, _______, _______,  ALTREP, _______, _______, _______, _______, _______, _______
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_NAV] = LAYOUT_preonic_grid(
         LLOCK, _______, _______, _______, _______, _______, _______, GUI_LFT,  GUI__R, GUI_RGT, _______, _______,

@@ -24,6 +24,7 @@ enum custom_keycodes {
 #define CTL_SFT LCTL(KC_LSFT)
 #define SFT_QUO RSFT_T(KC_QUOT)
 #define CTL_QUO LCTL_T(KC_QUOT)
+#define SFT_SPC LSFT_T(KC_SPC)
 
 #define MT_Z LSFT_T(KC_Z)
 #define MT_X LALT_T(KC_X)
@@ -60,6 +61,7 @@ enum krig_layers {
 #define MO_RAIS MO(_RAISE)
 #define MO_FUNS MO(_FUNS2)
 #define MO_NAV MO(_NAV)
+#define OSL_NAV OSL(_NAV)
 #define DF_GAME DF(_GAME)
 #define DF_QWER DF(_QWERTY)
 #define DF_COLE DF(_COLEMAK)
