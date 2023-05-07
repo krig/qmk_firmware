@@ -45,8 +45,7 @@ enum custom_keycodes {
 enum krig_layers {
     // default layers
     _COLEMAK,
-    _CTGAP,
-    _NERPS,
+    _HANDS,
     _QWERTY,
     _GAME,
 
@@ -64,10 +63,9 @@ enum krig_layers {
 #define MO_NAV MO(_NAV)
 #define TT_NAV TT(_NAV)
 #define DF_GAME DF(_GAME)
-#define DF_QWER DF(_QWERTY)
 #define DF_COLE DF(_COLEMAK)
-#define DF_CTGA DF(_CTGAP)
-#define DF_NERP DF(_NERPS)
+#define DF_HAND DF(_HANDS)
+#define DF_QWER DF(_QWERTY)
 #define NAV_CLN LT(_NAV, KC_SCLN)
 #define NAV_MIN LT(_NAV, KC_MINS)
 #define NAV_SPC LT(_NAV, KC_SPC)

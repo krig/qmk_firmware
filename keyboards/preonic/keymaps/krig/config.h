@@ -1,5 +1,6 @@
 /*
  * Kristoffer Gronlund, 2023
+ * Preonic
  */
 #pragma once
 

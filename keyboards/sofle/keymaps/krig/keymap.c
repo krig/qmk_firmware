@@ -14,10 +14,14 @@
   * You should have received a copy of the GNU General Public License
   * along with this program.  If not, see <http://www.gnu.org/licenses/>.
   */
+#include "keycodes.h"
 #include "krig.h"
+#include "features/custom_shift_keys.h"
+#include "features/repeat_key.h"
 
 enum combos {
     CO_OSCAPS,
+    CO_CAPSWORD,
     CO_AA,
     CO_AE,
     CO_OE,
@@ -27,15 +31,17 @@ enum combos {
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
-const uint16_t PROGMEM oscaps_combo[] = {KC_W, KC_Y, COMBO_END};
-const uint16_t PROGMEM aa_combo[] = {KC_Z, KC_COMM, COMBO_END};
-const uint16_t PROGMEM ae_combo[] = {KC_Z, KC_DOT, COMBO_END};
-const uint16_t PROGMEM oe_combo[] = {KC_Z, KC_MINS, COMBO_END};
+const uint16_t PROGMEM oscaps_combo[] = {KC_T, KC_S, KC_N, COMBO_END};
+const uint16_t PROGMEM capsword_combo[] = {KC_T, KC_S, KC_E, COMBO_END};
+const uint16_t PROGMEM aa_combo[] = {KC_Z, KC_N, COMBO_END};
+const uint16_t PROGMEM ae_combo[] = {KC_Z, KC_E, COMBO_END};
+const uint16_t PROGMEM oe_combo[] = {KC_Z, KC_I, COMBO_END};
 const uint16_t PROGMEM copy_combo[] = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM paste_combo[] = {KC_X, KC_D, COMBO_END};
 
 combo_t key_combos[] = {
     [CO_OSCAPS] = COMBO(oscaps_combo, OSM(MOD_LSFT)),
+    [CO_CAPSWORD] = COMBO(capsword_combo, QK_CAPS_WORD_TOGGLE),
     [CO_AA] = COMBO(aa_combo, SQ_AA),
     [CO_AE] = COMBO(ae_combo, SQ_AE),
     [CO_OE] = COMBO(oe_combo, SQ_OE),
@@ -43,24 +49,33 @@ combo_t key_combos[] = {
     [CO_PASTE] = COMBO(paste_combo, LGUI(KC_V)),
 };
 
+const custom_shift_key_t custom_shift_keys[] = {
+    {KC_DOT, KC_COLN},
+    {KC_COMM, KC_SCLN},
+    {KC_BSPC, KC_DEL},
+    {KC_UNDS, KC_MINS},
+};
 
-#define KG_NUMROW KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5, /* ----- ----- */    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSLS,
-#define KG_THUMBROW KC_LALT, KC_LCTL, KC_LGUI, LOW_TAB, KC_SPC, NAV_BSP, RAI_ENT, KC_RGUI, KC_RCTL, KC_LALT
+uint8_t NUM_CUSTOM_SHIFT_KEYS =
+    sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
+
+#define KG_NUMROW KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5, /* ----- ----- */    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, REPEAT,
+#define KG_THUMBROW KC_LALT, KC_LCTL, KC_LGUI, MO_LOWR, KC_SPC, NAV_BSP, MO_RAIS, KC_RGUI, KC_RCTL, KC_LALT
 #define LAYOUT_wrapper(...)             LAYOUT(__VA_ARGS__)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_COLEMAK] = LAYOUT_wrapper(
   KG_NUMROW
-   KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B, /* ----- ----- */    KC_J,    KC_L,    KC_U,    KC_Y, KC_MINS, KC_BSPC,
-  CTL_ESC,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G, /* ----- ----- */    KC_M,    KC_N,    KC_E,    KC_I,    KC_O, CTL_QUO,
-  KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V, KC_MUTE, MO_FUNS,    KC_K,    KC_H, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
+   KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B, /* ----- ----- */    KC_J,    KC_L,    KC_U,    KC_Y, KC_QUOT, KC_BSPC,
+  CTL_ESC,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G, /* ----- ----- */    KC_M,    KC_N,    KC_E,    KC_I,    KC_O, CTL_ENT,
+  OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V, KC_MUTE, MO_FUNS,    KC_K,    KC_H, KC_UNDS, KC_COMM,  KC_DOT, RSFT_T(KC_SLSH),
   KG_THUMBROW
 ),
 [_QWERTY] = LAYOUT_wrapper(
   KG_NUMROW
    KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T, /* ----- ----- */    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
-  CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G, /* ----- ----- */    KC_H,    KC_J,    KC_K,    KC_L, KC_MINS, CTL_QUO,
-  KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_MUTE, MO_FUNS,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
+  CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G, /* ----- ----- */    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
+  OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_MUTE, MO_FUNS,    KC_N,    KC_M, KC_UNDS, KC_COMM,  KC_DOT, RSFT_T(KC_SLSH),
   KG_THUMBROW
 ),
 [_GAME] = LAYOUT_wrapper(
@@ -79,9 +94,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 [_RAISE] = LAYOUT(
   _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
-  _______, _______, KC_TILD, KC_CIRC, KC_DQUO,  KC_GRV,                   _______, KC_AMPR, KC_LBRC, KC_RBRC, _______, _______,
-  _______, KC_EXLM, KC_HASH, KC_PLUS,  KC_EQL, KC_QUOT,                   KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN,  KC_GRV,
-  _______,   KC_AT, KC_SLSH, KC_ASTR, KC_BSLS, _______, _______, _______, _______,  KC_DLR, KC_LCBR, KC_RCBR, _______, _______,
+  _______, KC_CIRC,  KC_GRV, KC_QUOT, KC_DQUO,   KC_LT,                   _______, KC_AMPR, KC_LBRC, KC_RBRC, _______, _______,
+  _______, KC_EXLM, KC_HASH, KC_PLUS,  KC_EQL,   KC_GT,                   KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN,  KC_GRV,
+  _______, KC_TILD, KC_SLSH, KC_ASTR, KC_BSLS, KC_HASH, _______, _______, KC_HASH,  KC_DLR, KC_LCBR, KC_RCBR, KC_PERC, _______,
                     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 [_NAV] = LAYOUT(
@@ -286,7 +301,22 @@ void caps_word_set_user(bool active) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!process_repeat_key_with_alt(keycode, record, REPEAT, ALTREP)) {
+        return false;
+    }
+    if (!process_custom_shift_keys(keycode, record)) {
+        return false;
+    }
     return krig_handle_sequence_keys(keycode, record);
+}
+
+uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
+    if ((mods & MOD_MASK_CTRL)) {
+        switch (keycode) {
+            case KC_C: return C(KC_V);
+        }
+    }
+    return KC_TRNS;
 }
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
