@@ -46,6 +46,7 @@ enum krig_layers {
     // default layers
     _COLEMAK,
     _CTGAP,
+    _NERPS,
     _QWERTY,
     _GAME,
 
@@ -66,6 +67,7 @@ enum krig_layers {
 #define DF_QWER DF(_QWERTY)
 #define DF_COLE DF(_COLEMAK)
 #define DF_CTGA DF(_CTGAP)
+#define DF_NERP DF(_NERPS)
 #define NAV_CLN LT(_NAV, KC_SCLN)
 #define NAV_MIN LT(_NAV, KC_MINS)
 #define NAV_SPC LT(_NAV, KC_SPC)

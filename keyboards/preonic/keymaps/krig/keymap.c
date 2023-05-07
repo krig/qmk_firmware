@@ -61,6 +61,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       OSM_SFT,    KC_Z,    KC_B,    KC_M,    KC_W,    KC_V,    KC_X,    KC_D, KC_UNDS,  KC_COMM, KC_DOT, RSFT_T(KC_SLSH),
       MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, SFT_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
+    [_NERPS] = LAYOUT_preonic_grid(
+       KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  REPEAT,
+       KC_TAB,    KC_X,    KC_L,    KC_D,    KC_P,    KC_V,    KC_Z,    KC_K,    KC_O,    KC_U, KC_QUOT, KC_BSPC,
+      CTL_ESC,    KC_N,    KC_R,    KC_T,    KC_S,    KC_G,    KC_Y,    KC_H,    KC_E,    KC_I,    KC_A, CTL_ENT,
+      OSM_SFT,    KC_J,    KC_M,    KC_C,    KC_W,    KC_Q,    KC_B,    KC_F, KC_UNDS,  KC_COMM, KC_DOT, RSFT_T(KC_SLSH),
+      MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, SFT_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+    ),
     [_QWERTY] = LAYOUT_preonic_grid(
        KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  REPEAT,
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
@@ -98,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_FUNS] = LAYOUT_preonic_grid(
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
-      _______, DF_QWER, DF_COLE, DF_GAME, DF_CTGA, _______, _______, _______, _______, _______, _______, _______,
+      _______, DF_QWER, DF_COLE, DF_GAME, DF_CTGA, DF_NERP, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, QK_BOOT
@@ -274,7 +281,7 @@ void caps_word_set_user(bool active) {
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(_L_COLEMAK, layer_state_cmp(state, _COLEMAK));
-    rgblight_set_layer_state(_L_CTGAP, layer_state_cmp(state, _CTGAP));
+    rgblight_set_layer_state(_L_CTGAP, layer_state_cmp(state, _CTGAP) || layer_state_cmp(state, _NERPS));
     rgblight_set_layer_state(_L_QWERTY, layer_state_cmp(state, _QWERTY));
     rgblight_set_layer_state(_L_GAME, layer_state_cmp(state, _GAME));
     return state;
