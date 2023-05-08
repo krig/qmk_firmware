@@ -19,7 +19,7 @@ enum combos {
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
-const uint16_t PROGMEM capsword_combo[] = {KC_W, KC_P, COMBO_END};
+const uint16_t PROGMEM capsword_combo[] = {KC_F, KC_P, COMBO_END};
 const uint16_t PROGMEM aa_combo[] = {KC_Z, KC_N, COMBO_END};
 const uint16_t PROGMEM ae_combo[] = {KC_Z, KC_E, COMBO_END};
 const uint16_t PROGMEM oe_combo[] = {KC_Z, KC_I, COMBO_END};
@@ -46,14 +46,14 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS =
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_COLEMAK] = LAYOUT_preonic_grid(
        KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  REPEAT,
-       KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_K,    KC_L,    KC_U,    KC_Y, KC_COLN, KC_BSPC,
+       KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_K,    KC_L,    KC_U,    KC_Y, KC_SLSH, KC_BSPC,
       CTL_ESC,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O, CTL_ENT,
       OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_J,    KC_H, KC_COMM,  KC_DOT, KC_MINS, RSFT_T(KC_SLSH),
       MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, SFT_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_HANDS] = LAYOUT_preonic_grid(
        KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  REPEAT,
-       KC_TAB,    KC_W,    KC_C,    KC_H,    KC_F,    KC_V, KC_COLN,    KC_Y,    KC_U,    KC_J,    KC_Q, KC_BSPC,
+       KC_TAB,    KC_W,    KC_C,    KC_H,    KC_F,    KC_V, KC_SLSH,    KC_Y,    KC_U,    KC_J,    KC_Q, KC_BSPC,
       CTL_ESC,    KC_R,    KC_S,    KC_N,    KC_T,    KC_G,    KC_K,    KC_I,    KC_E,    KC_O,    KC_A, CTL_ENT,
       OSM_SFT,    KC_X,    KC_M,    KC_L,    KC_D,    KC_B,    KC_Z,    KC_P, KC_COMM,  KC_DOT, KC_MINS, RSFT_T(KC_SLSH),
       MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, SFT_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
@@ -61,8 +61,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_preonic_grid(
        KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  REPEAT,
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
-      CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_COLN, CTL_ENT,
-      OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_MINS, RSFT_T(KC_SLSH),
+      CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_MINS, CTL_ENT,
+      OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, RSFT_T(KC_SLSH),
       MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, SFT_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_GAME] = LAYOUT_preonic_grid(
@@ -83,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  ALTREP,
       _______, KC_CIRC,  KC_GRV, KC_QUOT, KC_DQUO, _______, _______, KC_AMPR, KC_LBRC, KC_RBRC, KC_PERC, _______,
       _______, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_BSLS, KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, _______,
-      _______, KC_TILD, KC_SLSH, KC_ASTR, KC_HASH, _______, _______,  KC_DLR, KC_LCBR, KC_RCBR, KC_PERC, _______,
+      _______, KC_TILD, KC_SLSH, KC_ASTR, KC_HASH, _______, _______,  KC_DLR, KC_LCBR, KC_RCBR, KC_QUES, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_NAV] = LAYOUT_preonic_grid(
