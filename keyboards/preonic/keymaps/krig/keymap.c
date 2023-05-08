@@ -73,29 +73,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, SFT_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_LOWER] = LAYOUT_preonic_grid(
-        LLOCK, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_INS,
-      _______, SQ_PHEX,   KC_P1,   KC_P2,   KC_P3, _______, _______, SQ_AMPR, KC_UNDS, KC_HASH, _______, KC_DEL,
+        LLOCK, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, SQ_PHEX,   KC_P1,   KC_P2,   KC_P3, _______, _______, SQ_AMPR, _______, _______, _______, _______,
       _______,   KC_P0,   KC_P4,   KC_P5,   KC_P6, _______, SQ_PIPE, SQ_COLN, SQ_AA,   SQ_AE,   SQ_OE,   _______,
-      _______,  KC_DOT,   KC_P7,   KC_P8,   KC_P9, _______, _______, SQ_PATH, ZOOM_UT, ZOOM_IN, KC_BSLS, KC_GRV,
+      _______,  KC_DOT,   KC_P7,   KC_P8,   KC_P9, _______, _______, SQ_PATH, ZOOM_UT, ZOOM_IN, KC_BSLS, _______,
       _______, _______, _______, _______, _______, _______,  TT_NAV, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END
     ),
     [_RAISE] = LAYOUT_preonic_grid(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  ALTREP,
-      _______, KC_CIRC,  KC_GRV, KC_QUOT, KC_DQUO,   KC_LT, _______, KC_AMPR, KC_LBRC, KC_RBRC, _______, _______,
-      _______, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,    KC_GT, KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, _______,
-      _______, KC_TILD, KC_SLSH, KC_ASTR, KC_BSLS, KC_HASH, KC_HASH,  KC_DLR, KC_LCBR, KC_RCBR, KC_PERC,  KC_GRV,
+      _______, KC_CIRC,  KC_GRV, KC_QUOT, KC_DQUO, _______, _______, KC_AMPR, KC_LBRC, KC_RBRC, KC_PERC, _______,
+      _______, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_BSLS, KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, _______,
+      _______, KC_TILD, KC_SLSH, KC_ASTR, KC_HASH, _______, _______,  KC_DLR, KC_LCBR, KC_RCBR, KC_PERC, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_NAV] = LAYOUT_preonic_grid(
         LLOCK, _______, _______, _______, _______, _______, _______, GUI_LFT,  GUI__R, GUI_RGT, _______, _______,
-      _______,  GUI__Q,  GUI__W, _______, _______, _______, _______, KC_HOME,  KC_END,  GUI__T,  GUI__N, _______,
-      _______, _______, WS_PREV,  WS_ALL, WS_NEXT, _______, _______, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, _______,
+      _______,  GUI__Q,  GUI__W, _______, _______, _______, _______, KC_HOME,   KC_UP,  KC_END,  GUI__N, _______,
+      _______, _______, WS_PREV,  WS_ALL, WS_NEXT, _______, _______, KC_LEFT, KC_DOWN, KC_RGHT,  GUI__T, _______,
       _______, _______, _______, _______, _______, _______, _______, KC_PGDN, KC_PGUP, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_FUNS] = LAYOUT_preonic_grid(
-      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
-      _______, DF_QWER, DF_COLE, DF_GAME, DF_HAND, _______, _______, _______, _______, _______, _______, _______,
+      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,
+      _______, DF_QWER, DF_COLE, DF_GAME, DF_HAND, _______, _______, _______, _______, _______, _______,  KC_INS,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, QK_BOOT
