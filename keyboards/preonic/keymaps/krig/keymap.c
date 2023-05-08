@@ -19,8 +19,7 @@ enum combos {
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
-const uint16_t PROGMEM oscaps_combo[] = {KC_T, KC_S, KC_N, COMBO_END};
-const uint16_t PROGMEM capsword_combo[] = {KC_T, KC_S, KC_E, COMBO_END};
+const uint16_t PROGMEM capsword_combo[] = {KC_W, KC_P, COMBO_END};
 const uint16_t PROGMEM aa_combo[] = {KC_Z, KC_N, COMBO_END};
 const uint16_t PROGMEM ae_combo[] = {KC_Z, KC_E, COMBO_END};
 const uint16_t PROGMEM oe_combo[] = {KC_Z, KC_I, COMBO_END};
@@ -28,7 +27,6 @@ const uint16_t PROGMEM copy_combo[] = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM paste_combo[] = {KC_X, KC_D, COMBO_END};
 
 combo_t key_combos[] = {
-    [CO_OSCAPS] = COMBO(oscaps_combo, OSM(MOD_LSFT)),
     [CO_CAPSWORD] = COMBO(capsword_combo, QK_CAPS_WORD_TOGGLE),
     [CO_AA] = COMBO(aa_combo, SQ_AA),
     [CO_AE] = COMBO(ae_combo, SQ_AE),
@@ -38,10 +36,8 @@ combo_t key_combos[] = {
 };
 
 const custom_shift_key_t custom_shift_keys[] = {
-    {KC_DOT, KC_COLN},
-    {KC_COMM, KC_SCLN},
+    {KC_COLN, KC_SCLN},
     {KC_BSPC, KC_DEL},
-    {KC_UNDS, KC_MINS},
 };
 
 uint8_t NUM_CUSTOM_SHIFT_KEYS =
@@ -50,29 +46,29 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS =
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_COLEMAK] = LAYOUT_preonic_grid(
        KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  REPEAT,
-       KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_M,    KC_L,    KC_U,    KC_Y, KC_SLSH, KC_BSPC,
-      CTL_ESC,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_K,    KC_N,    KC_E,    KC_I,    KC_O, CTL_ENT,
-      OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_J,    KC_H, KC_COMM,  KC_DOT, KC_UNDS, RSFT_T(KC_SLSH),
+       KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_K,    KC_L,    KC_U,    KC_Y, KC_COLN, KC_BSPC,
+      CTL_ESC,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O, CTL_ENT,
+      OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_J,    KC_H, KC_COMM,  KC_DOT, KC_MINS, RSFT_T(KC_SLSH),
       MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, SFT_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_HANDS] = LAYOUT_preonic_grid(
        KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  REPEAT,
-       KC_TAB,    KC_W,    KC_C,    KC_H,    KC_F,    KC_V, KC_SLSH,    KC_Y,    KC_U,    KC_J,    KC_Q, KC_BSPC,
+       KC_TAB,    KC_W,    KC_C,    KC_H,    KC_F,    KC_V, KC_COLN,    KC_Y,    KC_U,    KC_J,    KC_Q, KC_BSPC,
       CTL_ESC,    KC_R,    KC_S,    KC_N,    KC_T,    KC_G,    KC_K,    KC_I,    KC_E,    KC_O,    KC_A, CTL_ENT,
-      OSM_SFT,    KC_X,    KC_M,    KC_L,    KC_D,    KC_B,    KC_Z,    KC_P, KC_COMM,  KC_DOT, KC_UNDS, RSFT_T(KC_SLSH),
+      OSM_SFT,    KC_X,    KC_M,    KC_L,    KC_D,    KC_B,    KC_Z,    KC_P, KC_COMM,  KC_DOT, KC_MINS, RSFT_T(KC_SLSH),
       MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, SFT_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_QWERTY] = LAYOUT_preonic_grid(
        KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  REPEAT,
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
-      CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_UNDS, CTL_ENT,
-      OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, SFT_QUO,
+      CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_COLN, CTL_ENT,
+      OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_MINS, RSFT_T(KC_SLSH),
       MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, SFT_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_GAME] = LAYOUT_preonic_grid(
        KC_ESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  REPEAT,
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
-      KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_UNDS, CTL_ENT,
+      KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_MINS, CTL_ENT,
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, SFT_QUO,
       MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, SFT_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
