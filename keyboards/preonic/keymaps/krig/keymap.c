@@ -50,16 +50,16 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS =
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_COLEMAK] = LAYOUT_preonic_grid(
        KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  REPEAT,
-       KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y, KC_SLSH, KC_BSPC,
-      CTL_ESC,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O, CTL_ENT,
-      OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H, KC_COMM,  KC_DOT, KC_UNDS, RSFT_T(KC_SLSH),
+       KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_M,    KC_L,    KC_U,    KC_Y, KC_SLSH, KC_BSPC,
+      CTL_ESC,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_K,    KC_N,    KC_E,    KC_I,    KC_O, CTL_ENT,
+      OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_J,    KC_H, KC_COMM,  KC_DOT, KC_UNDS, RSFT_T(KC_SLSH),
       MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, SFT_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_HANDS] = LAYOUT_preonic_grid(
        KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  REPEAT,
-       KC_TAB,    KC_W,    KC_C,    KC_H,    KC_F,    KC_V, KC_UNDS,    KC_Y,    KC_U,    KC_J,    KC_Q, KC_BSPC,
+       KC_TAB,    KC_W,    KC_C,    KC_H,    KC_F,    KC_V, KC_SLSH,    KC_Y,    KC_U,    KC_J,    KC_Q, KC_BSPC,
       CTL_ESC,    KC_R,    KC_S,    KC_N,    KC_T,    KC_G,    KC_K,    KC_I,    KC_E,    KC_O,    KC_A, CTL_ENT,
-      OSM_SFT,    KC_X,    KC_M,    KC_L,    KC_D,    KC_B,    KC_Z,    KC_P, KC_QUOT,  KC_COMM, KC_DOT, RSFT_T(KC_SLSH),
+      OSM_SFT,    KC_X,    KC_M,    KC_L,    KC_D,    KC_B,    KC_Z,    KC_P, KC_COMM,  KC_DOT, KC_UNDS, RSFT_T(KC_SLSH),
       MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, SFT_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_QWERTY] = LAYOUT_preonic_grid(
