@@ -20,7 +20,6 @@
 #include "features/repeat_key.h"
 
 enum combos {
-    CO_OSCAPS,
     CO_CAPSWORD,
     CO_AA,
     CO_AE,
@@ -31,16 +30,14 @@ enum combos {
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
-const uint16_t PROGMEM oscaps_combo[] = {KC_T, KC_S, KC_N, COMBO_END};
-const uint16_t PROGMEM capsword_combo[] = {KC_T, KC_S, KC_E, COMBO_END};
-const uint16_t PROGMEM aa_combo[] = {KC_Z, KC_N, COMBO_END};
-const uint16_t PROGMEM ae_combo[] = {KC_Z, KC_E, COMBO_END};
-const uint16_t PROGMEM oe_combo[] = {KC_Z, KC_I, COMBO_END};
+const uint16_t PROGMEM capsword_combo[] = {KC_Z, KC_X, COMBO_END};
+const uint16_t PROGMEM aa_combo[] = {KC_Z, KC_J, COMBO_END};
+const uint16_t PROGMEM ae_combo[] = {KC_Z, KC_K, COMBO_END};
+const uint16_t PROGMEM oe_combo[] = {KC_Z, KC_L, COMBO_END};
 const uint16_t PROGMEM copy_combo[] = {KC_X, KC_C, COMBO_END};
-const uint16_t PROGMEM paste_combo[] = {KC_X, KC_D, COMBO_END};
+const uint16_t PROGMEM paste_combo[] = {KC_X, KC_V, COMBO_END};
 
 combo_t key_combos[] = {
-    [CO_OSCAPS] = COMBO(oscaps_combo, OSM(MOD_LSFT)),
     [CO_CAPSWORD] = COMBO(capsword_combo, QK_CAPS_WORD_TOGGLE),
     [CO_AA] = COMBO(aa_combo, SQ_AA),
     [CO_AE] = COMBO(ae_combo, SQ_AE),
@@ -53,7 +50,7 @@ const custom_shift_key_t custom_shift_keys[] = {
     {KC_DOT, KC_COLN},
     {KC_COMM, KC_SCLN},
     {KC_BSPC, KC_DEL},
-    {KC_UNDS, KC_MINS},
+    {KC_GT, KC_LT},
 };
 
 uint8_t NUM_CUSTOM_SHIFT_KEYS =
@@ -64,25 +61,25 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS =
 #define LAYOUT_wrapper(...)             LAYOUT(__VA_ARGS__)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-[_COLEMAK] = LAYOUT_wrapper(
-  KG_NUMROW
-   KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B, /* ----- ----- */    KC_J,    KC_L,    KC_U,    KC_Y, KC_QUOT, KC_BSPC,
-  CTL_ESC,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G, /* ----- ----- */    KC_M,    KC_N,    KC_E,    KC_I,    KC_O, CTL_ENT,
-  OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V, KC_MUTE, MO_FUNS,    KC_K,    KC_H, KC_UNDS, KC_COMM,  KC_DOT, RSFT_T(KC_SLSH),
-  KG_THUMBROW
-),
 [_QWERTY] = LAYOUT_wrapper(
   KG_NUMROW
    KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T, /* ----- ----- */    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
-  CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G, /* ----- ----- */    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
-  OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_MUTE, MO_FUNS,    KC_N,    KC_M, KC_UNDS, KC_COMM,  KC_DOT, RSFT_T(KC_SLSH),
+  CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G, /* ----- ----- */    KC_H,    KC_J,    KC_K,    KC_L, KC_MINS, CTL_ENT,
+  OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_MUTE, MO_FUNS,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, RSFT_T(KC_GT),
+  KG_THUMBROW
+),
+[_ENGRAM] = LAYOUT_wrapper(
+  KG_NUMROW
+   KC_TAB,    KC_B,    KC_Y,    KC_O,    KC_U, KC_QUOT, /* ----- ----- */ KC_SLSH,    KC_L,    KC_D,    KC_W,    KC_V, KC_BSPC,
+  CTL_ESC,    KC_C,    KC_I,    KC_E,    KC_A, KC_COMM, /* ----- ----- */  KC_DOT,    KC_H,    KC_T,    KC_S,    KC_N, CTL_ENT,
+  OSM_SFT,    KC_G,    KC_X,    KC_J,    KC_K, KC_MINS, KC_MUTE, MO_FUNS,   KC_GT,    KC_R,    KC_M,    KC_F,    KC_P, RSFT_T(KC_BSLS),
   KG_THUMBROW
 ),
 [_GAME] = LAYOUT_wrapper(
-  KG_NUMROW
-   KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T, /* ----- ----- */    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
-  KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G, /* ----- ----- */    KC_H,    KC_J,    KC_K,    KC_L, NAV_CLN, CTL_QUO,
-  KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_MUTE, MO_FUNS,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
+   KC_ESC,  KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4, /* ----- ----- */    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, REPEAT,
+   KC_TAB,  KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R, /* ----- ----- */    KC_T,    KC_Y,    KC_I,    KC_O,    KC_P, KC_BSPC,
+  KC_LCTL, KC_LSFT,    KC_A,    KC_S,    KC_D,    KC_F, /* ----- ----- */    KC_G,    KC_H,    KC_K,    KC_L, KC_MINS, CTL_ENT,
+  KC_LSFT, KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V, KC_MUTE, MO_FUNS,    KC_B,    KC_N, KC_COMM,  KC_DOT, KC_SLSH, RSFT_T(KC_GT),
   KG_THUMBROW
 ),
 [_LOWER] = LAYOUT(
@@ -108,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 [_FUNS] = LAYOUT(
   _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
-  _______, DF_QWER, DF_COLE, DF_GAME, _______, _______,                   _______, _______, _______, _______, _______, _______,
+  _______, DF_QWER, DF_ENGR, DF_GAME, _______, _______,                   _______, _______, _______, _______, _______, _______,
   _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
                     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
@@ -170,11 +167,11 @@ static void print_status_narrow(void) {
 
 
      switch(get_highest_layer(default_layer_state)) {
-         case _COLEMAK:
-             oled_write_ln_P(PSTR("colem"), false);
-             break;
          case _QWERTY:
-             oled_write_ln_P(PSTR("qwert"), false);
+             oled_write_ln_P(PSTR("qwrty"), false);
+             break;
+         case _ENGRAM:
+             oled_write_ln_P(PSTR("engrm"), false);
              break;
          case _GAME:
              oled_write_ln_P(PSTR("GAME!"), false);
@@ -192,8 +189,8 @@ static void print_status_narrow(void) {
     }
 
     switch (get_highest_layer(layer_state)) {
-        case _COLEMAK:
         case _QWERTY:
+        case _ENGRAM:
         case _GAME:
             oled_write_P(PSTR("....."), false);
             break;

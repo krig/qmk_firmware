@@ -18,12 +18,12 @@ enum combos {
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
-const uint16_t PROGMEM capsword_combo[] = {KC_F, KC_P, COMBO_END};
-const uint16_t PROGMEM aa_combo[] = {KC_Z, KC_N, COMBO_END};
-const uint16_t PROGMEM ae_combo[] = {KC_Z, KC_E, COMBO_END};
-const uint16_t PROGMEM oe_combo[] = {KC_Z, KC_I, COMBO_END};
+const uint16_t PROGMEM capsword_combo[] = {KC_Z, KC_X, COMBO_END};
+const uint16_t PROGMEM aa_combo[] = {KC_Z, KC_J, COMBO_END};
+const uint16_t PROGMEM ae_combo[] = {KC_Z, KC_K, COMBO_END};
+const uint16_t PROGMEM oe_combo[] = {KC_Z, KC_L, COMBO_END};
 const uint16_t PROGMEM copy_combo[] = {KC_X, KC_C, COMBO_END};
-const uint16_t PROGMEM paste_combo[] = {KC_X, KC_D, COMBO_END};
+const uint16_t PROGMEM paste_combo[] = {KC_X, KC_V, COMBO_END};
 
 combo_t key_combos[] = {
     [CO_CAPSWORD] = COMBO(capsword_combo, QK_CAPS_WORD_TOGGLE),
@@ -35,8 +35,10 @@ combo_t key_combos[] = {
 };
 
 const custom_shift_key_t custom_shift_keys[] = {
-    {KC_COLN, KC_SCLN},
+    {KC_DOT, KC_COLN},
+    {KC_COMM, KC_SCLN},
     {KC_BSPC, KC_DEL},
+    {KC_GT, KC_LT},
 };
 
 uint8_t NUM_CUSTOM_SHIFT_KEYS =
@@ -48,25 +50,18 @@ bool get_combo_must_tap(uint16_t index, combo_t *combo) {
 }
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_COLEMAK] = LAYOUT_preonic_grid(
-       KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  REPEAT,
-       KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_K,    KC_L,    KC_U,    KC_Y, KC_SLSH, KC_BSPC,
-      CTL_ESC,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O, CTL_ENT,
-      OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_J,    KC_H, KC_COMM,  KC_DOT, KC_MINS, RSFT_T(KC_SLSH),
-      MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, SFT_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
-    ),
-    [_ENGRAM] = LAYOUT_preonic_grid(
-       KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  REPEAT,
-       KC_TAB,    KC_B,    KC_Y,    KC_O,    KC_U, KC_QUOT, KC_COLN,    KC_L,    KC_D,    KC_W,    KC_V, KC_BSPC,
-      CTL_ESC,    KC_C,    KC_I,    KC_E,    KC_A, KC_COMM,  KC_DOT,    KC_H,    KC_T,    KC_S,    KC_N, CTL_ENT,
-      OSM_SFT,    KC_G,    KC_X,    KC_J,    KC_K, KC_MINS, KC_SLSH,    KC_R,    KC_M,    KC_F,    KC_P, RSFT_T(KC_SLSH),
-      MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, SFT_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
-    ),
     [_QWERTY] = LAYOUT_preonic_grid(
        KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  REPEAT,
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
       CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_MINS, CTL_ENT,
-      OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, RSFT_T(KC_SLSH),
+      OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, RSFT_T(KC_GT),
+      MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, SFT_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+    ),
+    [_ENGRAM] = LAYOUT_preonic_grid(
+       KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  REPEAT,
+       KC_TAB,    KC_B,    KC_Y,    KC_O,    KC_U, KC_QUOT, KC_SLSH,    KC_L,    KC_D,    KC_W,    KC_V, KC_BSPC,
+      CTL_ESC,    KC_C,    KC_I,    KC_E,    KC_A, KC_COMM,  KC_DOT,    KC_H,    KC_T,    KC_S,    KC_N, CTL_ENT,
+      OSM_SFT,    KC_G,    KC_X,    KC_J,    KC_K, KC_MINS,   KC_GT,    KC_R,    KC_M,    KC_F,    KC_P, RSFT_T(KC_BSLS),
       MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, SFT_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_GAME] = LAYOUT_preonic_grid(
@@ -99,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_FUNS] = LAYOUT_preonic_grid(
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,
-      _______, DF_QWER, DF_COLE, DF_GAME, DF_ENGR, _______, _______, _______, _______, _______, _______,  KC_INS,
+      _______, DF_QWER, DF_ENGR, DF_GAME, _______, _______, _______, _______, _______, _______, _______,  KC_INS,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, QK_BOOT
@@ -116,10 +111,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 const rgblight_segment_t PROGMEM krig_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM, HSV_RED}
-);
-
-const rgblight_segment_t PROGMEM krig_colemak_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, HSV_PURPLE}
 );
 const rgblight_segment_t PROGMEM krig_alt_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM, HSV_CORAL}
@@ -149,9 +140,8 @@ const rgblight_segment_t PROGMEM krig_funs2_layer[] = RGBLIGHT_LAYER_SEGMENTS(
 
 enum light_layers {
     _L_CAPS,
-    _L_COLEMAK,
-    _L_ALT,
     _L_QWERTY,
+    _L_ALT,
     _L_GAME,
     _L_LOWER,
     _L_RAISE,
@@ -161,9 +151,8 @@ enum light_layers {
 
 const rgblight_segment_t* const PROGMEM krig_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     krig_capslock_layer,
-    krig_colemak_layer,
-    krig_alt_layer,
     krig_qwerty_layer,
+    krig_alt_layer,
     krig_game_layer,
     krig_lower_layer,
     krig_raise_layer,
@@ -274,9 +263,8 @@ void caps_word_set_user(bool active) {
 }
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(_L_COLEMAK, layer_state_cmp(state, _COLEMAK));
-    rgblight_set_layer_state(_L_ALT, layer_state_cmp(state, _ENGRAM));
     rgblight_set_layer_state(_L_QWERTY, layer_state_cmp(state, _QWERTY));
+    rgblight_set_layer_state(_L_ALT, layer_state_cmp(state, _ENGRAM));
     rgblight_set_layer_state(_L_GAME, layer_state_cmp(state, _GAME));
     return state;
 }
