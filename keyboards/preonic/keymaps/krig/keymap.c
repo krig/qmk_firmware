@@ -55,11 +55,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_J,    KC_H, KC_COMM,  KC_DOT, KC_MINS, RSFT_T(KC_SLSH),
       MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, SFT_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
-    [_HANDS] = LAYOUT_preonic_grid(
+    [_ENGRAM] = LAYOUT_preonic_grid(
        KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  REPEAT,
-       KC_TAB,    KC_W,    KC_C,    KC_H,    KC_F,    KC_V, KC_SLSH,    KC_Y,    KC_U,    KC_J,    KC_Q, KC_BSPC,
-      CTL_ESC,    KC_R,    KC_S,    KC_N,    KC_T,    KC_G,    KC_K,    KC_I,    KC_E,    KC_O,    KC_A, CTL_ENT,
-      OSM_SFT,    KC_X,    KC_M,    KC_L,    KC_D,    KC_B,    KC_Z,    KC_P, KC_COMM,  KC_DOT, KC_MINS, RSFT_T(KC_SLSH),
+       KC_TAB,    KC_B,    KC_Y,    KC_O,    KC_U, KC_QUOT, KC_COLN,    KC_L,    KC_D,    KC_W,    KC_V, KC_BSPC,
+      CTL_ESC,    KC_C,    KC_I,    KC_E,    KC_A, KC_COMM,  KC_DOT,    KC_H,    KC_T,    KC_S,    KC_N, CTL_ENT,
+      OSM_SFT,    KC_G,    KC_X,    KC_J,    KC_K, KC_MINS, KC_SLSH,    KC_R,    KC_M,    KC_F,    KC_P, RSFT_T(KC_SLSH),
       MO_FUNS, CTL_SFT, KC_LALT, KC_LGUI, MO_LOWR,  KC_SPC, SFT_SPC, MO_RAIS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_QWERTY] = LAYOUT_preonic_grid(
@@ -78,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_LOWER] = LAYOUT_preonic_grid(
         LLOCK, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, SQ_PHEX,   KC_P1,   KC_P2,   KC_P3, _______, _______, SQ_AMPR, _______, _______, _______, _______,
+      _______, SQ_PHEX,   KC_P1,   KC_P2,   KC_P3, _______, _______, SQ_AMPR, _______,    KC_Z,    KC_Q, _______,
       _______,   KC_P0,   KC_P4,   KC_P5,   KC_P6, _______, SQ_PIPE, SQ_COLN, SQ_AA,   SQ_AE,   SQ_OE,   _______,
       _______,  KC_DOT,   KC_P7,   KC_P8,   KC_P9, _______, _______, SQ_PATH, ZOOM_UT, ZOOM_IN, KC_BSLS, _______,
       _______, _______, _______, _______, _______, _______,  TT_NAV, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END
@@ -99,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_FUNS] = LAYOUT_preonic_grid(
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,
-      _______, DF_QWER, DF_COLE, DF_GAME, DF_HAND, _______, _______, _______, _______, _______, _______,  KC_INS,
+      _______, DF_QWER, DF_COLE, DF_GAME, DF_ENGR, _______, _______, _______, _______, _______, _______,  KC_INS,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, QK_BOOT
@@ -275,7 +275,7 @@ void caps_word_set_user(bool active) {
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(_L_COLEMAK, layer_state_cmp(state, _COLEMAK));
-    rgblight_set_layer_state(_L_ALT, layer_state_cmp(state, _HANDS));
+    rgblight_set_layer_state(_L_ALT, layer_state_cmp(state, _ENGRAM));
     rgblight_set_layer_state(_L_QWERTY, layer_state_cmp(state, _QWERTY));
     rgblight_set_layer_state(_L_GAME, layer_state_cmp(state, _GAME));
     return state;
