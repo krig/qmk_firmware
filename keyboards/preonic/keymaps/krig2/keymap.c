@@ -32,7 +32,7 @@ enum custom_layers {
 const custom_shift_key_t custom_shift_keys[] = {
     {KC_DOT, KC_EXLM}, // Shift . is !
     {KC_COMM, KC_QUES}, // Shift , is ?
-    {KC_UNDS, KC_MINS}, // Shift _ is -
+    {KC_UNDS, KC_UNDS}, // Shift _ is _
     {KC_SLSH, KC_BSLS}, // Shift / is backslash
 };
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
@@ -65,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_ENGRAM] = LAYOUT_preonic_grid(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______,    KC_B,    KC_Y,    KC_O,    KC_U,    KC_Q,    KC_Z,    KC_L,    KC_D,    KC_W,    KC_V, _______,
+      _______,    KC_B,    KC_Y,    KC_O,    KC_U,    KC_Z,    KC_Q,    KC_L,    KC_D,    KC_W,    KC_V, _______,
       _______,    KC_C,    KC_I,    KC_E,    KC_A, KC_COMM,  KC_DOT,    KC_H,    KC_T,    KC_S,    KC_N, _______,
       _______,    KC_G,    KC_X,    KC_J,    KC_K, KC_UNDS, KC_SLSH,    KC_R,    KC_M,    KC_F,    KC_P, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
@@ -79,8 +79,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_LOWER] = LAYOUT_preonic_grid(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, KC_QUOT,   KC_LT,   KC_GT, KC_DQUO, KC_PERC, KC_CIRC, KC_AMPR, KC_LBRC, KC_RBRC,   KC_AT, _______,
-      _______, KC_EXLM, KC_MINS, KC_PLUS,  KC_EQL, KC_HASH, KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, _______,
+      _______, KC_EXLM,   KC_LT,   KC_GT, KC_DQUO, KC_PERC, KC_CIRC, KC_AMPR, KC_LBRC, KC_RBRC,   KC_AT, _______,
+      _______, KC_QUOT, KC_MINS, KC_PLUS,  KC_EQL, KC_HASH, KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, _______,
       _______, KC_TILD, KC_SLSH, KC_ASTR,  KC_GRV, _______, _______,  KC_DLR, KC_LCBR, KC_RCBR, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP,  KC_END
     ),
