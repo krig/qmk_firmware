@@ -21,7 +21,7 @@ enum custom_keycodes {
 
 enum custom_layers {
     _BASE,
-    _BOO,
+    _ENGRAM,
     _GAME,
     _LOWER,
     _RAISE,
@@ -45,7 +45,7 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_
 #define SFT_QUO RSFT_T(KC_QUOT)
 #define M_LOWER MO(_LOWER)
 #define M_RAISE MO(_RAISE)
-#define T_BOO TG(_BOO)
+#define T_ENGR  TG(_ENGRAM)
 #define T_GAME  TG(_GAME)
 
 
@@ -63,11 +63,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, SFT_QUO,
        KC_MEH, CTL_SFT, KC_LALT, KC_LGUI, M_LOWER,  KC_SPC,  KC_SPC, M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
-    [_BOO] = LAYOUT_preonic_grid(
+    [_ENGRAM] = LAYOUT_preonic_grid(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, KC_COMM,  KC_DOT,    KC_U,    KC_C,    KC_V,    KC_Q,    KC_F,    KC_D,    KC_L,    KC_Y, _______,
-      _______,    KC_A,    KC_O,    KC_E,    KC_S,    KC_G,    KC_B,    KC_N,    KC_T,    KC_R,    KC_I, _______,
-      _______, KC_SLSH,    KC_X, KC_UNDS,    KC_W,    KC_Z,    KC_P,    KC_H,    KC_M,    KC_K,    KC_J, _______,
+      _______,    KC_B,    KC_Y,    KC_O,    KC_U,    KC_Q,    KC_Z,    KC_L,    KC_D,    KC_W,    KC_V, _______,
+      _______,    KC_C,    KC_I,    KC_E,    KC_A, KC_COMM,  KC_DOT,    KC_H,    KC_T,    KC_S,    KC_N, _______,
+      _______,    KC_G,    KC_X,    KC_J,    KC_K, KC_UNDS, KC_SLSH,    KC_R,    KC_M,    KC_F,    KC_P, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_GAME] = LAYOUT_preonic_grid(
@@ -81,19 +81,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, KC_QUOT,   KC_LT,   KC_GT, KC_DQUO, KC_PERC, KC_CIRC, KC_AMPR, KC_LBRC, KC_RBRC,   KC_AT, _______,
       _______, KC_EXLM, KC_MINS, KC_PLUS,  KC_EQL, KC_HASH, KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, _______,
-      _______, KC_TILD, KC_SLSH, KC_ASTR, _______, _______, _______,  KC_DLR, KC_LCBR, KC_RCBR, _______, _______,
+      _______, KC_TILD, KC_SLSH, KC_ASTR,  KC_GRV, _______, _______,  KC_DLR, KC_LCBR, KC_RCBR, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP,  KC_END
     ),
     [_RAISE] = LAYOUT_preonic_grid(
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  KC_INS,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, KC_6,    KC_5,    KC_4,    _______, _______, SQ_AMPR, SQ_LTLT, SQ_GTGT, _______, _______,
       _______,    KC_0, KC_3,    KC_2,    KC_1,    _______, SQ_PIPE, SQ_COLN, SQ_AA,   SQ_AE,   SQ_OE,   _______,
-      _______, SQ_PHEX, KC_9,    KC_8,    KC_7,    _______, _______, SQ_PATH, SQ_LTAR, SQ_RTAR, _______,  KC_GRV,
+      _______, SQ_PHEX, KC_9,    KC_8,    KC_7,    _______, _______, SQ_PATH, SQ_LTAR, SQ_RTAR, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_ADJUST] = LAYOUT_preonic_grid(
-        T_BOO,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
-       T_GAME, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+       T_ENGR,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
+       T_GAME, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  KC_INS,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
