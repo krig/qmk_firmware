@@ -21,7 +21,7 @@ enum custom_keycodes {
 
 enum custom_layers {
     _BASE,
-    _ENGRAM,
+    _SEMI,
     _GAME,
     _LOWER,
     _RAISE,
@@ -45,7 +45,7 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_
 #define SFT_QUO RSFT_T(KC_QUOT)
 #define M_LOWER MO(_LOWER)
 #define M_RAISE MO(_RAISE)
-#define T_ENGR  TG(_ENGRAM)
+#define T_SEMI  TG(_SEMI)
 #define T_GAME  TG(_GAME)
 
 
@@ -63,11 +63,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, SFT_QUO,
        KC_MEH, CTL_SFT, KC_LALT, KC_LGUI, M_LOWER,  KC_SPC,  KC_SPC, M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
-    [_ENGRAM] = LAYOUT_preonic_grid(
+    [_SEMI] = LAYOUT_preonic_grid(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______,    KC_B,    KC_Y,    KC_O,    KC_U,    KC_Z,    KC_Q,    KC_L,    KC_D,    KC_W,    KC_V, _______,
-      _______,    KC_C,    KC_I,    KC_E,    KC_A, KC_COMM,  KC_DOT,    KC_H,    KC_T,    KC_S,    KC_N, _______,
-      _______,    KC_G,    KC_X,    KC_J,    KC_K, KC_UNDS, KC_SLSH,    KC_R,    KC_M,    KC_F,    KC_P, _______,
+      _______,    KC_F,    KC_L,    KC_H,    KC_V,    KC_Z, KC_SLSH,    KC_W,    KC_U,    KC_O,    KC_Y, _______,
+      _______,    KC_S,    KC_R,    KC_N,    KC_T,    KC_K,    KC_C,    KC_D,    KC_E,    KC_A,    KC_I, _______,
+      _______,    KC_X,    KC_J,    KC_B,    KC_M,    KC_Q,    KC_P,    KC_G, KC_COMM,  KC_DOT, KC_UNDS, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_GAME] = LAYOUT_preonic_grid(
@@ -92,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_ADJUST] = LAYOUT_preonic_grid(
-       T_ENGR,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
+       T_SEMI,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
        T_GAME, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  KC_INS,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
