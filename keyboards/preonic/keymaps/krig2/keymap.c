@@ -4,6 +4,7 @@
  */
 
 #include QMK_KEYBOARD_H
+#include "custom_shift_keys.h"
 
 enum custom_keycodes {
     SQ_COLN = SAFE_RANGE, // ::
@@ -20,10 +21,21 @@ enum custom_keycodes {
 
 enum custom_layers {
     _BASE,
+    _COLEMAK,
     _LOWER,
     _RAISE,
+    _NAV,
     _ADJUST,
 };
+
+
+const custom_shift_key_t custom_shift_keys[] = {
+    {KC_DOT, KC_EXLM}, // Shift . is !
+    {KC_COMM, KC_QUES}, // Shift , is ?
+    {KC_UNDS, KC_MINS}, // Shift _ is -
+};
+uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
+
 
 #define ESC_CTL LCTL_T(KC_ESC)
 #define ENT_CTL RCTL_T(KC_ENT)
@@ -32,6 +44,7 @@ enum custom_layers {
 #define SFT_QUO RSFT_T(KC_QUOT)
 #define M_LOWER MO(_LOWER)
 #define M_RAISE MO(_RAISE)
+#define T_COLEM TG(_COLEMAK)
 
 
 // Swedish letters
@@ -44,14 +57,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_preonic_grid(
        KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_DEL,
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
-      ESC_CTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_MINS, ENT_CTL,
+      ESC_CTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_UNDS, ENT_CTL,
       OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, SFT_QUO,
        KC_MEH, CTL_SFT, KC_LALT, KC_LGUI, M_LOWER,  KC_SPC,  KC_SPC, M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+    ),
+    [_COLEMAK] = LAYOUT_preonic_grid(
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y, KC_SLSH, _______,
+      _______,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O, _______,
+      _______,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H, KC_COMM,  KC_DOT, KC_UNDS, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_LOWER] = LAYOUT_preonic_grid(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  KC_INS,
       _______, _______, KC_7,    KC_8,    KC_9,    _______, _______, SQ_AMPR, SQ_LTLT, SQ_GTGT, _______, _______,
-      _______, SQ_PHEX, KC_4,    KC_5,    KC_6,    _______, SQ_PIPE, SQ_COLN, SQ_AA,   SQ_OE,   SQ_AE,   _______,
+      _______, SQ_PHEX, KC_4,    KC_5,    KC_6,    _______, SQ_PIPE, SQ_COLN, SQ_AA,   SQ_AE,   SQ_OE,   _______,
       _______, KC_0,    KC_1,    KC_2,    KC_3,    _______, _______, SQ_PATH, SQ_LTAR, SQ_RTAR, KC_BSLS,  KC_GRV,
       _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP,  KC_END
     ),
@@ -63,11 +83,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_ADJUST] = LAYOUT_preonic_grid(
-      _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
+      T_COLEM,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, QK_BOOT
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     )
 };
 
@@ -99,6 +119,7 @@ void keyboard_post_init_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+    if (!process_custom_shift_keys(keycode, record)) { return false; }
     switch (keycode) {
         case SQ_COLN:
             if (record->event.pressed) {
