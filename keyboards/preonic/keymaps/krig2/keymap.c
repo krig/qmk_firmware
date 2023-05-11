@@ -21,7 +21,7 @@ enum custom_keycodes {
 
 enum custom_layers {
     _BASE,
-    _SEMI,
+    _HAND,
     _GAME,
     _LOWER,
     _RAISE,
@@ -32,8 +32,8 @@ enum custom_layers {
 const custom_shift_key_t custom_shift_keys[] = {
     {KC_DOT, KC_EXLM}, // Shift . is !
     {KC_COMM, KC_QUES}, // Shift , is ?
-    {KC_UNDS, KC_UNDS}, // Shift _ is _
-    {KC_SLSH, KC_BSLS}, // Shift / is backslash
+    {KC_UNDS, KC_MINS}, // Shift _ is -
+    {KC_SLSH, KC_HASH}, // Shift / is #
 };
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
 
@@ -45,7 +45,7 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_
 #define SFT_QUO RSFT_T(KC_QUOT)
 #define M_LOWER MO(_LOWER)
 #define M_RAISE MO(_RAISE)
-#define T_SEMI  TG(_SEMI)
+#define T_HAND  TG(_HAND)
 #define T_GAME  TG(_GAME)
 
 
@@ -63,11 +63,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, SFT_QUO,
        KC_MEH, CTL_SFT, KC_LALT, KC_LGUI, M_LOWER,  KC_SPC,  KC_SPC, M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
-    [_SEMI] = LAYOUT_preonic_grid(
+    [_HAND] = LAYOUT_preonic_grid(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______,    KC_F,    KC_L,    KC_H,    KC_V,    KC_Z, KC_SLSH,    KC_W,    KC_U,    KC_O,    KC_Y, _______,
-      _______,    KC_S,    KC_R,    KC_N,    KC_T,    KC_K,    KC_C,    KC_D,    KC_E,    KC_A,    KC_I, _______,
-      _______,    KC_X,    KC_J,    KC_B,    KC_M,    KC_Q,    KC_P,    KC_G, KC_COMM,  KC_DOT, KC_UNDS, _______,
+      _______,    KC_Q,    KC_C,    KC_H,    KC_P,    KC_V,    KC_K,    KC_Y,    KC_O,    KC_J, KC_SLSH, _______,
+      _______,    KC_R,    KC_S,    KC_N,    KC_T,    KC_G,    KC_W,    KC_U,    KC_E,    KC_I,    KC_A, _______,
+      _______,    KC_X,    KC_M,    KC_L,    KC_D,    KC_B,    KC_Z,    KC_F, KC_UNDS, KC_COMM,  KC_DOT, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_GAME] = LAYOUT_preonic_grid(
@@ -80,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_LOWER] = LAYOUT_preonic_grid(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______,  KC_GRV,   KC_LT,   KC_GT, KC_DQUO, KC_PERC, KC_CIRC, KC_AMPR, KC_LBRC, KC_RBRC,   KC_AT, _______,
-      _______, KC_QUOT, KC_MINS, KC_PLUS,  KC_EQL, KC_HASH, KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, _______,
+      _______, KC_QUOT, KC_MINS, KC_PLUS,  KC_EQL, KC_BSLS, KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, _______,
       _______, KC_TILD, KC_SLSH, KC_ASTR, KC_EXLM, _______, _______,  KC_DLR, KC_LCBR, KC_RCBR, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP,  KC_END
     ),
@@ -92,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_ADJUST] = LAYOUT_preonic_grid(
-       T_SEMI,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
+       T_HAND,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
        T_GAME, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  KC_INS,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
