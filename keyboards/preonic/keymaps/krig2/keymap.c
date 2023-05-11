@@ -21,7 +21,8 @@ enum custom_keycodes {
 
 enum custom_layers {
     _BASE,
-    _COLEMAK,
+    _BOO,
+    _GAME,
     _LOWER,
     _RAISE,
     _NAV,
@@ -33,6 +34,7 @@ const custom_shift_key_t custom_shift_keys[] = {
     {KC_DOT, KC_EXLM}, // Shift . is !
     {KC_COMM, KC_QUES}, // Shift , is ?
     {KC_UNDS, KC_MINS}, // Shift _ is -
+    {KC_SLSH, KC_BSLS}, // Shift / is backslash
 };
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
 
@@ -44,7 +46,8 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_
 #define SFT_QUO RSFT_T(KC_QUOT)
 #define M_LOWER MO(_LOWER)
 #define M_RAISE MO(_RAISE)
-#define T_COLEM TG(_COLEMAK)
+#define T_BOO TG(_BOO)
+#define T_GAME  TG(_GAME)
 
 
 // Swedish letters
@@ -61,30 +64,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, SFT_QUO,
        KC_MEH, CTL_SFT, KC_LALT, KC_LGUI, M_LOWER,  KC_SPC,  KC_SPC, M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
-    [_COLEMAK] = LAYOUT_preonic_grid(
+    [_BOO] = LAYOUT_preonic_grid(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y, KC_SLSH, _______,
-      _______,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O, _______,
-      _______,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H, KC_COMM,  KC_DOT, KC_UNDS, _______,
+      _______, KC_COMM,  KC_DOT,    KC_U,    KC_C,    KC_V,    KC_Q,    KC_F,    KC_D,    KC_L,    KC_Y, _______,
+      _______,    KC_A,    KC_O,    KC_E,    KC_S,    KC_G,    KC_B,    KC_N,    KC_T,    KC_R,    KC_I, _______,
+      _______, KC_SLSH,    KC_X, KC_UNDS,    KC_W,    KC_Z,    KC_P,    KC_H,    KC_M,    KC_K,    KC_J, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    ),
+    [_GAME] = LAYOUT_preonic_grid(
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      KC_LCTL, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      KC_LSFT, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_LOWER] = LAYOUT_preonic_grid(
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  KC_INS,
-      _______, _______, KC_7,    KC_8,    KC_9,    _______, _______, SQ_AMPR, SQ_LTLT, SQ_GTGT, _______, _______,
-      _______, SQ_PHEX, KC_4,    KC_5,    KC_6,    _______, SQ_PIPE, SQ_COLN, SQ_AA,   SQ_AE,   SQ_OE,   _______,
-      _______, KC_0,    KC_1,    KC_2,    KC_3,    _______, _______, SQ_PATH, SQ_LTAR, SQ_RTAR, KC_BSLS,  KC_GRV,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______,   KC_LT,   KC_GT, KC_DQUO, KC_PERC, KC_CIRC, KC_AMPR, KC_LBRC, KC_RBRC, _______, _______,
+      _______, KC_EXLM, KC_MINS, KC_PLUS,  KC_EQL, KC_HASH, KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, _______,
+      _______, KC_TILD, KC_SLSH, KC_ASTR, KC_QUOT, _______, _______,  KC_DLR, KC_LCBR, KC_RCBR,   KC_AT, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP,  KC_END
     ),
     [_RAISE] = LAYOUT_preonic_grid(
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, KC_CIRC,   KC_LT,   KC_GT, KC_DQUO,   KC_AT, KC_PERC, KC_AMPR, KC_LBRC, KC_RBRC, _______, _______,
-      _______, KC_EXLM, KC_MINS, KC_PLUS,  KC_EQL, KC_HASH, KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, _______,
-      _______, KC_TILD, KC_SLSH, KC_ASTR, KC_QUOT, _______, KC_TILD,  KC_DLR, KC_LCBR, KC_RCBR, KC_BSLS, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  KC_INS,
+      _______, _______, KC_6,    KC_5,    KC_4,    _______, _______, SQ_AMPR, SQ_LTLT, SQ_GTGT, _______, _______,
+      _______,    KC_0, KC_3,    KC_2,    KC_1,    _______, SQ_PIPE, SQ_COLN, SQ_AA,   SQ_AE,   SQ_OE,   _______,
+      _______, SQ_PHEX, KC_9,    KC_8,    KC_7,    _______, _______, SQ_PATH, SQ_LTAR, SQ_RTAR, _______,  KC_GRV,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_ADJUST] = LAYOUT_preonic_grid(
-      T_COLEM,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        T_BOO,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
+       T_GAME, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
