@@ -79,16 +79,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_LOWER] = LAYOUT_preonic_grid(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______,  KC_GRV,   KC_LT,   KC_GT, KC_DQUO, KC_PERC, _______, KC_AMPR, KC_LBRC, KC_RBRC, KC_BSLS, _______,
-      _______, KC_EXLM, KC_MINS, KC_PLUS,  KC_EQL,   KC_AT, KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, _______,
-      _______, KC_TILD, KC_SLSH, KC_ASTR, KC_QUOT, _______, KC_CIRC,  KC_DLR, KC_LCBR, KC_RCBR, _______, _______,
+      _______, _______, KC_1,    KC_2,    KC_3,    _______, _______, SQ_AMPR, SQ_LTLT, SQ_GTGT, _______, _______,
+      _______,    KC_0, KC_4,    KC_5,    KC_6,    _______, SQ_PIPE, SQ_COLN, SQ_AA,   SQ_AE,   SQ_OE,   _______,
+      _______, SQ_PHEX, KC_7,    KC_8,    KC_9,    _______, _______, SQ_PATH, SQ_LTAR, SQ_RTAR, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP,  KC_END
     ),
     [_RAISE] = LAYOUT_preonic_grid(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, KC_1,    KC_2,    KC_3,    _______, _______, SQ_AMPR, SQ_LTLT, SQ_GTGT, _______, _______,
-      _______,    KC_0, KC_4,    KC_5,    KC_6,    _______, SQ_PIPE, SQ_COLN, SQ_AA,   SQ_AE,   SQ_OE,   _______,
-      _______, SQ_PHEX, KC_7,    KC_8,    KC_9,    _______, _______, SQ_PATH, SQ_LTAR, SQ_RTAR, _______, _______,
+      _______,  KC_GRV,   KC_LT,   KC_GT, KC_DQUO, KC_PERC, _______, KC_AMPR, KC_LBRC, KC_RBRC, KC_BSLS, _______,
+      _______, KC_TILD, KC_ASTR, KC_PLUS,  KC_EQL,   KC_AT, KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, _______,
+      _______, _______, _______, _______, KC_QUOT, _______, KC_CIRC,  KC_DLR, KC_LCBR, KC_RCBR, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_ADJUST] = LAYOUT_preonic_grid(
