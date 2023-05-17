@@ -32,7 +32,7 @@ enum custom_layers {
 const custom_shift_key_t custom_shift_keys[] = {
     {KC_DOT, KC_EXLM}, // Shift . is !
     {KC_COMM, KC_QUES}, // Shift , is ?
-    {KC_UNDS, KC_MINS}, // Shift _ is -
+    /* {KC_UNDS, KC_MINS}, // Shift _ is - */
     {KC_SLSH, KC_HASH}, // Shift / is #
 };
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
@@ -59,19 +59,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_preonic_grid(
        KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_DEL,
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
-      ESC_CTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_UNDS, ENT_CTL,
+      ESC_CTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_MINS, ENT_CTL,
       OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, SFT_QUO,
        KC_MEH, CTL_SFT, KC_LALT, KC_LGUI, M_LOWER,  KC_SPC,  KC_SPC, M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_HAND] = LAYOUT_preonic_grid(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______,    KC_Q,    KC_C,    KC_H,    KC_P,    KC_V,    KC_Y,    KC_K,    KC_O,    KC_J, KC_SLSH, _______,
-      _______,    KC_R,    KC_S,    KC_N,    KC_T,    KC_G,    KC_W,    KC_U,    KC_E,    KC_I,    KC_A, _______,
-      _______,    KC_X,    KC_M,    KC_L,    KC_D,    KC_B,    KC_Z,    KC_F, KC_UNDS, KC_COMM,  KC_DOT, _______,
+      _______,    KC_R,    KC_S,    KC_N,    KC_T,    KC_G,    KC_W,    KC_U,    KC_E,    KC_A,    KC_I, _______,
+      _______,    KC_X,    KC_M,    KC_L,    KC_D,    KC_B,    KC_Z,    KC_F, KC_MINS, KC_COMM,  KC_DOT, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_GAME] = LAYOUT_preonic_grid(
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      QK_GESC, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       KC_LCTL, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       KC_LSFT, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
