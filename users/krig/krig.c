@@ -3,48 +3,14 @@
 #include "features/custom_shift_keys.h"
 #include "features/repeat_key.h"
 
-enum combos {
-    CO_CAPSWORD,
-    CO_AA,
-    CO_AE,
-    CO_OE,
-    CO_COPY,
-    CO_PASTE,
-    COMBO_LENGTH
-};
-uint16_t COMBO_LEN = COMBO_LENGTH;
-
-const uint16_t PROGMEM capsword_combo[] = {KC_Z, KC_X, COMBO_END};
-const uint16_t PROGMEM aa_combo[] = {KC_Z, KC_J, COMBO_END};
-const uint16_t PROGMEM ae_combo[] = {KC_Z, KC_K, COMBO_END};
-const uint16_t PROGMEM oe_combo[] = {KC_Z, KC_L, COMBO_END};
-const uint16_t PROGMEM copy_combo[] = {KC_X, KC_C, COMBO_END};
-const uint16_t PROGMEM paste_combo[] = {KC_X, KC_V, COMBO_END};
-
-combo_t key_combos[] = {
-    [CO_CAPSWORD] = COMBO(capsword_combo, QK_CAPS_WORD_TOGGLE),
-    [CO_AA] = COMBO(aa_combo, SQ_AA),
-    [CO_AE] = COMBO(ae_combo, SQ_AE),
-    [CO_OE] = COMBO(oe_combo, SQ_OE),
-    [CO_COPY] = COMBO(copy_combo, LGUI(KC_C)),
-    [CO_PASTE] = COMBO(paste_combo, LGUI(KC_V)),
-};
-
 const custom_shift_key_t custom_shift_keys[] = {
     {KC_COMM, KC_SCLN},
     {KC_DOT,  KC_COLN},
-    {KC_MINS, KC_UNDS},
-    {KC_QUOT, KC_DQUO},
-    {KC_BSPC, KC_DEL},
+    {KC_UNDS, KC_MINS},
 };
 
 uint8_t NUM_CUSTOM_SHIFT_KEYS =
     sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
-
-bool get_combo_must_tap(uint16_t index, combo_t *combo) {
-    // If you want all combos to be tap-only, just uncomment the next line
-    return true;
-}
 
 uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     if ((mods & MOD_MASK_CTRL)) {
