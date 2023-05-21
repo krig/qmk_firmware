@@ -17,7 +17,7 @@
 #include "krig.h"
 
 #define KG_NUMROW KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5, /* ----- ----- */    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_DEL,
-#define KG_THUMBROW OSM_ALT, OSM_CTL, OSM_GUI, MO_EXT, KC_SPC, SC_SENT, MO_SYM, OSM_GUI, OSM_CTL, OSM_ALT
+#define KG_THUMBROW OS_ALT, OS_CTL, OS_GUI, MO_EXT, KC_SPC, SC_SENT, MO_SYM, OS_GUI, OS_CTL, OS_ALT
 #define LAYOUT_wrapper(...)             LAYOUT(__VA_ARGS__)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {

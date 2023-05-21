@@ -12,8 +12,10 @@ enum custom_keycodes {
     SQ_RTAR,              // ->
     SQ_LTAR,              // <-
     LLOCK,                // layer lock
-    REPEAT,               // repeat key
-    ALTREP,               // alternate repeat
+    OS_SFT,
+    OS_ALT,
+    OS_CTL,
+    OS_GUI,
 };
 
 enum krig_layers {
