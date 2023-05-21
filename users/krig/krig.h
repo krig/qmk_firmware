@@ -23,13 +23,11 @@ enum krig_layers {
     _GAME,
 
     // primary layers
-    _LOWER,
-    _RAISE,
+    _EXTEND,
+    _SYMBOL,
 
     // secondary layers
     _NUM,
-    _NAV,
-    _MACROS,
     _FUNS,
 };
 
@@ -39,17 +37,13 @@ enum krig_layers {
 #define DF_GAME DF(_GAME)
 
 // Layer switching
-#define MO_LOWR MO(_LOWER)
-#define MO_RAIS MO(_RAISE)
+#define MO_EXT MO(_EXTEND)
+#define MO_SYM MO(_SYMBOL)
 #define MO_NUM MO(_NUM)
-#define MO_NAV MO(_NAV)
-#define MO_MACR MO(_MACROS)
 #define MO_FUNS MO(_FUNS)
-#define TT_LOWR TT(_LOWER)
-#define TT_RAIS TT(_RAISE)
+#define TT_EXT TT(_EXTEND)
+#define TT_SYM TT(_SYMBOL)
 #define TT_NUM TT(_NUM)
-#define TT_NAV TT(_NAV)
-#define TT_MACR TT(_MACROS)
 #define TT_FUNS TT(_FUNS)
 
 // Mac OS navigation shortcuts

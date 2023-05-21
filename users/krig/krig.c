@@ -3,6 +3,10 @@
 #include "features/custom_shift_keys.h"
 #include "features/repeat_key.h"
 
+// needed for repeat key
+combo_t key_combos[] = {};
+uint16_t COMBO_LEN = 0;
+
 const custom_shift_key_t custom_shift_keys[] = {
     {KC_COMM, KC_SCLN},
     {KC_DOT,  KC_COLN},

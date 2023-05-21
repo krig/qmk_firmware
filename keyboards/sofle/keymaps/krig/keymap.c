@@ -14,7 +14,6 @@
   * You should have received a copy of the GNU General Public License
   * along with this program.  If not, see <http://www.gnu.org/licenses/>.
   */
-#include QMK_KEYBOARD_H
 #include "krig.h"
 
 #define KG_NUMROW KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5, /* ----- ----- */    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_DEL,
@@ -25,7 +24,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = LAYOUT_wrapper(
   KG_NUMROW
    KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T, /* ----- ----- */    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
-  ESC_CTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G, /* ----- ----- */    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
+  CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G, /* ----- ----- */    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
   CW_TOGG,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_MUTE, KC_MPLY,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_UNDS, SFT_SLS,
   KG_THUMBROW
 ),
@@ -48,14 +47,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, _______,                   _______, KC_PGDN,   KC_UP,  KC_PGUP, _______, _______,
   _______, _______, _______, _______, _______, _______,                   KC_HOME, KC_LEFT, KC_DOWN,  KC_RGHT,  KC_END, _______,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,   SQ_AA,    SQ_AE,   SQ_OE, _______,
-                    _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______
+                    _______, _______, _______, _______, _______, _______, MO_FUNS, _______, _______,  _______
 ),
-[_RAISE] = LAYOUT(
+[_SYMBOL] = LAYOUT(
   _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
   _______,  KC_GRV, KC_TILD, KC_HASH, KC_PERC, _______,                   _______, KC_AMPR, KC_LBRC, KC_RBRC, KC_BSLS, _______,
   _______, KC_EXLM, KC_SLSH, KC_PLUS,  KC_EQL,   KC_AT,                   KC_PIPE,   KC_LT, KC_LPRN, KC_RPRN,   KC_GT, _______,
   _______, KC_QUES, _______, KC_ASTR, _______, _______, _______, _______, KC_CIRC,  KC_DLR, KC_LCBR, KC_RCBR, _______, _______,
-                     GUI__X,  GUI__C,  GUI__V, _______,  MO_NUM, _______, _______, _______, _______, _______
+                     GUI__X,  GUI__C,  GUI__V, MO_FUNS,  MO_NUM, _______, _______, _______, _______, _______
 ),
 [_NUM] = LAYOUT(
     LLOCK, _______, _______, _______, _______, _______,                   _______, _______, _______,  _______, _______, _______,
@@ -128,7 +127,7 @@ static void print_status_narrow(void) {
 
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
-        case _ENGRAM:
+        case _HANDS:
         case _GAME:
             oled_write_P(PSTR("....."), false);
             break;
