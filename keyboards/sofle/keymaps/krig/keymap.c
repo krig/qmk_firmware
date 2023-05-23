@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_GAME] = LAYOUT_wrapper(
    KC_ESC,  KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4, /* ----- ----- */    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, MO_FUNS,
    KC_TAB,  KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R, /* ----- ----- */    KC_T,    KC_Y,    KC_I,    KC_O,    KC_P, KC_BSPC,
-  KC_LCTL, KC_LSFT,    KC_A,    KC_S,    KC_D,    KC_F, /* ----- ----- */    KC_G,    KC_H,    KC_K,    KC_L, KC_MINS, CTL_ENT,
+  KC_LCTL, KC_LSFT,    KC_A,    KC_S,    KC_D,    KC_F, /* ----- ----- */    KC_G,    KC_H,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
   KC_LSFT, KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V, KC_MUTE, KC_MPLY,    KC_B,    KC_N, KC_COMM,  KC_DOT, KC_SLSH, OSM_SFT,
   KG_THUMBROW
 ),
@@ -52,8 +52,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_SYMBOL] = LAYOUT(
   _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
   _______,  KC_GRV, KC_TILD, KC_HASH, KC_PERC, _______,                   _______, KC_AMPR, KC_LBRC, KC_RBRC, KC_BSLS, _______,
-  _______, KC_EXLM, KC_SLSH, KC_PLUS,  KC_EQL,   KC_AT,                   KC_PIPE,   KC_LT, KC_LPRN, KC_RPRN,   KC_GT, _______,
-  _______, KC_QUES, _______, KC_ASTR, _______, _______, _______, _______, KC_CIRC,  KC_DLR, KC_LCBR, KC_RCBR, _______, _______,
+  _______, KC_EXLM, KC_MINS, KC_PLUS,  KC_EQL,   KC_AT,                   KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, _______,
+  _______, _______, _______, KC_ASTR, KC_UNDS, _______, _______, _______, KC_CIRC,  KC_DLR, KC_LCBR, KC_RCBR, _______, _______,
                      GUI__X,  GUI__C,  GUI__V, _______,  MO_NUM, _______, _______, _______, _______, _______
 ),
 [_NUM] = LAYOUT(
