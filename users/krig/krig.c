@@ -2,6 +2,7 @@
 #include "features/layer_lock.h"
 #include "features/custom_shift_keys.h"
 #include "features/oneshot.h"
+#include "quantum.h"
 
 const custom_shift_key_t custom_shift_keys[] = {
 };
@@ -80,6 +81,46 @@ bool krig_handle_sequence_keys(uint16_t keycode, keyrecord_t* record) {
         return false;
     }
     switch (keycode) {
+        case DF_QWER:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_QWERTY);
+            }
+            return false;
+        case DF_HAND:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_HANDS);
+            }
+            return false;
+        case DF_GAME:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_GAME);
+            }
+            return false;
+        case MO_EXT:
+            if (record->event.pressed) {
+                layer_on(_EXTEND);
+                update_tri_layer(_EXTEND, _SYMBOL, _FUNS);
+            } else {
+                layer_off(_EXTEND);
+                update_tri_layer(_EXTEND, _SYMBOL, _FUNS);
+            }
+            return false;
+        case MO_SYM:
+            if (record->event.pressed) {
+                layer_on(_SYMBOL);
+                update_tri_layer(_EXTEND, _SYMBOL, _FUNS);
+            } else {
+                layer_off(_SYMBOL);
+                update_tri_layer(_EXTEND, _SYMBOL, _FUNS);
+            }
+            return false;
+        case MO_FUNS:
+            if (record->event.pressed) {
+                layer_on(_FUNS);
+            } else {
+                layer_off(_FUNS);
+            }
+            return false;
         case SQ_COLN:
             if (record->event.pressed) {
                 SEND_STRING("::");
