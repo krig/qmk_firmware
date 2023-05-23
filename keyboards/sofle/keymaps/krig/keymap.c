@@ -86,7 +86,13 @@ static void print_status_narrow(void) {
 
      // Print current mode
      oled_set_cursor(0, 0);
-     oled_write_P(PSTR(" ._. "), false);
+     if (is_caps_word_on()) {
+         oled_write_P(PSTR("(O_O)"), false);
+     } else if (get_mods() & MOD_MASK_SHIFT) {
+         oled_write_P(PSTR(" o_O "), false);
+     } else {
+         oled_write_P(PSTR(" ._. "), false);
+     }
 
 
      oled_set_cursor(0, 3);
@@ -131,15 +137,11 @@ static void print_status_narrow(void) {
              oled_write_P(PSTR("nil!?"), false);
      }
 
-     if (is_caps_word_on()) {
-         oled_set_cursor(0, 8);
-         oled_write_P(PSTR("CAPSW"), false);
-     }
  }
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     if (is_keyboard_master()) {
-        return OLED_ROTATION_270;
+        return OLED_ROTATION_180;
     }
     return rotation;
 }
