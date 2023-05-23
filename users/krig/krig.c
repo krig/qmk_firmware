@@ -4,9 +4,6 @@
 #include "features/oneshot.h"
 
 const custom_shift_key_t custom_shift_keys[] = {
-    {KC_COMM, KC_SCLN},
-    {KC_DOT,  KC_COLN},
-    {KC_UNDS, KC_MINS},
 };
 
 uint8_t NUM_CUSTOM_SHIFT_KEYS =

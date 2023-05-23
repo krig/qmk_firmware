@@ -25,21 +25,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KG_NUMROW
    KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T, /* ----- ----- */    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
   CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G, /* ----- ----- */    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
-  CW_TOGG,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_MUTE, KC_MPLY,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_UNDS, SFT_SLS,
+  CW_TOGG,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_MUTE, KC_MPLY,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, OSM_SFT,
   KG_THUMBROW
 ),
 [_HANDS] = LAYOUT_wrapper(
   KG_NUMROW
    KC_TAB,    KC_Q,    KC_C,    KC_H,    KC_P,    KC_V, /* ----- ----- */    KC_Y,    KC_K,    KC_O,    KC_J, KC_QUOT, KC_BSPC,
   CTL_ESC,    KC_R,    KC_S,    KC_N,    KC_T,    KC_G, /* ----- ----- */    KC_W,    KC_U,    KC_E,    KC_I,    KC_A, CTL_ENT,
-  CW_TOGG,    KC_X,    KC_M,    KC_L,    KC_D,    KC_B, KC_MUTE, KC_MPLY,    KC_Z,    KC_F, KC_COMM,  KC_DOT, KC_UNDS, SFT_SLS,
+  CW_TOGG,    KC_X,    KC_M,    KC_L,    KC_D,    KC_B, KC_MUTE, KC_MPLY,    KC_Z,    KC_F, KC_COMM,  KC_DOT, KC_SLSH, OSM_SFT,
   KG_THUMBROW
 ),
 [_GAME] = LAYOUT_wrapper(
    KC_ESC,  KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4, /* ----- ----- */    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, MO_FUNS,
    KC_TAB,  KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R, /* ----- ----- */    KC_T,    KC_Y,    KC_I,    KC_O,    KC_P, KC_BSPC,
   KC_LCTL, KC_LSFT,    KC_A,    KC_S,    KC_D,    KC_F, /* ----- ----- */    KC_G,    KC_H,    KC_K,    KC_L, KC_MINS, CTL_ENT,
-  KC_LSFT, KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V, KC_MUTE, KC_MPLY,    KC_B,    KC_N, KC_COMM,  KC_DOT, KC_SLSH, SFT_SLS,
+  KC_LSFT, KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V, KC_MUTE, KC_MPLY,    KC_B,    KC_N, KC_COMM,  KC_DOT, KC_SLSH, OSM_SFT,
   KG_THUMBROW
 ),
 [_EXTEND] = LAYOUT(
@@ -99,56 +99,59 @@ static void render_astronaut(void) {
 
 
 static void print_status_narrow(void) {
-    // Print current mode
-    oled_write_ln_P(PSTR("krig.\n"), false);
+
+     // Print current mode
+     oled_set_cursor(0, 0);
+     oled_write_P(PSTR(" ._. "), false);
 
 
+     oled_set_cursor(0, 3);
      switch(get_highest_layer(default_layer_state)) {
          case _QWERTY:
-             oled_write_ln_P(PSTR("qwrty"), false);
+             oled_write_P(PSTR("qwrty"), false);
              break;
          case _HANDS:
-             oled_write_ln_P(PSTR("hands"), false);
+             oled_write_P(PSTR("hands"), false);
              break;
          case _GAME:
-             oled_write_ln_P(PSTR("GAME!"), false);
+             oled_write_P(PSTR("GAME!"), false);
              break;
          default:
-             oled_write_ln_P(PSTR(""), false);
+             oled_write_P(PSTR("wat"), false);
              break;
      }
 
 
-    if (is_caps_word_on()) {
-        oled_write_ln_P(PSTR("CAPSw"), false);
-    } else {
-        oled_write_ln_P(PSTR("layr:"), false);
-    }
+     oled_set_cursor(0, 6);
+     oled_write_P(PSTR("layer"), false);
+     oled_set_cursor(0, 7);
+     switch (get_highest_layer(layer_state)) {
+         case _QWERTY:
+         case _HANDS:
+         case _GAME:
+             oled_write_P(PSTR("....."), false);
+             break;
+         case _EXTEND:
+             oled_write_P(PSTR("< EXT"), false);
+             break;
+         case _SYMBOL:
+             oled_write_P(PSTR("SYM >"), false);
+             break;
+         case _NUM:
+             oled_write_P(PSTR("12345"), false);
+             break;
+         case _FUNS:
+             oled_write_P(PSTR("<FUN>"), false);
+             break;
+         default:
+             oled_write_P(PSTR("nil!?"), false);
+     }
 
-    switch (get_highest_layer(layer_state)) {
-        case _QWERTY:
-        case _HANDS:
-        case _GAME:
-            oled_write_P(PSTR("....."), false);
-            break;
-        case _EXTEND:
-            oled_write_P(PSTR("< EXT"), false);
-            break;
-        case _SYMBOL:
-            oled_write_P(PSTR("SYM >"), false);
-            break;
-        case _NUM:
-            oled_write_P(PSTR("12345"), false);
-            break;
-        case _FUNS:
-            oled_write_P(PSTR("<FUN>"), false);
-            break;
-        default:
-            oled_write_P(PSTR("nil!?"), false);
-    }
-    oled_write_ln_P(PSTR(""), false);
-
-}
+     if (is_caps_word_on()) {
+         oled_set_cursor(0, 8);
+         oled_write_P(PSTR("CAPSW"), false);
+     }
+ }
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     if (is_keyboard_master()) {
@@ -163,7 +166,7 @@ bool oled_task_user(void) {
     } else {
         render_astronaut();
     }
-    return true;
+    return false;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -187,9 +190,9 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         }
     } else if (index == 1) {
          if (clockwise) {
-             tap_code(KC_DOWN);
+             tap_code(KC_MNXT);
          } else {
-             tap_code(KC_UP);
+             tap_code(KC_MPRV);
          }
     }
     return true;
