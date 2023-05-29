@@ -142,8 +142,9 @@ static void print_status_narrow(void) {
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     if (is_keyboard_master()) {
         return OLED_ROTATION_270;
+    } else {
+        return OLED_ROTATION_180;
     }
-    return rotation;
 }
 
 bool oled_task_user(void) {
