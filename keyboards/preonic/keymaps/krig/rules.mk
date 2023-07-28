@@ -1,7 +1,5 @@
 LTO_ENABLE = no
-COMMAND_ENABLE = no
-MOUSEKEY_ENABLE = yes
 RGBLIGHT_ENABLE = yes
-CAPS_WORD_ENABLE = yes
-COMBO_ENABLE = yes
 
+SRC += features/custom_shift_keys.c
+SRC += features/krig_caps_word.c

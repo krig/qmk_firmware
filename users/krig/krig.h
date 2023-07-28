@@ -19,13 +19,7 @@ enum custom_keycodes {
     OS_CTL,
     OS_GUI,
 
-    DF_QWER,
-    DF_HAND,
-    DF_GAME,
-    MO_EXT,
-    MO_SYM,
-    MO_NUM,
-    MO_FUNS,
-
+    NEW_SAFE_RANGE,
 };
 
+bool process_custom_keycodes(uint16_t keycode, keyrecord_t* record);
