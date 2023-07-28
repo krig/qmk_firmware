@@ -1,9 +1,11 @@
 #include "krig_caps_word.h"
 
-bool g_caps_word_last_key_was_space = false;
+static bool g_caps_word_last_key_was_space = false;
 
-void krig_clear_caps_word_last_key(void) {
-    g_caps_word_last_key_was_space = false;
+void krig_caps_word_set(bool active) {
+    if (active) {
+        g_caps_word_last_key_was_space = false;
+    }
 }
 
 bool krig_caps_word_press(uint16_t keycode) {

@@ -14,5 +14,5 @@
  * }
  */
 
-void krig_clear_caps_word_last_key(void);
+void krig_caps_word_set(bool active);
 bool krig_caps_word_press(uint16_t keycode);

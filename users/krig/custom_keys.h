@@ -20,25 +20,25 @@
 #define WS_DESK LCTL(KC_DOWN)
 #define WS_ALL LCTL(KC_UP)
 
-// One shot modifiers
+// One shot modifiers (not callum style)
 #define OSM_ALT OSM(MOD_LALT)
 #define OSM_CTL OSM(MOD_LCTL)
 #define OSM_GUI OSM(MOD_LGUI)
 #define OSM_SFT OSM(MOD_LSFT)
 
-// Planck specials
-#define CTL_ESC LCTL_T(KC_ESC)
+// Preonic specials
 #define CTL_ENT RCTL_T(KC_ENT)
+#define CTL_ESC LCTL_T(KC_ESC)
+#define CTL_QUO LCTL_T(KC_QUOT)
 #define CTL_SFT LCTL(KC_LSFT)
 #define SFT_QUO RSFT_T(KC_QUOT)
 #define SFT_SLS RSFT_T(KC_SLSH)
-#define CTL_QUO LCTL_T(KC_QUOT)
 #define SFT_SPC LSFT_T(KC_SPC)
 
-// Swedish letters
+// Swedish letters (Eurkey layout)
 #define SQ_AA RALT(KC_W)
-#define SQ_OE RALT(KC_P)
-#define SQ_AE RALT(KC_Q)
+#define SQ_OE RALT(KC_O)
+#define SQ_AE RALT(KC_A)
 
 // Convenience
 #define ZOOM_IN LGUI(KC_PLUS)

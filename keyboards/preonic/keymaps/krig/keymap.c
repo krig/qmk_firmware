@@ -1,9 +1,10 @@
 /*
  * Kristoffer Gronlund, 2023
- * Preonic Conservative
+ * Preonic
  */
 
 #include "krig.h"
+#include "custom_keys.h"
 #include "features/custom_shift_keys.h"
 #include "features/krig_caps_word.h"
 
@@ -21,29 +22,17 @@ const custom_shift_key_t custom_shift_keys[] = {
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_key_t);
 
 
-#define ESC_CTL LCTL_T(KC_ESC)
-#define ENT_CTL RCTL_T(KC_ENT)
-#define CTL_SFT LCTL(KC_LSFT)
-#define OSM_SFT OSM(MOD_LSFT)
-#define SFT_QUO RSFT_T(KC_QUOT)
-#define SFT_SLS RSFT_T(KC_SLSH)
 #define M_LOWER MO(_LOWER)
 #define M_RAISE MO(_RAISE)
 #define T_HAND  TG(_HAND)
 #define T_GAME  TG(_GAME)
 
 
-// Swedish letters (eurkey layout)
-#define SQ_AA RALT(KC_W)
-#define SQ_OE RALT(KC_O)
-#define SQ_AE RALT(KC_A)
-
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_preonic_grid(
        KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_DEL,
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
-      ESC_CTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, ENT_CTL,
+      CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
       OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, OSM_SFT,
       CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, M_LOWER,  KC_SPC,  KC_SPC, M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
@@ -133,9 +122,7 @@ bool caps_word_press_user(uint16_t keycode) {
 
 
 void caps_word_set_user(bool active) {
-	if (active) {
-        krig_clear_caps_word_last_key();
-	}
+    krig_caps_word_set(active);
     rgblight_set_layer_state(_L_CAPS, active);
     #ifdef AUDIO_ENABLE
     if (active) {
