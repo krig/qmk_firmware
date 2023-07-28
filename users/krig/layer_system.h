@@ -1,5 +1,7 @@
 #pragma once
 
+#include "quantum.h"
+
 enum krig_layers {
     // default layers
     _QWERTY,

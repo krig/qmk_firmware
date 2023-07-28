@@ -1,8 +1,8 @@
 #include "krig.h"
+#include "layer_system.h"
 #include "features/layer_lock.h"
 #include "features/custom_shift_keys.h"
 #include "features/oneshot.h"
-#include "quantum.h"
 
 const custom_shift_key_t custom_shift_keys[] = {
 };
@@ -109,61 +109,6 @@ bool krig_handle_sequence_keys(uint16_t keycode, keyrecord_t* record) {
                 layer_on(_FUNS);
             } else {
                 layer_off(_FUNS);
-            }
-            return false;
-        case SQ_COLN:
-            if (record->event.pressed) {
-                SEND_STRING("::");
-            }
-            return false;
-        case SQ_PIPE:
-            if (record->event.pressed) {
-                SEND_STRING("||");
-            }
-            return false;
-        case SQ_AMPR:
-            if (record->event.pressed) {
-                SEND_STRING("&&");
-            }
-            return false;
-        case SQ_PATH:
-            if (record->event.pressed) {
-                SEND_STRING("../");
-            }
-            return false;
-        case SQ_PHEX:
-            if (record->event.pressed) {
-                SEND_STRING("0x");
-            }
-            return false;
-        case SQ_SLAS: //
-            if (record->event.pressed) {
-                SEND_STRING("//");
-            }
-            return false;
-        case SQ_LTLT: // <<
-            if (record->event.pressed) {
-                SEND_STRING("<<");
-            }
-            return false;
-        case SQ_GTGT: // >>
-            if (record->event.pressed) {
-                SEND_STRING(">>");
-            }
-            return false;
-        case SQ_RTAR: // ->
-            if (record->event.pressed) {
-                SEND_STRING("->");
-            }
-            return false;
-        case SQ_LTAR: // <-
-            if (record->event.pressed) {
-                SEND_STRING("<-");
-            }
-            return false;
-        case SQ_EXPI: // <-
-            if (record->event.pressed) {
-                SEND_STRING("|>");
             }
             return false;
     }

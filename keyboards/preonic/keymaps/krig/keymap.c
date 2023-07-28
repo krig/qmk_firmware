@@ -1,6 +1,9 @@
 /*
  * Kristoffer Gronlund, 2023
  * Preonic
+ *
+ * Apart from the hands down reference layer, this layout
+ * is fairly stable and basically what I use for work.
  */
 
 #include "krig.h"
@@ -21,12 +24,10 @@ const custom_shift_key_t custom_shift_keys[] = {
 };
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_key_t);
 
-
 #define M_LOWER MO(_LOWER)
 #define M_RAISE MO(_RAISE)
 #define T_HAND  TG(_HAND)
 #define T_GAME  TG(_GAME)
-
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_preonic_grid(
@@ -101,9 +102,11 @@ void keyboard_post_init_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+    // handle custom shift keys like ./:, ,/; etc.
     if (!process_custom_shift_keys(keycode, record)) {
         return false;
     }
+    // handle sequence keys like ::, && etc.
     if (!process_custom_keycodes(keycode, record)) {
         return false;
     }
