@@ -17,6 +17,7 @@ enum custom_keycodes {
     SQ_GTGT, // >>
     SQ_RTAR, // ->
     SQ_LTAR, // <-
+    SQ_EXPI, // |>
 };
 
 enum custom_layers {
@@ -45,10 +46,10 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_ke
 #define T_GAME  TG(_GAME)
 
 
-// Swedish letters
+// Swedish letters (eurkey layout)
 #define SQ_AA RALT(KC_W)
-#define SQ_OE RALT(KC_P)
-#define SQ_AE RALT(KC_Q)
+#define SQ_OE RALT(KC_O)
+#define SQ_AE RALT(KC_A)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -77,14 +78,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, KC_1,    KC_2,    KC_3,    _______, _______, SQ_AMPR, SQ_LTLT, SQ_GTGT, _______, _______,
       _______,    KC_0, KC_4,    KC_5,    KC_6,    _______, SQ_PIPE, SQ_COLN, SQ_AA,   SQ_AE,   SQ_OE,   _______,
-      _______, SQ_PHEX, KC_7,    KC_8,    KC_9,    _______, _______, SQ_PATH, SQ_LTAR, SQ_RTAR, _______, _______,
+      _______, SQ_PHEX, KC_7,    KC_8,    KC_9,    _______, _______, SQ_PATH, SQ_LTAR, SQ_RTAR, SQ_EXPI, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP,  KC_END
     ),
     [_RAISE] = LAYOUT_preonic_grid(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______,  KC_GRV, KC_TILD, KC_HASH, KC_PERC, _______, _______, KC_AMPR, KC_LBRC, KC_RBRC,  KC_GRV, _______,
+      _______,  KC_GRV, KC_TILD, KC_HASH, KC_PERC,   KC_LT,   KC_GT, KC_AMPR, KC_LBRC, KC_RBRC, _______, _______,
       _______, KC_EXLM, KC_MINS, KC_PLUS,  KC_EQL,   KC_AT, KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, _______,
-      _______, _______, _______, KC_ASTR, KC_UNDS, _______, KC_CIRC,  KC_DLR, KC_LCBR, KC_RCBR, KC_BSLS, _______,
+      _______, KC_QUES, KC_SLSH, KC_ASTR, KC_UNDS, _______, KC_CIRC,  KC_DLR, KC_LCBR, KC_RCBR, KC_BSLS, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_ADJUST] = LAYOUT_preonic_grid(
@@ -176,6 +177,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         case SQ_LTAR: // <-
             if (record->event.pressed) {
                 SEND_STRING("<-");
+            }
+            return false;
+        case SQ_EXPI: // <-
+            if (record->event.pressed) {
+                SEND_STRING("|>");
             }
             return false;
     }
