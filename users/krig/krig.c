@@ -1,6 +1,7 @@
 #include "krig.h"
 
 bool process_custom_keycodes(uint16_t keycode, keyrecord_t* record) {
+    switch (keycode) {
         case SQ_COLN:
             if (record->event.pressed) {
                 SEND_STRING("::");

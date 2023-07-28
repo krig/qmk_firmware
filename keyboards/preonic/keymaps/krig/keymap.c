@@ -134,7 +134,7 @@ bool caps_word_press_user(uint16_t keycode) {
 
 void caps_word_set_user(bool active) {
 	if (active) {
-        krig_clear_caps_word_was_space();
+        krig_clear_caps_word_last_key();
 	}
     rgblight_set_layer_state(_L_CAPS, active);
     #ifdef AUDIO_ENABLE
