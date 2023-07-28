@@ -23,7 +23,7 @@ const custom_shift_key_t custom_shift_keys[] = {
 };
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_key_t);
 
-#define M_LOWER LT(_LOWER, KC_TAB)
+#define M_LOWER LT(_LOWER, KC_ESC)
 #define M_RAISE LT(_RAISE, KC_BSPC)
 #define DF_QWER  DF(_QWERTY)
 #define DF_HAND  DF(_HANDS)
@@ -49,8 +49,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                 M_LOWER,  KC_SPC,  SC_SENT, M_RAISE
   ),
   [_LOWER] = LAYOUT(
-      KC_ESC, CW_TOGG, CMD_GRV, CMD_TAB, _______,  _______, KC_PGDN,   KC_UP, KC_PGUP,  KC_DEL,
-      OS_ALT,  OS_CTL,  OS_GUI,  OS_SFT, _______,  KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT,  KC_END,
+     _______, CW_TOGG, CMD_GRV, CMD_TAB, _______,  _______, KC_PGDN,   KC_UP, KC_PGUP,  KC_DEL,
+      OS_ALT,  OS_CTL,  OS_GUI,  OS_SFT,  KC_TAB,  KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT,  KC_END,
       GUI__Z,  GUI__X,  GUI__C,  GUI__V, _______,  _______,   SQ_AA,   SQ_AE,   SQ_OE,  KC_INS,
                                KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS
   ),
