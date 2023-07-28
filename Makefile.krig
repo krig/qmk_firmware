@@ -1,11 +1,17 @@
 action = compile
 
-.PHONY: all planck preonic sofle moonlander ramaworks
+.PHONY: all sweep waterfowl lily58 preonic sofle moonlander ramaworks
 
-all: planck preonic sofle moonlander ramaworks
+all: sweep waterfowl lily58 preonic sofle moonlander ramaworks
 
-planck:
-	qmk ${action} -kb planck/ez/glow -km krig
+sweep:
+    qmk ${action} -kb ferris/sweep -km krig
+
+waterfowl:
+    qmk ${action} -kb waterfowl -km krig
+
+lily58:
+    qmk ${action} -kb lily58/r2g -km krig
 
 preonic:
 	qmk ${action} -kb preonic/rev3 -km krig
