@@ -12,8 +12,8 @@
 #include "features/krig_caps_word.h"
 
 enum custom_layers {
-    _BASE,
-    _HAND,
+    _QWERTY,
+    _HANDS,
     _GAME,
     _LOWER,
     _RAISE,
@@ -26,18 +26,18 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_ke
 
 #define M_LOWER MO(_LOWER)
 #define M_RAISE MO(_RAISE)
-#define T_HAND  TG(_HAND)
+#define T_HAND  TG(_HANDS)
 #define T_GAME  TG(_GAME)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_BASE] = LAYOUT_preonic_grid(
+    [_QWERTY] = LAYOUT_preonic_grid(
        KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_DEL,
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
       CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
       OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, OSM_SFT,
       CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, M_LOWER,  KC_SPC,  KC_SPC, M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
-    [_HAND] = LAYOUT_preonic_grid(
+    [_HANDS] = LAYOUT_preonic_grid(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______,    KC_Q,    KC_C,    KC_H,    KC_P,    KC_V,    KC_Y,    KC_K,    KC_O,    KC_J, KC_QUOT, _______,
       _______,    KC_R,    KC_S,    KC_N,    KC_T,    KC_G,    KC_W,    KC_U,    KC_E,    KC_I,    KC_A, _______,
@@ -60,9 +60,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_RAISE] = LAYOUT_preonic_grid(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______,  KC_GRV, KC_TILD, KC_HASH, KC_PERC,   KC_LT,   KC_GT, KC_AMPR, KC_LBRC, KC_RBRC, _______, _______,
+      _______,  KC_GRV, KC_TILD, KC_HASH, KC_PERC,   KC_LT, SQ_COLN, KC_AMPR, KC_LBRC, KC_RBRC, _______, _______,
       _______, KC_EXLM, KC_MINS, KC_PLUS,  KC_EQL,   KC_AT, KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, _______,
-      _______, KC_QUES, KC_SLSH, KC_ASTR, KC_UNDS, _______, KC_CIRC,  KC_DLR, KC_LCBR, KC_RCBR, KC_BSLS, _______,
+      _______, KC_QUES, KC_SLSH, KC_ASTR, KC_UNDS,   KC_GT, KC_CIRC,  KC_DLR, KC_LCBR, KC_RCBR, KC_BSLS, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_ADJUST] = LAYOUT_preonic_grid(
@@ -137,7 +137,7 @@ void caps_word_set_user(bool active) {
 }
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(_L_QWERTY, layer_state_cmp(state, _BASE));
+    rgblight_set_layer_state(_L_QWERTY, layer_state_cmp(state, _QWERTY));
     return state;
 }
 
