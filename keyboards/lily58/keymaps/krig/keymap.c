@@ -44,33 +44,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_DEL,
    KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
   CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, KC_RALT,
-  OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_LBRC, KC_RBRC,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
+  OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, CW_TOGG,  QK_REP,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
                              KC_LALT, KC_LGUI, M_LOWER,  KC_SPC, SC_SENT, M_RAISE, KC_PGDN, KC_PGUP
  ),
  [_HANDS] = LAYOUT(
    KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_DEL,
    KC_TAB,    KC_Q,    KC_C,    KC_H,    KC_P,    KC_V,                      KC_Y,    KC_K,    KC_O,    KC_J, KC_QUOT, KC_BSPC,
   CTL_ESC,    KC_R,    KC_S,    KC_N,    KC_T,    KC_G,                      KC_W,    KC_U,    KC_E,    KC_I,    KC_A, KC_RALT,
-  OSM_SFT,    KC_X,    KC_M,    KC_L,    KC_D,    KC_B, KC_LBRC, KC_RBRC,    KC_Z,    KC_F, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
+  OSM_SFT,    KC_X,    KC_M,    KC_L,    KC_D,    KC_B, CW_TOGG,  QK_REP,    KC_Z,    KC_F, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
                              KC_LALT, KC_LGUI, M_LOWER,  KC_SPC, SC_SENT, M_RAISE, KC_PGDN, KC_PGUP
  ),
  [_GAME] = LAYOUT(
    KC_ESC,  KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_DEL,
    KC_TAB,  KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
   KC_LSFT, KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,                      KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, KC_RALT,
-  KC_LCTL, KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V, KC_LBRC, KC_RBRC,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
+  KC_LCTL, KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V, CW_TOGG,  QK_REP,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
                              KC_LALT, KC_LGUI, M_LOWER,  KC_SPC, SC_SENT, M_RAISE, KC_PGDN, KC_PGUP
  ),
  [_LOWER] = LAYOUT(
   _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
-  _______, _______, KC_1,    KC_2,    KC_3,    _______,                   _______, SQ_AMPR, SQ_LTLT, SQ_GTGT, _______, _______,
-  _______,    KC_0, KC_4,    KC_5,    KC_6,    _______,                   SQ_PIPE, SQ_COLN, _______, _______, _______, _______,
-  _______, SQ_PHEX, KC_7,    KC_8,    KC_9,    _______, _______, _______, _______, SQ_PATH, SQ_LTAR, SQ_RTAR, SQ_EXPI, _______,
+  _______, _______, KC_1,    KC_2,    KC_3,    _______,                    KC_INS, KC_PGDN,   KC_UP, KC_PGUP,  KC_DEL, _______,
+  _______,    KC_0, KC_4,    KC_5,    KC_6,    _______,                   KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT,  KC_END, _______,
+  _______, SQ_PHEX, KC_7,    KC_8,    KC_9,    _______, _______, QK_AREP, _______,   SQ_AA,   SQ_AE,   SQ_OE, _______, _______,
                              _______, _______, _______, _______, _______, _______, _______, _______
  ),
  [_RAISE] = LAYOUT(
-  _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
-  _______,  KC_GRV, KC_TILD, KC_HASH, KC_PERC,   KC_LT,                   SQ_COLN, KC_AMPR, KC_LBRC, KC_RBRC, _______, _______,
+  _______, _______, SQ_LTLT, SQ_GTGT, SQ_PATH, _______,                   SQ_PIPE, SQ_AMPR, SQ_LTAR, SQ_RTAR, _______, _______,
+  _______,  KC_GRV, KC_TILD, KC_HASH, KC_PERC,   KC_LT,                   SQ_COLN, KC_AMPR, KC_LBRC, KC_RBRC, SQ_EXPI, _______,
   _______, KC_EXLM, KC_MINS, KC_PLUS,  KC_EQL,   KC_AT,                   KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, _______,
   _______, KC_QUES, KC_SLSH, KC_ASTR, KC_UNDS,   KC_GT, _______, _______, KC_CIRC,  KC_DLR, KC_LCBR, KC_RCBR, KC_BSLS, _______,
                              _______, _______, _______, _______, _______, _______, _______, _______
