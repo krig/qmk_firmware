@@ -5,7 +5,7 @@ action = compile
 all: sweep waterfowl lily58 preonic sofle moonlander ramaworks
 
 sweep:
-	qmk ${action} -kb ferris/sweep -km krig
+	qmk ${action} -kb ferris/sweep -km krig -bl uf2-split-left
 
 waterfowl:
 	qmk ${action} -kb waterfowl -km krig

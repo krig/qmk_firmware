@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_LOWER] = LAYOUT(
      _______, CW_TOGG, CMD_GRV, CMD_TAB, _______,  _______, KC_PGDN,   KC_UP, KC_PGUP,  KC_DEL,
-      OS_ALT,  OS_CTL,  OS_GUI,  OS_SFT,  KC_TAB,  KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT,  KC_END,
+      OS_CTL,  OS_ALT,  OS_GUI,  OS_SFT,  KC_TAB,  KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT,  KC_END,
       GUI__Z,  GUI__X,  GUI__C,  GUI__V, _______,  _______,   SQ_AA,   SQ_AE,   SQ_OE,  KC_INS,
                                KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS
   ),

@@ -39,4 +39,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define PERMISSIVE_HOLD
 //#define QUICK_TAP_TERM 0
 
-
+#define DYNAMIC_KEYMAP_LAYER_COUNT 8
