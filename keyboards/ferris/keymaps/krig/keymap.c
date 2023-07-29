@@ -12,7 +12,7 @@
 
 enum custom_layers {
     _QWERTY,
-    _HANDS,
+    _APTV3,
     _GAME,
     _LANG,
     _LOWER,
@@ -27,7 +27,7 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_ke
 #define M_LOWER LT(_LOWER, KC_ESC)
 #define M_RAISE LT(_RAISE, KC_BSPC)
 #define DF_QWER  DF(_QWERTY)
-#define DF_HAND  DF(_HANDS)
+#define DF_APT  DF(_APTV3)
 #define DF_GAME  DF(_GAME)
 #define M_LANG LT(_LANG, KC_SLSH)
 
@@ -38,10 +38,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,     KC_N,    KC_M, KC_COMM,  KC_DOT,  M_LANG,
                                 M_LOWER,  KC_SPC,  SC_SENT, M_RAISE
   ),
-  [_HANDS] = LAYOUT(
-        KC_Q,    KC_C,    KC_H,    KC_P,    KC_V,     KC_Y,    KC_K,    KC_O,    KC_J, KC_QUOT,
-        KC_R,    KC_S,    KC_N,    KC_T,    KC_G,     KC_W,    KC_U,    KC_E,    KC_I,    KC_A,
-        KC_X,    KC_M,    KC_L,    KC_D,    KC_B,     KC_Z,    KC_F, KC_COMM,  KC_DOT,  M_LANG,
+  [_APTV3] = LAYOUT(
+        KC_W,    KC_G,    KC_D,    KC_F,    KC_B,     KC_Q,    KC_L,    KC_U,    KC_O,    KC_Y,
+        KC_R,    KC_S,    KC_T,    KC_H,    KC_K,     KC_J,    KC_N,    KC_E,    KC_A,    KC_I,
+        KC_X,    KC_C,    KC_M,    KC_P,    KC_V,     KC_Z, KC_COMM,  KC_DOT, KC_QUOT,  M_LANG,
                                 M_LOWER,  KC_SPC,  SC_SENT, M_RAISE
   ),
   [_GAME] = LAYOUT(
@@ -70,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_ADJUST] = LAYOUT(
      _______,    KC_1,    KC_2,    KC_3, DF_QWER,  _______,   KC_F1,   KC_F2,   KC_F3, _______,
-        KC_0,    KC_4,    KC_5,    KC_6, DF_HAND,  _______,   KC_F4,   KC_F5,   KC_F6,  KC_F10,
+        KC_0,    KC_4,    KC_5,    KC_6,  DF_APT,  _______,   KC_F4,   KC_F5,   KC_F6,  KC_F10,
      _______,    KC_7,    KC_8,    KC_9, DF_GAME,  _______,   KC_F7,   KC_F8,   KC_F9, _______,
                                 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
   )
@@ -141,9 +141,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
                 set_single_persistent_default_layer(_QWERTY);
             }
             return false;
-        case DF_HAND:
+        case DF_APT:
             if (record->event.pressed) {
-                set_single_persistent_default_layer(_HANDS);
+                set_single_persistent_default_layer(_APTV3);
             }
             return false;
         case DF_GAME:

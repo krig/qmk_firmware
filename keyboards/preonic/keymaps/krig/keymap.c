@@ -2,7 +2,7 @@
  * Kristoffer Gronlund, 2023
  * Preonic
  *
- * Apart from the hands down reference layer, this layout
+ * Apart from the alternate layout layer, this layout
  * is fairly stable and basically what I use for work.
  */
 
@@ -13,7 +13,7 @@
 
 enum custom_layers {
     _QWERTY,
-    _HANDS,
+    _APTV3,
     _GAME,
     _LANG,
     _LOWER,
@@ -28,7 +28,7 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_ke
 #define M_LOWER MO(_LOWER)
 #define M_RAISE MO(_RAISE)
 #define DF_QWER  DF(_QWERTY)
-#define DF_HAND  DF(_HANDS)
+#define DF_APT  DF(_APTV3)
 #define DF_GAME  DF(_GAME)
 #define M_LANG LT(_LANG, KC_SLSH)
 
@@ -40,11 +40,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT,  M_LANG, KC_RSFT,
       CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, M_LOWER,  KC_SPC,  KC_SPC, M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
-    [_HANDS] = LAYOUT_preonic_grid(
+    [_APTV3] = LAYOUT_preonic_grid(
        KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_DEL,
-       KC_TAB,    KC_Q,    KC_C,    KC_H,    KC_P,    KC_V,    KC_Y,    KC_K,    KC_O,    KC_J, KC_QUOT, KC_BSPC,
-      CTL_ESC,    KC_R,    KC_S,    KC_N,    KC_T,    KC_G,    KC_W,    KC_U,    KC_E,    KC_I,    KC_A, CTL_ENT,
-      OSM_SFT,    KC_X,    KC_M,    KC_L,    KC_D,    KC_B,    KC_Z,    KC_F, KC_COMM,  KC_DOT,  M_LANG, KC_RSFT,
+       KC_TAB,    KC_W,    KC_G,    KC_D,    KC_F,    KC_B,    KC_Q,    KC_L,    KC_U,    KC_O,    KC_Y, KC_BSPC,
+      CTL_ESC,    KC_R,    KC_S,    KC_T,    KC_H,    KC_K,    KC_J,    KC_N,    KC_E,    KC_A,    KC_I, CTL_ENT,
+      OSM_SFT,    KC_X,    KC_C,    KC_M,    KC_P,    KC_V,    KC_Z, KC_COMM,  KC_DOT, KC_QUOT,  M_LANG, KC_RSFT,
       CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, M_LOWER,  KC_SPC,  KC_SPC, M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_GAME] = LAYOUT_preonic_grid(
@@ -77,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_ADJUST] = LAYOUT_preonic_grid(
       DF_QWER,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
-      DF_HAND, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  KC_INS,
+       DF_APT, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  KC_INS,
       DF_GAME, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
@@ -124,9 +124,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
                 set_single_persistent_default_layer(_QWERTY);
             }
             return false;
-        case DF_HAND:
+        case DF_APT:
             if (record->event.pressed) {
-                set_single_persistent_default_layer(_HANDS);
+                set_single_persistent_default_layer(_APTV3);
             }
             return false;
         case DF_GAME:
