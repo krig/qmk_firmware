@@ -1,7 +1,7 @@
 VIA_ENABLE = no
 OLED_ENABLE = yes
 OLED_DRIVER = SSD1306
-MOUSEKEY_ENABLE = yes
+MOUSEKEY_ENABLE = no
 EXTRAKEY_ENABLE = yes
 
 SRC += features/custom_shift_keys.c
