@@ -44,5 +44,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // The default is 40
 #define MOUSEKEY_WHEEL_TIME_TO_MAX 100
 
-#define DYNAMIC_KEYMAP_LAYER_COUNT 8
 
