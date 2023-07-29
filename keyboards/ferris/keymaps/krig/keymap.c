@@ -49,9 +49,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                 M_LOWER,  KC_SPC,  SC_SENT, M_RAISE
   ),
   [_LOWER] = LAYOUT(
-     _______, CW_TOGG, CMD_GRV, CMD_TAB, _______,  _______, KC_PGDN,   KC_UP, KC_PGUP,  KC_DEL,
+     _______, CW_TOGG, CMD_GRV, CMD_TAB, _______,   KC_INS, KC_PGDN,   KC_UP, KC_PGUP,  KC_DEL,
       OS_CTL,  OS_ALT,  OS_GUI,  OS_SFT,  KC_TAB,  KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT,  KC_END,
-      GUI__Z,  GUI__X,  GUI__C,  GUI__V, _______,  _______,   SQ_AA,   SQ_AE,   SQ_OE,  KC_INS,
+      GUI__Z,  GUI__X,  GUI__C,  GUI__V, _______,  _______,   SQ_AA,   SQ_AE,   SQ_OE, OS_RALT,
                                KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS
   ),
   [_RAISE] = LAYOUT(
@@ -86,6 +86,7 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
     case OS_SFT:
     case OS_CTL:
     case OS_ALT:
+    case OS_RALT:
     case OS_GUI:
         return true;
     default:
@@ -96,6 +97,7 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
 static oneshot_state os_shft_state = os_up_unqueued;
 static oneshot_state os_ctrl_state = os_up_unqueued;
 static oneshot_state os_alt_state = os_up_unqueued;
+static oneshot_state os_ralt_state = os_up_unqueued;
 static oneshot_state os_gui_state = os_up_unqueued;
 static bool cmd_tab_active = false;
 static bool cmd_grv_active = false;
@@ -104,6 +106,7 @@ bool krig_handle_callum_oneshots(uint16_t keycode, keyrecord_t* record) {
     update_oneshot(&os_shft_state, KC_LSFT, OS_SFT, keycode, record);
     update_oneshot(&os_ctrl_state, KC_LCTL, OS_CTL, keycode, record);
     update_oneshot( &os_alt_state, KC_LALT, OS_ALT, keycode, record);
+    update_oneshot( &os_ralt_state, KC_RALT, OS_ALT, keycode, record);
     update_oneshot( &os_gui_state, KC_LGUI, OS_GUI, keycode, record);
     return true;
 }

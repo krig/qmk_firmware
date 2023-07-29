@@ -18,6 +18,7 @@ enum custom_keycodes {
     CMD_GRV,              // single-key cmd+` (swapper)
     OS_SFT,
     OS_ALT,
+    OS_RALT,
     OS_CTL,
     OS_GUI,
 
