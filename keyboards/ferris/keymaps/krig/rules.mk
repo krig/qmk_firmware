@@ -1,5 +1,5 @@
 LTO_ENABLE = no
-VIA_ENABLE = yes
+VIA_ENABLE = no
 BOOTLOADER = rp2040
 CONVERT_TO = promicro_rp2040
 

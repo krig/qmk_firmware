@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     CTL_ESC, KC_A,     KC_S,    KC_D,    KC_F,    KC_G, KC_UNDS,   SQ_AA,    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
     OSM_SFT, KC_Z,     KC_X,    KC_C,    KC_V,    KC_B,                      KC_N,    KC_M, KC_COMM,  KC_DOT,  M_LANG, KC_RSFT,
     CW_TOGG, CTL_SFT,  KC_LALT, KC_LGUI, M_LOWER,       KC_CIRC,  KC_DLR,          M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,
-                                     KC_SPC, KC_BSPC, KC_LGUI,  KC_RGUI,  KC_TAB,  SC_SENT
+                                     KC_SPC, KC_TAB, KC_LGUI,  KC_RGUI,  KC_BSPC,  SC_SENT
   ),
   [_APTV3] = LAYOUT_moonlander(
      KC_GRV, KC_1,     KC_2,    KC_3,    KC_4,    KC_5, KC_TILD,   SQ_OE,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_DEL,
@@ -43,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     CTL_ESC, KC_R,     KC_S,    KC_T,    KC_H,    KC_K, KC_UNDS,   SQ_AA,    KC_J,    KC_N,    KC_E,    KC_A,    KC_I, CTL_ENT,
     OSM_SFT, KC_X,     KC_C,    KC_M,    KC_P,    KC_V,                      KC_Z, KC_COMM,  KC_DOT,  KC_QUOT, M_LANG, KC_RSFT,
     CW_TOGG, CTL_SFT,  KC_LALT, KC_LGUI, M_LOWER,       KC_CIRC,  KC_DLR,          M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,
-                                     KC_SPC, KC_BSPC, KC_LGUI,  KC_RGUI,  KC_TAB,  SC_SENT
+                                     KC_SPC, KC_TAB, KC_LGUI,  KC_RGUI,  KC_BSPC,  SC_SENT
   ),
   [_GAME] = LAYOUT_moonlander(
      KC_ESC, KC_GRV,   KC_1,     KC_2,    KC_3,    KC_4,    KC_5,   SQ_OE,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_DEL,
@@ -51,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LSFT, KC_LCTL,  KC_A,     KC_S,    KC_D,    KC_F,    KC_G,   SQ_AA,    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
     KC_LCTL, KC_LSFT,  KC_Z,     KC_X,    KC_C,    KC_V,                      KC_N,    KC_M, KC_COMM,  KC_DOT,  M_LANG, KC_RSFT,
     CW_TOGG, CTL_SFT,  KC_LALT, KC_LGUI, M_LOWER,       KC_CIRC,  KC_DLR,          M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,
-                                     KC_SPC, KC_BSPC, KC_LGUI,  KC_RGUI,  KC_TAB,  SC_SENT
+                                     KC_SPC, KC_TAB, KC_LGUI,  KC_RGUI,  KC_BSPC,  SC_SENT
   ),
   [_LANG] = LAYOUT_moonlander(
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,

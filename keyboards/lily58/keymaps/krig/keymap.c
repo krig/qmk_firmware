@@ -133,3 +133,47 @@ void caps_word_set_user(bool active) {
 layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
+
+void oled_render_keylog_r2g(void);
+void oled_render_logo_r2g(void);
+
+void oled_render_state_krig(void) {
+    oled_write_P(PSTR("Layer: "), false);
+    switch (get_highest_layer(layer_state)) {
+        case _QWERTY:
+            oled_write_ln_P(PSTR("QWERTY"), false);
+            break;
+        case _APTV3:
+            oled_write_ln_P(PSTR("APTv3"), false);
+            break;
+        case _GAME:
+            oled_write_ln_P(PSTR("Game"), false);
+            break;
+        case _LANG:
+            oled_write_ln_P(PSTR("Lang"), false);
+            break;
+        case _LOWER:
+            oled_write_ln_P(PSTR("Lower"), false);
+            break;
+        case _RAISE:
+            oled_write_ln_P(PSTR("Raise"), false);
+            break;
+        case _ADJUST:
+            oled_write_ln_P(PSTR("Adjust"), false);
+            break;
+        default:
+            oled_write_ln_P(PSTR("Unknown"), false);
+            break;
+    }
+
+ }
+
+bool oled_task_user() {
+     if (is_keyboard_master()) {
+         oled_render_state_krig();
+         oled_render_keylog_r2g();
+     } else {
+         oled_render_logo_r2g();
+     }
+     return false;
+ }

@@ -1,6 +1,6 @@
 action = compile
 
-.PHONY: all sweep sweep-left waterfowl lily58 preonic sofle moonlander ramaworks
+.PHONY: all sweep sweep-left sweep-right waterfowl lily58 preonic sofle moonlander ramaworks
 
 all: sweep waterfowl lily58 preonic sofle moonlander ramaworks
 
@@ -9,6 +9,9 @@ sweep:
 
 sweep-left:
 	qmk flash -kb ferris/sweep -km krig -bl uf2-split-left
+
+sweep-right:
+	qmk flash -kb ferris/sweep -km krig -bl uf2-split-right
 
 waterfowl:
 	qmk ${action} -kb waterfowl -km krig
