@@ -15,9 +15,32 @@
   * along with this program.  If not, see <http://www.gnu.org/licenses/>.
   */
 #include "krig.h"
+#include "custom_keys.h"
+#include "features/custom_shift_keys.h"
+#include "features/krig_caps_word.h"
 
+enum custom_layers {
+    _QWERTY,
+    _APTV3,
+    _GAME,
+    _LANG,
+    _LOWER,
+    _RAISE,
+    _ADJUST,
+};
+
+const custom_shift_key_t custom_shift_keys[] = {
+};
+uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_key_t);
+
+#define M_LOWER MO(_LOWER)
+#define M_RAISE MO(_RAISE)
+#define DF_QWER  DF(_QWERTY)
+#define DF_APT  DF(_APTV3)
+#define DF_GAME  DF(_GAME)
+#define M_LANG LT(_LANG, KC_SLSH)
 #define KG_NUMROW KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5, /* ----- ----- */    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_DEL,
-#define KG_THUMBROW OS_ALT, OS_CTL, OS_GUI, MO_EXT, KC_SPC, SC_SENT, MO_SYM, OS_GUI, OS_CTL, OS_ALT
+#define KG_THUMBROW OS_ALT, OS_CTL, OS_GUI, M_LOWER, KC_SPC, SC_SENT, M_RAISE, OS_GUI, OS_CTL, OS_RALT
 #define LAYOUT_wrapper(...)             LAYOUT(__VA_ARGS__)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -25,47 +48,47 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KG_NUMROW
    KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T, /* ----- ----- */    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
   CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G, /* ----- ----- */    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
-  CW_TOGG,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_MUTE, KC_MPLY,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, OSM_SFT,
+  OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_MUTE, KC_MPLY,    KC_N,    KC_M, KC_COMM,  KC_DOT,  M_LANG, KC_RSFT,
   KG_THUMBROW
 ),
-[_HANDS] = LAYOUT_wrapper(
+[_APTV3] = LAYOUT_wrapper(
   KG_NUMROW
-   KC_TAB,    KC_Q,    KC_C,    KC_H,    KC_P,    KC_V, /* ----- ----- */    KC_Y,    KC_K,    KC_O,    KC_J, KC_QUOT, KC_BSPC,
-  CTL_ESC,    KC_R,    KC_S,    KC_N,    KC_T,    KC_G, /* ----- ----- */    KC_W,    KC_U,    KC_E,    KC_I,    KC_A, CTL_ENT,
-  CW_TOGG,    KC_X,    KC_M,    KC_L,    KC_D,    KC_B, KC_MUTE, KC_MPLY,    KC_Z,    KC_F, KC_COMM,  KC_DOT, KC_SLSH, OSM_SFT,
+   KC_TAB,    KC_W,    KC_C,    KC_D,    KC_F,    KC_B, /* ----- ----- */    KC_Q,    KC_L,    KC_U,    KC_O,    KC_Y, KC_BSPC,
+  CTL_ESC,    KC_R,    KC_S,    KC_T,    KC_H,    KC_K, /* ----- ----- */    KC_J,    KC_N,    KC_E,    KC_A,    KC_I, CTL_ENT,
+  OSM_SFT,    KC_X,    KC_C,    KC_M,    KC_P,    KC_V, KC_MUTE, KC_MPLY,    KC_Z, KC_COMM,  KC_DOT, KC_QUOT,  M_LANG, KC_RSFT,
   KG_THUMBROW
 ),
 [_GAME] = LAYOUT_wrapper(
-   KC_ESC,  KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4, /* ----- ----- */    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, MO_FUNS,
+   KC_ESC,  KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4, /* ----- ----- */    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_DEL,
    KC_TAB,  KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R, /* ----- ----- */    KC_T,    KC_Y,    KC_I,    KC_O,    KC_P, KC_BSPC,
   KC_LCTL, KC_LSFT,    KC_A,    KC_S,    KC_D,    KC_F, /* ----- ----- */    KC_G,    KC_H,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
-  KC_LSFT, KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V, KC_MUTE, KC_MPLY,    KC_B,    KC_N, KC_COMM,  KC_DOT, KC_SLSH, OSM_SFT,
+  KC_LSFT, KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V, KC_MUTE, KC_MPLY,    KC_B,    KC_N, KC_COMM,  KC_DOT,  M_LANG, KC_RSFT,
   KG_THUMBROW
 ),
-[_EXTEND] = LAYOUT(
-    LLOCK, _______, _______, _______, _______, _______,                   _______, _______, _______,  _______, _______, _______,
-  _______, _______, _______, _______, _______, _______,                   _______, KC_PGDN,   KC_UP,  KC_PGUP, _______, _______,
-  _______, _______, _______, _______, _______, _______,                   KC_HOME, KC_LEFT, KC_DOWN,  KC_RGHT,  KC_END, _______,
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,   SQ_AA,    SQ_AE,   SQ_OE, _______,
-                    _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______
-),
-[_SYMBOL] = LAYOUT(
+[_LANG] = LAYOUT(
   _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
-  _______,  KC_GRV, KC_TILD, KC_HASH, KC_PERC, _______,                   _______, KC_AMPR, KC_LBRC, KC_RBRC, KC_BSLS, _______,
+  _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
+  _______, _______, _______, _______, _______, _______,                   _______,   SQ_AA,   SQ_AE,   SQ_OE, _______, _______,
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+                    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+),
+[_LOWER] = LAYOUT(
+    LLOCK, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
+  _______, _______,    KC_1,    KC_2,    KC_3, _______,                    KC_INS, KC_PGDN,   KC_UP, KC_PGUP,  KC_DEL, _______,
+  _______,    KC_0,    KC_4,    KC_5,    KC_6, _______,                   KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT,  KC_END, _______,
+  _______, SQ_PHEX,    KC_7,    KC_8,    KC_9, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+                    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+),
+[_RAISE] = LAYOUT(
+  _______, _______, SQ_LTLT, SQ_GTGT, SQ_PATH, _______,                   SQ_PIPE, SQ_AMPR, SQ_LTAR, SQ_RTAR, _______, _______,
+  _______,  KC_GRV, KC_TILD, KC_HASH, KC_PERC,   KC_LT,                   SQ_COLN, KC_AMPR, KC_LBRC, KC_RBRC, SQ_EXPI, _______,
   _______, KC_EXLM, KC_MINS, KC_PLUS,  KC_EQL,   KC_AT,                   KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, _______,
-  _______, _______, _______, KC_ASTR, KC_UNDS, _______, _______, _______, KC_CIRC,  KC_DLR, KC_LCBR, KC_RCBR, _______, _______,
-                     GUI__X,  GUI__C,  GUI__V, _______,  MO_NUM, _______, _______, _______, _______, _______
+  _______, KC_QUES, KC_SLSH, KC_ASTR, KC_UNDS,   KC_GT, _______, _______, KC_CIRC,  KC_DLR, KC_LCBR, KC_RCBR, KC_BSLS, _______,
+                     GUI__X,  GUI__C,  GUI__V, _______, _______, _______, _______, _______, _______, _______
 ),
-[_NUM] = LAYOUT(
-    LLOCK, _______, _______, _______, _______, _______,                   _______, _______, _______,  _______, _______, _______,
-  _______, _______, _______, _______, _______, _______,                   _______,    KC_1,    KC_2,     KC_3, _______, _______,
-  _______, _______, _______, _______, _______, _______,                      KC_0,    KC_4,    KC_5,     KC_6, _______, _______,
-  _______, _______, _______, _______, _______, _______, _______, _______, SQ_PHEX,    KC_7,    KC_8,     KC_9, _______, _______,
-                    _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______
-),
-[_FUNS] = LAYOUT(
-  DF_QWER,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10, _______,
-  DF_HAND, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______,  KC_INS,
+[_ADJUST] = LAYOUT(
+  DF_QWER,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
+   DF_APT, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______,  KC_INS,
   DF_GAME, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
                     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
@@ -94,14 +117,13 @@ static void print_status_narrow(void) {
          oled_write_P(PSTR(" ._. "), false);
      }
 
-
      oled_set_cursor(0, 3);
      switch(get_highest_layer(default_layer_state)) {
          case _QWERTY:
              oled_write_P(PSTR("qwrty"), false);
              break;
-         case _HANDS:
-             oled_write_P(PSTR("hands"), false);
+         case _APTV3:
+             oled_write_P(PSTR("APTv3"), false);
              break;
          case _GAME:
              oled_write_P(PSTR("GAME!"), false);
@@ -117,21 +139,21 @@ static void print_status_narrow(void) {
      oled_set_cursor(0, 7);
      switch (get_highest_layer(layer_state)) {
          case _QWERTY:
-         case _HANDS:
+         case _APTV3:
          case _GAME:
              oled_write_P(PSTR("....."), false);
              break;
-         case _EXTEND:
-             oled_write_P(PSTR("< EXT"), false);
+         case _LOWER:
+             oled_write_P(PSTR("lower"), false);
              break;
-         case _SYMBOL:
-             oled_write_P(PSTR("SYM >"), false);
+         case _RAISE:
+             oled_write_P(PSTR("raise"), false);
              break;
-         case _NUM:
-             oled_write_P(PSTR("12345"), false);
+         case _LANG:
+             oled_write_P(PSTR("lang"), false);
              break;
-         case _FUNS:
-             oled_write_P(PSTR("<FUN>"), false);
+         case _ADJUST:
+             oled_write_P(PSTR("adjst"), false);
              break;
          default:
              oled_write_P(PSTR("nil!?"), false);
@@ -156,16 +178,45 @@ bool oled_task_user(void) {
     return false;
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    return krig_handle_sequence_keys(keycode, record);
+bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+    // handle custom shift keys like ./:, ,/; etc.
+    if (!process_custom_shift_keys(keycode, record)) {
+        return false;
+    }
+    // handle sequence keys like ::, && etc.
+    if (!process_custom_keycodes(keycode, record)) {
+        return false;
+    }
+    switch (keycode) {
+        case DF_QWER:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_QWERTY);
+            }
+            return false;
+        case DF_APT:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_APTV3);
+            }
+            return false;
+        case DF_GAME:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_GAME);
+            }
+            return false;
+    };
+    return true;
 }
 
-layer_state_t default_layer_state_set_user(layer_state_t state) {
-    return state;
+bool caps_word_press_user(uint16_t keycode) {
+    return krig_caps_word_press(keycode);
+}
+
+void caps_word_set_user(bool active) {
+    krig_caps_word_set(active);
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    return state;
+    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
@@ -177,9 +228,9 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         }
     } else if (index == 1) {
          if (clockwise) {
-             tap_code(KC_MNXT);
+             tap_code(KC_DOWN);
          } else {
-             tap_code(KC_MPRV);
+             tap_code(KC_UP);
          }
     }
     return true;
