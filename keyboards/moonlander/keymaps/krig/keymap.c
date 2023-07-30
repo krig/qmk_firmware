@@ -215,11 +215,11 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     ML_LED_4(false);
     ML_LED_5(false);
 
-    if (layer_state_cmp(state, _QWERTY)) {
+    if (default_layer_state == _QWERTY) {
             ML_LED_1(1);
-    } else if (layer_state_cmp(state, _APTV3)) {
+    } else if (default_layer_state == _APTV3) {
             ML_LED_2(1);
-    } else if (layer_state_cmp(state, _GAME)) {
+    } else if (default_layer_state == _GAME) {
             ML_LED_3(1);
     }
 

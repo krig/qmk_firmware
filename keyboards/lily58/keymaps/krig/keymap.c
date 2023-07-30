@@ -15,6 +15,7 @@
   * along with this program.  If not, see <http://www.gnu.org/licenses/>.
   */
 
+#include "action_layer.h"
 #include "krig.h"
 #include "custom_keys.h"
 #include "features/custom_shift_keys.h"
@@ -138,16 +139,19 @@ void oled_render_keylog_r2g(void);
 void oled_render_logo_r2g(void);
 
 void oled_render_state_krig(void) {
+     if (default_layer_state == _QWERTY) {
+            oled_write_ln_P(PSTR("QWERTY"), false);
+     } else if (default_layer_state == _APTv3) {
+            oled_write_ln_P(PSTR("APTv3"), false);
+     } else if (default_layer_state == _GAME) {
+            oled_write_ln_P(PSTR("UHC"), false);
+     }
     oled_write_P(PSTR("Layer: "), false);
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
-            oled_write_ln_P(PSTR("QWERTY"), false);
-            break;
         case _APTV3:
-            oled_write_ln_P(PSTR("APTv3"), false);
-            break;
         case _GAME:
-            oled_write_ln_P(PSTR("Game"), false);
+            oled_write_ln_P(PSTR("-"), false);
             break;
         case _LANG:
             oled_write_ln_P(PSTR("Lang"), false);
