@@ -14,55 +14,110 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "krig.h"
+#include "custom_keys.h"
+#include "features/custom_shift_keys.h"
+#include "features/krig_caps_word.h"
 
+enum custom_layers {
+    _QWERTY,
+    _APTV3,
+    _GAME,
+    _LANG,
+    _LOWER,
+    _RAISE,
+    _ADJUST,
+};
+
+const custom_shift_key_t custom_shift_keys[] = {
+};
+uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_key_t);
+
+#define M_LOWER MO(_LOWER)
+#define M_RAISE MO(_RAISE)
+#define DF_QWER  DF(_QWERTY)
+#define DF_APT  DF(_APTV3)
+#define DF_GAME  DF(_GAME)
+#define M_LANG LT(_LANG, KC_SLSH)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_BASE] = LAYOUT(
+    [_QWERTY] = LAYOUT(
        WS_ALL,  KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
-      WS_NEXT, CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, NAV_CLN,  KC_ENT,
-      WS_PREV, KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, SFT_QUO,
-      TG_GAME, MO_FKEY, CTL_SFT, KC_LALT, KC_LGUI, MO_SWED,  KC_SPC,          MO_SYMB, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+      WS_NEXT, CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
+      WS_PREV, OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT,  M_LANG, KC_RSFT,
+       QK_REP, CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, M_LOWER,  KC_SPC,          M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
-    [_SWEDE] = LAYOUT(
+    [_APTV3] = LAYOUT(
+       WS_ALL,  KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
+      WS_NEXT, CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
+      WS_PREV, OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT,  M_LANG, KC_RSFT,
+       QK_REP, CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, M_LOWER,  KC_SPC,          M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+    ),
+    [_GAME] = LAYOUT(
+       WS_ALL,  KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
+      WS_NEXT, CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
+      WS_PREV, OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT,  M_LANG, KC_RSFT,
+       QK_REP, CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, M_LOWER,  KC_SPC,          M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+    ),
+    [_LOWER] = LAYOUT(
       _______, _______, _______,  KC_7,   KC_8,    KC_9,    _______, _______, SQ_AMPR, KC_UNDS, KC_HASH, _______, KC_DEL,
       _______, _______, SQ_PHEX,  KC_4,   KC_5,    KC_6,    _______, SQ_PIPE, SQ_COLN, SQ_AA,   SQ_OE,   SQ_AE,   _______,
       _______, _______, KC_0,     KC_1,   KC_2,    KC_3,    _______, _______, SQ_PATH, ZOOM_UT, ZOOM_IN, KC_BSLS, KC_GRV,
       _______, _______, _______, _______, _______, _______, _______,          _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END
     ),
-    [_SYMBOLS] = LAYOUT(
+    [_RAISE] = LAYOUT(
       _______, _______, KC_CIRC, KC_LT,   KC_GT,   KC_DQUO, KC_QUOT, KC_GRV,  KC_AMPR, KC_LBRC, KC_RBRC, KC_PERC, KC_INS,
       _______, _______, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_UNDS, KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_QUES, _______,
       _______, _______, KC_TILD, KC_SLSH, KC_ASTR, KC_BSLS, KC_HASH, KC_TILD, KC_DLR,  KC_LCBR, KC_RCBR, KC_AT,   KC_GRV,
       _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
     ),
-    [_GAME] = LAYOUT(
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, KC_LCTL, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
-    ),
-    [_NAV] = LAYOUT(
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, WS_PREV,  WS_ALL, WS_NEXT, _______, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, KC_PGDN, KC_PGUP, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
-    ),
-    [_FKEYS] = LAYOUT(
+    [_ADJUST] = LAYOUT(
       _______, _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______,  MO_QMK
-    ),
-    [_QMKSTUFF] = LAYOUT(
-      _______, TG_GAME, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, QK_BOOT,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
+      QK_BOOT, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
     )
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    return krig_handle_sequence_keys(keycode, record);
+    // handle custom shift keys like ./:, ,/; etc.
+    if (!process_custom_shift_keys(keycode, record)) {
+        return false;
+    }
+    // handle sequence keys like ::, && etc.
+    if (!process_custom_keycodes(keycode, record)) {
+        return false;
+    }
+    switch (keycode) {
+        case DF_QWER:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_QWERTY);
+            }
+            return false;
+        case DF_APT:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_APTV3);
+            }
+            return false;
+        case DF_GAME:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_GAME);
+            }
+            return false;
+    };
+    return true;
+}
+
+bool caps_word_press_user(uint16_t keycode) {
+    return krig_caps_word_press(keycode);
+}
+
+
+void caps_word_set_user(bool active) {
+    krig_caps_word_set(active);
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
 void backlight_set_color( int index, uint8_t red, uint8_t green, uint8_t blue );
@@ -99,7 +154,7 @@ void backlight_effect_indicators(void) {
     backlight_set_color_all(0, 0, 0);
     uint8_t r = 0xfb, g = 0x85, b = 0x00;
     backlight_set_color(LC_FN4, r/2, g/2, b/2);
-    
+
     if (IS_LAYER_ON(_GAME)) {
         backlight_set_color(LC_FN4, r, g, b);
         r = 255; g = 0; b = 0;
@@ -107,9 +162,9 @@ void backlight_effect_indicators(void) {
         backlight_set_color(LC_A, r, g, b);
         backlight_set_color(LC_S, r, g, b);
         backlight_set_color(LC_D, r, g, b);
-    } else if (IS_LAYER_ON(_FKEYS) || IS_LAYER_ON(_FKEYS2)) {
+    } else if (IS_LAYER_ON(_ADJUST)) {
         backlight_set_color(LC_FN1, r, g, b);
-        r = 0x02; g = 0x30; b = 0x47; 
+        r = 0x02; g = 0x30; b = 0x47;
         for (int i = 1; i < 12; ++i) {
             backlight_set_color(m50_rowcol_to_led[0][i], r, g, b);
         }
@@ -117,15 +172,15 @@ void backlight_effect_indicators(void) {
         backlight_set_color(LC_RAISE, r, g, b);
         backlight_set_color(LC_SPACE, r, g, b);
         backlight_set_color(LC_QMK, 255, 0, 0);
-    } else if (IS_LAYER_ON(_SYMBOLS)) {
-        r = 0x02; g = 0x30; b = 0x47; 
+    } else if (IS_LAYER_ON(_RAISE)) {
+        r = 0x02; g = 0x30; b = 0x47;
         backlight_set_color(LC_RAISE, r, g, b);
         backlight_set_color(LC_SPACE, r, g, b);
-    } else if (IS_LAYER_ON(_SWEDE)) {
-        r = 0x02; g = 0x30; b = 0x47; 
+    } else if (IS_LAYER_ON(_LOWER)) {
+        r = 0x02; g = 0x30; b = 0x47;
         backlight_set_color(LC_LOWER, r, g, b);
         backlight_set_color(LC_SPACE, r, g, b);
-    } else if (IS_LAYER_ON(_QMKSTUFF)) {
+    } else if (IS_LAYER_ON(_LANG)) {
         backlight_set_color(LC_QMK, 255, 0, 0);
         backlight_set_color(LC_BOOT, 255, 0, 0);
         backlight_set_color(LC_GAME, 0, 255, 0);
