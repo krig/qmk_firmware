@@ -2,31 +2,14 @@
 #include "custom_keys.h"
 #include "features/custom_shift_keys.h"
 #include "features/krig_caps_word.h"
+#include "layer_system.h"
 #include "eeprom.h"
-
-enum custom_layers {
-    _QWERTY,
-    _APTV3,
-    _GAME,
-    _LANG,
-    _LOWER,
-    _RAISE,
-    _ADJUST,
-};
 
 const custom_shift_key_t custom_shift_keys[] = {
 };
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_key_t);
 
-#define M_LOWER MO(_LOWER)
-#define M_RAISE MO(_RAISE)
-#define DF_QWER  DF(_QWERTY)
-#define DF_APT  DF(_APTV3)
-#define DF_GAME  DF(_GAME)
-#define M_LANG LT(_LANG, KC_SLSH)
-
 #define MOON_LED_LEVEL LED_LEVEL
-
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_moonlander(

@@ -1,35 +1,25 @@
 #pragma once
 
-#include "quantum.h"
-
-enum krig_layers {
-    // default layers
+enum custom_layers {
     _QWERTY,
-    _HANDS,
+    _APTV3,
     _GAME,
-
-    // primary layers
-    _EXTEND,
-    _SYMBOL,
-
-    // secondary layers
-    _NUM,
-    _FUNS,
+    _LANG,
+    _LOWER,
+    _RAISE,
+    _ADJUST,
 };
 
-// Default layer switching
-// #define DF_QWER DF(_QWERTY)
-// #define DF_HAND DF(_HANDS)
-// #define DF_GAME DF(_GAME)
+#ifdef KRIG_34KEY
+#define M_LOWER LT(_LOWER, KC_ESC)
+#define M_RAISE LT(_RAISE, KC_BSPC)
+#else
+#define M_LOWER MO(_LOWER)
+#define M_RAISE MO(_RAISE)
+#endif
 
-// Layer switching
-// #define MO_EXT MO(_EXTEND)
-// #define MO_SYM MO(_SYMBOL)
-// #define MO_NUM MO(_NUM)
-// #define MO_FUNS MO(_FUNS)
-#define TT_EXT TT(_EXTEND)
-#define TT_SYM TT(_SYMBOL)
-#define TT_NUM TT(_NUM)
-#define TT_FUNS TT(_FUNS)
+#define DF_QWER  DF(_QWERTY)
+#define DF_APT  DF(_APTV3)
+#define DF_GAME  DF(_GAME)
+#define M_LANG LT(_LANG, KC_SLSH)
 
-bool krig_handle_sequence_keys(uint16_t keycode, keyrecord_t* record);

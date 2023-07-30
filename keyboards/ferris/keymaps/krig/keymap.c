@@ -9,27 +9,12 @@
 #include "features/krig_caps_word.h"
 #include "features/oneshot.h"
 #include "features/swapper.h"
-
-enum custom_layers {
-    _QWERTY,
-    _APTV3,
-    _GAME,
-    _LANG,
-    _LOWER,
-    _RAISE,
-    _ADJUST,
-};
+#define KRIG_34KEY
+#include "layer_system.h"
 
 const custom_shift_key_t custom_shift_keys[] = {
 };
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_key_t);
-
-#define M_LOWER LT(_LOWER, KC_ESC)
-#define M_RAISE LT(_RAISE, KC_BSPC)
-#define DF_QWER  DF(_QWERTY)
-#define DF_APT  DF(_APTV3)
-#define DF_GAME  DF(_GAME)
-#define M_LANG LT(_LANG, KC_SLSH)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT(

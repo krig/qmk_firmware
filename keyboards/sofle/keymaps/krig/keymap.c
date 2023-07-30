@@ -18,27 +18,12 @@
 #include "custom_keys.h"
 #include "features/custom_shift_keys.h"
 #include "features/krig_caps_word.h"
-
-enum custom_layers {
-    _QWERTY,
-    _APTV3,
-    _GAME,
-    _LANG,
-    _LOWER,
-    _RAISE,
-    _ADJUST,
-};
+#include "layer_system.h"
 
 const custom_shift_key_t custom_shift_keys[] = {
 };
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_key_t);
 
-#define M_LOWER MO(_LOWER)
-#define M_RAISE MO(_RAISE)
-#define DF_QWER  DF(_QWERTY)
-#define DF_APT  DF(_APTV3)
-#define DF_GAME  DF(_GAME)
-#define M_LANG LT(_LANG, KC_SLSH)
 #define KG_NUMROW KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5, /* ----- ----- */    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_DEL,
 #define KG_THUMBROW OS_ALT, OS_CTL, OS_GUI, M_LOWER, KC_SPC, SC_SENT, M_RAISE, OS_GUI, OS_CTL, OS_RALT
 #define LAYOUT_wrapper(...)             LAYOUT(__VA_ARGS__)
