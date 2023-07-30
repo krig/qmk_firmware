@@ -139,11 +139,11 @@ void oled_render_keylog_r2g(void);
 void oled_render_logo_r2g(void);
 
 void oled_render_state_krig(void) {
-     if (default_layer_state == _QWERTY) {
+     if (layer_state_cmp(default_layer_state, _QWERTY)) {
             oled_write_ln_P(PSTR("QWERTY"), false);
-     } else if (default_layer_state == _APTv3) {
+     } else if (layer_state_cmp(default_layer_state, _APTV3)) {
             oled_write_ln_P(PSTR("APTv3"), false);
-     } else if (default_layer_state == _GAME) {
+     } else if (layer_state_cmp(default_layer_state, _GAME)) {
             oled_write_ln_P(PSTR("UHC"), false);
      }
     oled_write_P(PSTR("Layer: "), false);

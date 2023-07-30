@@ -114,7 +114,7 @@ bool krig_handle_callum_oneshots(uint16_t keycode, keyrecord_t* record) {
     update_oneshot(&os_shft_state, KC_LSFT, OS_SFT, keycode, record);
     update_oneshot(&os_ctrl_state, KC_LCTL, OS_CTL, keycode, record);
     update_oneshot( &os_alt_state, KC_LALT, OS_ALT, keycode, record);
-    update_oneshot( &os_ralt_state, KC_RALT, OS_ALT, keycode, record);
+    update_oneshot( &os_ralt_state, KC_RALT, OS_RALT, keycode, record);
     update_oneshot( &os_gui_state, KC_LGUI, OS_GUI, keycode, record);
     return true;
 }

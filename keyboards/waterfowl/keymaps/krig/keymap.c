@@ -125,7 +125,7 @@ bool krig_handle_callum_oneshots(uint16_t keycode, keyrecord_t* record) {
     update_oneshot(&os_shft_state, KC_LSFT, OS_SFT, keycode, record);
     update_oneshot(&os_ctrl_state, KC_LCTL, OS_CTL, keycode, record);
     update_oneshot( &os_alt_state, KC_LALT, OS_ALT, keycode, record);
-    update_oneshot( &os_ralt_state, KC_RALT, OS_ALT, keycode, record);
+    update_oneshot( &os_ralt_state, KC_RALT, OS_RALT, keycode, record);
     update_oneshot( &os_gui_state, KC_LGUI, OS_GUI, keycode, record);
     return true;
 }
@@ -208,47 +208,70 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     return false;
 }
 
+static void print_oneshot_state(oneshot_state state, const char* up, const char* down) {
+    switch (state) {
+        case os_up_unqueued:
+            oled_write_P(PSTR("-"), false);
+        break;
+        case os_up_queued:
+            oled_write_P(up, false);
+        break;
+        case os_down_unused:
+            oled_write_P(PSTR("?"), false);
+        break;
+        case os_down_used:
+            oled_write_P(down, false);
+        break;
+    }
+}
+
 bool oled_task_user(void) {
-   if (is_keyboard_master()) {
-       // Host Keyboard Layer Status
-       if (default_layer_state == _QWERTY) {
+    if (is_keyboard_master()) {
+        print_oneshot_state(os_ctrl_state, PSTR("C"), PSTR("c"));
+        print_oneshot_state(os_alt_state, PSTR("A"), PSTR("a"));
+        print_oneshot_state(os_gui_state, PSTR("G"), PSTR("g"));
+        print_oneshot_state(os_shft_state, PSTR("S"), PSTR("s"));
+        print_oneshot_state(os_ralt_state, PSTR("R"), PSTR("r"));
+        oled_write_P(PSTR("\n"), false);
+        // Host Keyboard Layer Status
+        if (layer_state_cmp(default_layer_state, _QWERTY)) {
             oled_write_P(PSTR("qwerty\n"), false);
-        } else if (default_layer_state == _APTV3) {
+        } else if (layer_state_cmp(default_layer_state, _APTV3)) {
             oled_write_P(PSTR("APTv3\n"), false);
-        } else if (default_layer_state == _GAME) {
+        } else if (layer_state_cmp(default_layer_state, _GAME)) {
             oled_write_P(PSTR("uhc\n"), false);
         } else {
             oled_write_P(PSTR("wat\n"), false);
         }
-       oled_write_P(PSTR("\n"), false);
+        oled_write_P(PSTR("\n"), false);
 
-       switch (get_highest_layer(layer_state)) {
-           case _QWERTY:
-           case _APTV3:
-           case _GAME:
-               oled_write_P(PSTR("...\n\n\n"), false);
-               break;
-           case _LANG:
-               oled_write_P(PSTR("lang\n\n\n"), false);
-               break;
-           case _LOWER:
-               oled_write_P(PSTR("lower\n\n\n"), false);
-               break;
-           case _RAISE:
-               oled_write_P(PSTR("raise\n\n\n"), false);
-               break;
-           case _ADJUST:
-               oled_write_P(PSTR("adjust\n\n\n"), false);
-               break;
-           default:
-               oled_write_ln_P(PSTR("unknown\n\n\n"), false);
-            break;
-       }
-       if (is_caps_word_on()) {
-               oled_write_ln_P(PSTR("CAPS!!!\n"), false);
+        switch (get_highest_layer(layer_state)) {
+            case _QWERTY:
+            case _APTV3:
+            case _GAME:
+                oled_write_P(PSTR("...\n\n"), false);
+                break;
+            case _LANG:
+                oled_write_P(PSTR("lang\n\n"), false);
+                break;
+            case _LOWER:
+                oled_write_P(PSTR("lower\n\n"), false);
+                break;
+            case _RAISE:
+                oled_write_P(PSTR("raise\n\n"), false);
+                break;
+            case _ADJUST:
+                oled_write_P(PSTR("adjust\n\n"), false);
+                break;
+            default:
+                oled_write_ln_P(PSTR("unknown\n\n"), false);
+                break;
+        }
+        if (is_caps_word_on()) {
+            oled_write_ln_P(PSTR("CAPS!!!\n"), false);
 
         } else {
-               oled_write_ln_P(PSTR("\n"), false);
+            oled_write_ln_P(PSTR("\n"), false);
 
         }
         return false;

@@ -209,40 +209,42 @@ void caps_word_set_user(bool active) {
 layer_state_t layer_state_set_user(layer_state_t state) {
     state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 
-    ML_LED_1(false);
-    ML_LED_2(false);
-    ML_LED_3(false);
-    ML_LED_4(false);
-    ML_LED_5(false);
+    bool led_1 = false;
+    bool led_2 = false;
+    bool led_3 = false;
+    bool led_4 = false;
+    bool led_5 = false;
 
-    if (default_layer_state == _QWERTY) {
-            ML_LED_1(1);
-    } else if (default_layer_state == _APTV3) {
-            ML_LED_2(1);
-    } else if (default_layer_state == _GAME) {
-            ML_LED_3(1);
+    if (layer_state_cmp(default_layer_state, _QWERTY)) {
+            led_1 = true;
+    } else if (layer_state_cmp(default_layer_state, _APTV3)) {
+            led_2 = true;
+    } else if (layer_state_cmp(default_layer_state, _GAME)) {
+            led_3 = true;
     }
 
     switch (get_highest_layer(state)) {
         case _LOWER:
-            ML_LED_4(1);
+            led_4 = true;
             break;
         case _RAISE:
-            ML_LED_5(1);
+            led_5 = true;
             break;
         case _LANG:
-            ML_LED_1(1);
-            ML_LED_2(1);
-            ML_LED_3(1);
+            led_1 = led_2 = led_3 = true;
             break;
         case _ADJUST:
-            ML_LED_4(1);
-            ML_LED_5(1);
+            led_4 = led_5 = true;
             break;
         default:
             break;
     }
 
+    ML_LED_1(led_1);
+    ML_LED_2(led_2);
+    ML_LED_3(led_3);
+    ML_LED_4(led_4);
+    ML_LED_5(led_5);
     return state;
 }
 
