@@ -23,3 +23,4 @@ enum custom_layers {
 #define DF_GAME  DF(_GAME)
 #define M_LANG LT(_LANG, KC_SLSH)
 
+bool krig_process_default_layers(uint16_t keycode, keyrecord_t* record);

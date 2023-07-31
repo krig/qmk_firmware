@@ -71,23 +71,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     if (!process_custom_keycodes(keycode, record)) {
         return false;
     }
-    switch (keycode) {
-        case DF_QWER:
-            if (record->event.pressed) {
-                set_single_persistent_default_layer(_QWERTY);
-            }
-            return false;
-        case DF_APT:
-            if (record->event.pressed) {
-                set_single_persistent_default_layer(_APTV3);
-            }
-            return false;
-        case DF_GAME:
-            if (record->event.pressed) {
-                set_single_persistent_default_layer(_GAME);
-            }
-            return false;
-    };
+    if (!krig_process_default_layers(keycode, record)) {
+        return false;
+    }
     return true;
 }
 
