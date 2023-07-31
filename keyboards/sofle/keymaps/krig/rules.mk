@@ -9,3 +9,4 @@ RGBLIGHT_ENABLE = no
 
 SRC += features/custom_shift_keys.c
 SRC += features/krig_caps_word.c
+SRC += layer_system.c
