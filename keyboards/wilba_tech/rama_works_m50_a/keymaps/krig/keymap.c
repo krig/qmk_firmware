@@ -14,14 +14,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "krig.h"
-#include "custom_keys.h"
-#include "features/custom_shift_keys.h"
-#include "features/krig_caps_word.h"
-#include "layer_system.h"
-
-const custom_shift_key_t custom_shift_keys[] = {
-};
-uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_key_t);
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
@@ -61,34 +53,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       QK_BOOT, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
     )
 };
-
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    // handle custom shift keys like ./:, ,/; etc.
-    if (!process_custom_shift_keys(keycode, record)) {
-        return false;
-    }
-    // handle sequence keys like ::, && etc.
-    if (!process_custom_keycodes(keycode, record)) {
-        return false;
-    }
-    if (!krig_process_default_layers(keycode, record)) {
-        return false;
-    }
-    return true;
-}
-
-bool caps_word_press_user(uint16_t keycode) {
-    return krig_caps_word_press(keycode);
-}
-
-
-void caps_word_set_user(bool active) {
-    krig_caps_word_set(active);
-}
-
-layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-}
 
 void backlight_set_color( int index, uint8_t red, uint8_t green, uint8_t blue );
 void backlight_set_color_all( uint8_t red, uint8_t green, uint8_t blue );

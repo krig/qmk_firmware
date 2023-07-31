@@ -2,13 +2,25 @@
 
 static bool g_caps_word_last_key_was_space = false;
 
-void krig_caps_word_set(bool active) {
+__attribute__ ((weak))
+void caps_word_set_keymap(bool active) {}
+
+__attribute__ ((weak))
+bool caps_word_press_keymap(uint16_t keycode) {
+    return true;
+}
+
+void caps_word_set_user(bool active) {
+    caps_word_set_keymap(active);
     if (active) {
         g_caps_word_last_key_was_space = false;
     }
 }
 
-bool krig_caps_word_press(uint16_t keycode) {
+bool caps_word_press_user(uint16_t keycode) {
+    if (!caps_word_press_keymap(keycode)) {
+        return false;
+    }
     switch (keycode) {
         // Keycodes that continue Caps Word, without shifting.
         case KC_LEFT:

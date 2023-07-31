@@ -15,16 +15,7 @@
   * along with this program.  If not, see <http://www.gnu.org/licenses/>.
   */
 
-#include "action_layer.h"
 #include "krig.h"
-#include "custom_keys.h"
-#include "features/custom_shift_keys.h"
-#include "features/krig_caps_word.h"
-#include "layer_system.h"
-
-const custom_shift_key_t custom_shift_keys[] = {
-};
-uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_key_t);
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [_QWERTY] = LAYOUT(
@@ -32,21 +23,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
   CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, KC_RALT,
   OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, CW_TOGG,  QK_REP,    KC_N,    KC_M, KC_COMM,  KC_DOT,  M_LANG, KC_RSFT,
-                             KC_LALT, KC_LGUI, M_LOWER,  KC_SPC, SC_SENT, M_RAISE, KC_PGDN, KC_PGUP
+                             KC_LALT, KC_LGUI, M_LOWER,  KC_SPC, SFT_ENT, M_RAISE, KC_PGDN, KC_PGUP
  ),
  [_APTV3] = LAYOUT(
    KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_DEL,
    KC_TAB,    KC_W,    KC_G,    KC_D,    KC_F,    KC_B,                      KC_Q,    KC_L,    KC_U,    KC_O,    KC_Y, KC_BSPC,
   CTL_ESC,    KC_R,    KC_S,    KC_T,    KC_H,    KC_K,                      KC_J,    KC_N,    KC_E,    KC_A,    KC_I, KC_RALT,
   OSM_SFT,    KC_X,    KC_C,    KC_M,    KC_P,    KC_V, CW_TOGG,  QK_REP,    KC_Z, KC_COMM,  KC_DOT, KC_QUOT,  M_LANG, KC_RSFT,
-                             KC_LALT, KC_LGUI, M_LOWER,  KC_SPC, SC_SENT, M_RAISE, KC_PGDN, KC_PGUP
+                             KC_LALT, KC_LGUI, M_LOWER,  KC_SPC, SFT_ENT, M_RAISE, KC_PGDN, KC_PGUP
  ),
  [_GAME] = LAYOUT(
    KC_ESC,  KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_DEL,
    KC_TAB,  KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
   KC_LSFT, KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,                      KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, KC_RALT,
   KC_LCTL, KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V, CW_TOGG,  QK_REP,    KC_N,    KC_M, KC_COMM,  KC_DOT,  M_LANG, KC_RSFT,
-                             KC_LALT, KC_LGUI, M_LOWER,  KC_SPC, SC_SENT, M_RAISE, KC_PGDN, KC_PGUP
+                             KC_LALT, KC_LGUI, M_LOWER,  KC_SPC, SFT_ENT, M_RAISE, KC_PGDN, KC_PGUP
  ),
  [_LANG] = LAYOUT(
   _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
@@ -77,33 +68,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                              _______, _______, _______, _______, _______, _______, _______, _______
  )
 };
-
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    // handle custom shift keys like ./:, ,/; etc.
-    if (!process_custom_shift_keys(keycode, record)) {
-        return false;
-    }
-    // handle sequence keys like ::, && etc.
-    if (!process_custom_keycodes(keycode, record)) {
-        return false;
-    }
-    if (!krig_process_default_layers(keycode, record)) {
-        return false;
-    }
-    return true;
-}
-
-bool caps_word_press_user(uint16_t keycode) {
-    return krig_caps_word_press(keycode);
-}
-
-void caps_word_set_user(bool active) {
-    krig_caps_word_set(active);
-}
-
-layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-}
 
 void oled_render_keylog_r2g(void);
 void oled_render_logo_r2g(void);

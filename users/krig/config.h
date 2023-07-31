@@ -26,3 +26,9 @@
     #define STARTUP_SONG SONG(MINOR_SOUND)
 #endif
 
+/* define these in keyboards to enable various features
+#define KRIG_CUSTOM_SHIFT
+#define KRIG_CUSTOM_LAYERS
+#define KRIG_CUSTOM_SEQUENCES
+#define KRIG_CAPS_WORD
+*/

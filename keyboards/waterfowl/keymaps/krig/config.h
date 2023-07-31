@@ -15,3 +15,8 @@
 // The default is 40
 #define MOUSEKEY_WHEEL_TIME_TO_MAX 100
 
+#define KRIG_34KEY
+#define KRIG_CUSTOM_SHIFT
+#define KRIG_CUSTOM_LAYERS
+#define KRIG_CUSTOM_SEQUENCES
+#define KRIG_CAPS_WORD

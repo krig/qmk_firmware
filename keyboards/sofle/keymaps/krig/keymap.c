@@ -15,17 +15,9 @@
   * along with this program.  If not, see <http://www.gnu.org/licenses/>.
   */
 #include "krig.h"
-#include "custom_keys.h"
-#include "features/custom_shift_keys.h"
-#include "features/krig_caps_word.h"
-#include "layer_system.h"
-
-const custom_shift_key_t custom_shift_keys[] = {
-};
-uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_key_t);
 
 #define KG_NUMROW KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5, /* ----- ----- */    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_DEL,
-#define KG_THUMBROW OS_ALT, OS_CTL, OS_GUI, M_LOWER, KC_SPC, SC_SENT, M_RAISE, OS_GUI, OS_CTL, OS_RALT
+#define KG_THUMBROW OS_ALT, OS_CTL, OS_GUI, M_LOWER, KC_SPC, SFT_ENT, M_RAISE, OS_GUI, OS_CTL, OS_RALT
 #define LAYOUT_wrapper(...)             LAYOUT(__VA_ARGS__)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -161,33 +153,6 @@ bool oled_task_user(void) {
         render_logo();
     }
     return false;
-}
-
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    // handle custom shift keys like ./:, ,/; etc.
-    if (!process_custom_shift_keys(keycode, record)) {
-        return false;
-    }
-    // handle sequence keys like ::, && etc.
-    if (!process_custom_keycodes(keycode, record)) {
-        return false;
-    }
-    if (!krig_process_default_layers(keycode, record)) {
-        return false;
-    }
-    return true;
-}
-
-bool caps_word_press_user(uint16_t keycode) {
-    return krig_caps_word_press(keycode);
-}
-
-void caps_word_set_user(bool active) {
-    krig_caps_word_set(active);
-}
-
-layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
 bool encoder_update_user(uint8_t index, bool clockwise) {

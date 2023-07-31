@@ -1,13 +1,4 @@
 #include "krig.h"
-#include "custom_keys.h"
-#include "features/custom_shift_keys.h"
-#include "features/krig_caps_word.h"
-#include "layer_system.h"
-#include "eeprom.h"
-
-const custom_shift_key_t custom_shift_keys[] = {
-};
-uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_key_t);
 
 #define MOON_LED_LEVEL LED_LEVEL
 
@@ -18,7 +9,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     CTL_ESC, KC_A,     KC_S,    KC_D,    KC_F,    KC_G, KC_UNDS,   SQ_AA,    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
     OSM_SFT, KC_Z,     KC_X,    KC_C,    KC_V,    KC_B,                      KC_N,    KC_M, KC_COMM,  KC_DOT,  M_LANG, KC_RSFT,
     CW_TOGG, CTL_SFT,  KC_LALT, KC_LGUI, M_LOWER,       KC_CIRC,  KC_DLR,          M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,
-                                     KC_SPC, KC_TAB, KC_LGUI,  KC_RGUI,  KC_BSPC,  SC_SENT
+                                     KC_SPC, KC_TAB, KC_LGUI,  KC_RGUI,  KC_BSPC,  SFT_ENT
   ),
   [_APTV3] = LAYOUT_moonlander(
      KC_GRV, KC_1,     KC_2,    KC_3,    KC_4,    KC_5, KC_TILD,   SQ_OE,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_DEL,
@@ -26,7 +17,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     CTL_ESC, KC_R,     KC_S,    KC_T,    KC_H,    KC_K, KC_UNDS,   SQ_AA,    KC_J,    KC_N,    KC_E,    KC_A,    KC_I, CTL_ENT,
     OSM_SFT, KC_X,     KC_C,    KC_M,    KC_P,    KC_V,                      KC_Z, KC_COMM,  KC_DOT,  KC_QUOT, M_LANG, KC_RSFT,
     CW_TOGG, CTL_SFT,  KC_LALT, KC_LGUI, M_LOWER,       KC_CIRC,  KC_DLR,          M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,
-                                     KC_SPC, KC_TAB, KC_LGUI,  KC_RGUI,  KC_BSPC,  SC_SENT
+                                     KC_SPC, KC_TAB, KC_LGUI,  KC_RGUI,  KC_BSPC,  SFT_ENT
   ),
   [_GAME] = LAYOUT_moonlander(
      KC_ESC, KC_GRV,   KC_1,     KC_2,    KC_3,    KC_4,    KC_5,   SQ_OE,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_DEL,
@@ -34,7 +25,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LSFT, KC_LCTL,  KC_A,     KC_S,    KC_D,    KC_F,    KC_G,   SQ_AA,    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
     KC_LCTL, KC_LSFT,  KC_Z,     KC_X,    KC_C,    KC_V,                      KC_N,    KC_M, KC_COMM,  KC_DOT,  M_LANG, KC_RSFT,
     CW_TOGG, CTL_SFT,  KC_LALT, KC_LGUI, M_LOWER,       KC_CIRC,  KC_DLR,          M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,
-                                     KC_SPC, KC_TAB, KC_LGUI,  KC_RGUI,  KC_BSPC,  SC_SENT
+                                     KC_SPC, KC_TAB, KC_LGUI,  KC_RGUI,  KC_BSPC,  SFT_ENT
   ),
   [_LANG] = LAYOUT_moonlander(
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
@@ -151,46 +142,31 @@ bool rgb_matrix_indicators_user(void) {
     return true;
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    // handle custom shift keys like ./:, ,/; etc.
-    if (!process_custom_shift_keys(keycode, record)) {
-        return false;
-    }
-    // handle sequence keys like ::, && etc.
-    if (!process_custom_keycodes(keycode, record)) {
-        return false;
-    }
-    if (!krig_process_default_layers(keycode, record)) {
-        return false;
-    }
-    return true;
-}
-
-bool caps_word_press_user(uint16_t keycode) {
-    return krig_caps_word_press(keycode);
-}
-
-void caps_word_set_user(bool active) {
+void caps_word_set_keymap(bool active) {
     ML_LED_6(active);
-    krig_caps_word_set(active);
 }
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-    state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-
+layer_state_t default_layer_state_set_keymap(layer_state_t state) {
     bool led_1 = false;
     bool led_2 = false;
     bool led_3 = false;
-    bool led_4 = false;
-    bool led_5 = false;
-
-    if (layer_state_cmp(default_layer_state, _QWERTY)) {
+    if (layer_state_cmp(state, _QWERTY)) {
             led_1 = true;
-    } else if (layer_state_cmp(default_layer_state, _APTV3)) {
+    } else if (layer_state_cmp(state, _APTV3)) {
             led_2 = true;
-    } else if (layer_state_cmp(default_layer_state, _GAME)) {
+    } else if (layer_state_cmp(state, _GAME)) {
             led_3 = true;
     }
+    ML_LED_1(led_1);
+    ML_LED_2(led_2);
+    ML_LED_3(led_3);
+    return state;
+}
+
+layer_state_t layer_state_set_keymap(layer_state_t state) {
+    bool led_4 = false;
+    bool led_5 = false;
+    bool led_6 = is_caps_word_on();
 
     switch (get_highest_layer(state)) {
         case _LOWER:
@@ -200,7 +176,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             led_5 = true;
             break;
         case _LANG:
-            led_1 = led_2 = led_3 = true;
+            led_4 = led_5 = led_6 = true;
             break;
         case _ADJUST:
             led_4 = led_5 = true;
@@ -209,11 +185,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             break;
     }
 
-    ML_LED_1(led_1);
-    ML_LED_2(led_2);
-    ML_LED_3(led_3);
     ML_LED_4(led_4);
     ML_LED_5(led_5);
+    ML_LED_6(led_6);
     return state;
 }
 

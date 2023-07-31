@@ -1,6 +1,28 @@
 #include "krig.h"
 
-bool process_custom_keycodes(uint16_t keycode, keyrecord_t* record) {
+#ifdef KRIG_CUSTOM_SHIFT
+#include "features/custom_shift_keys.h"
+const custom_shift_key_t custom_shift_keys[] = {
+};
+uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_key_t);
+#endif
+
+__attribute__ ((weak))
+bool process_record_keymap(uint16_t keycode, keyrecord_t* record) {
+    return true;
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+    if (!process_record_keymap(keycode, record)) {
+        return false;
+    }
+    #ifdef KRIG_CUSTOM_SHIFT
+    // handle custom shift keys like ./:, ,/; etc.
+    if (!process_custom_shift_keys(keycode, record)) {
+        return false;
+    }
+    #endif
+    #ifdef KRIG_CUSTOM_SEQUENCES
     switch (keycode) {
         case SQ_COLN:
             if (record->event.pressed) {
@@ -58,5 +80,32 @@ bool process_custom_keycodes(uint16_t keycode, keyrecord_t* record) {
             }
             return false;
     }
+    #endif
+    #ifdef KRIG_CUSTOM_LAYERS
+    if (!krig_process_default_layers(keycode, record)) {
+        return false;
+    }
+    #endif
     return true;
 }
+
+#ifdef KRIG_CUSTOM_LAYERS
+__attribute__ ((weak))
+layer_state_t layer_state_set_keymap (layer_state_t state) {
+  return state;
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    return layer_state_set_keymap(state);
+}
+
+__attribute__ ((weak))
+layer_state_t default_layer_state_set_keymap (layer_state_t state) {
+  return state;
+}
+
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+    return default_layer_state_set_keymap(state);
+}
+#endif

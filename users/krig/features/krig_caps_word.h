@@ -14,5 +14,5 @@
  * }
  */
 
-void krig_caps_word_set(bool active);
-bool krig_caps_word_press(uint16_t keycode);
+void caps_word_set_krig(bool active);
+bool caps_word_press_krig(uint16_t keycode);

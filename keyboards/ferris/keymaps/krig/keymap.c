@@ -4,36 +4,27 @@
  */
 
 #include "krig.h"
-#include "custom_keys.h"
-#include "features/custom_shift_keys.h"
-#include "features/krig_caps_word.h"
 #include "features/oneshot.h"
 #include "features/swapper.h"
-#define KRIG_34KEY
-#include "layer_system.h"
-
-const custom_shift_key_t custom_shift_keys[] = {
-};
-uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_key_t);
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT(
         KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
         KC_A,    KC_S,    KC_D,    KC_F,    KC_G,     KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT,
         KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,     KC_N,    KC_M, KC_COMM,  KC_DOT,  M_LANG,
-                                M_LOWER,  KC_SPC,  SC_SENT, M_RAISE
+                                M_LOWER,  KC_SPC,  SFT_ENT, M_RAISE
   ),
   [_APTV3] = LAYOUT(
         KC_W,    KC_G,    KC_D,    KC_F,    KC_B,     KC_Q,    KC_L,    KC_U,    KC_O,    KC_Y,
         KC_R,    KC_S,    KC_T,    KC_H,    KC_K,     KC_J,    KC_N,    KC_E,    KC_A,    KC_I,
         KC_X,    KC_C,    KC_M,    KC_P,    KC_V,     KC_Z, KC_COMM,  KC_DOT, KC_QUOT,  M_LANG,
-                                M_LOWER,  KC_SPC,  SC_SENT, M_RAISE
+                                M_LOWER,  KC_SPC,  SFT_ENT, M_RAISE
   ),
   [_GAME] = LAYOUT(
       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
      KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,     KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT,
      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,     KC_N,    KC_M, KC_COMM,  KC_DOT,  M_LANG,
-                                M_LOWER,  KC_SPC,  SC_SENT, M_RAISE
+                                M_LOWER,  KC_SPC,  SFT_ENT, M_RAISE
   ),
   [_LANG] = LAYOUT(
      _______, _______, _______, _______, _______,  _______, _______, _______, _______, _______,
@@ -75,7 +66,7 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
     case M_LOWER:
     case M_RAISE:
-    case SC_SENT:
+    case SFT_ENT:
     case OS_SFT:
     case OS_CTL:
     case OS_ALT:
@@ -95,7 +86,9 @@ static oneshot_state os_gui_state = os_up_unqueued;
 static bool cmd_tab_active = false;
 static bool cmd_grv_active = false;
 
-bool krig_handle_callum_oneshots(uint16_t keycode, keyrecord_t* record) {
+bool process_record_keymap(uint16_t keycode, keyrecord_t* record) {
+    update_swapper(&cmd_tab_active, KC_LGUI, KC_TAB, CMD_TAB, keycode, record);
+    update_swapper(&cmd_grv_active, KC_LGUI, KC_GRV, CMD_GRV, keycode, record);
     update_oneshot(&os_shft_state, KC_LSFT, OS_SFT, keycode, record);
     update_oneshot(&os_ctrl_state, KC_LCTL, OS_CTL, keycode, record);
     update_oneshot( &os_alt_state, KC_LALT, OS_ALT, keycode, record);
@@ -104,36 +97,3 @@ bool krig_handle_callum_oneshots(uint16_t keycode, keyrecord_t* record) {
     return true;
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    // handle cmd+tab key
-    update_swapper(&cmd_tab_active, KC_LGUI, KC_TAB, CMD_TAB, keycode, record);
-    update_swapper(&cmd_grv_active, KC_LGUI, KC_GRV, CMD_GRV, keycode, record);
-    // handle one shot mods
-    if (!krig_handle_callum_oneshots(keycode, record)) {
-        return false;
-    }
-    // handle custom shift keys like ./:, ,/; etc.
-    if (!process_custom_shift_keys(keycode, record)) {
-        return false;
-    }
-    // handle sequence keys like ::, && etc.
-    if (!process_custom_keycodes(keycode, record)) {
-        return false;
-    }
-    if (!krig_process_default_layers(keycode, record)) {
-        return false;
-    }
-    return true;
-}
-
-bool caps_word_press_user(uint16_t keycode) {
-    return krig_caps_word_press(keycode);
-}
-
-void caps_word_set_user(bool active) {
-    krig_caps_word_set(active);
-}
-
-layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-}

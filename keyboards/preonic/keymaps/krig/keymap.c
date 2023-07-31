@@ -7,14 +7,6 @@
  */
 
 #include "krig.h"
-#include "custom_keys.h"
-#include "features/custom_shift_keys.h"
-#include "features/krig_caps_word.h"
-#include "layer_system.h"
-
-const custom_shift_key_t custom_shift_keys[] = {
-};
-uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_key_t);
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_preonic_grid(
@@ -93,36 +85,12 @@ void keyboard_post_init_user(void) {
     rgblight_layers = lightlayers;
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    // handle custom shift keys like ./:, ,/; etc.
-    if (!process_custom_shift_keys(keycode, record)) {
-        return false;
-    }
-    // handle sequence keys like ::, && etc.
-    if (!process_custom_keycodes(keycode, record)) {
-        return false;
-    }
-
-    if (!krig_process_default_layers(keycode, record)) {
-        return false;
-    }
-
-    return true;
-}
-
-
 #ifdef AUDIO_ENABLE
 float caps_word_on_song[][2] = SONG(CAPS_LOCK_ON_SOUND);
 float caps_word_off_song[][2] = SONG(CAPS_LOCK_OFF_SOUND);
 #endif
 
-bool caps_word_press_user(uint16_t keycode) {
-    return krig_caps_word_press(keycode);
-}
-
-
-void caps_word_set_user(bool active) {
-    krig_caps_word_set(active);
+void caps_word_set_keymap(bool active) {
     rgblight_set_layer_state(_ADJUST+1, active);
     #ifdef AUDIO_ENABLE
     if (active) {
@@ -133,16 +101,17 @@ void caps_word_set_user(bool active) {
     #endif
 }
 
-layer_state_t default_layer_state_set_user(layer_state_t state) {
+layer_state_t default_layer_state_set_keymap(layer_state_t state) {
     for (int i = 0; i <= _GAME; ++i) {
         rgblight_set_layer_state(i, layer_state_cmp(state, i));
     }
     return state;
 }
 
-layer_state_t layer_state_set_user(layer_state_t state) {
+layer_state_t layer_state_set_keymap(layer_state_t state) {
+    state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
     for (int i = 0; i <= _ADJUST; ++i) {
         rgblight_set_layer_state(i, layer_state_cmp(state, i));
     }
-    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    return state;
 }
