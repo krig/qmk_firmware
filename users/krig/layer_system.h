@@ -4,10 +4,16 @@ enum custom_layers {
     _QWERTY,
     _APTV3,
     _GAME,
+#ifdef KRIG_EXTRA_DEFAULT_LAYERS
+    KRIG_EXTRA_DEFAULT_LAYERS
+#endif
     _LANG,
     _LOWER,
     _RAISE,
     _ADJUST,
+#ifdef KRIG_EXTRA_LAYERS
+    KRIG_EXTRA_LAYERS
+#endif
 };
 
 #ifdef KRIG_34KEY
@@ -24,3 +30,4 @@ enum custom_layers {
 #define M_LANG LT(_LANG, KC_SLSH)
 
 bool krig_process_default_layers(uint16_t keycode, keyrecord_t* record);
+

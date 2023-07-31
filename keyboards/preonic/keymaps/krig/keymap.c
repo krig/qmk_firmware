@@ -8,6 +8,8 @@
 
 #include "krig.h"
 
+#define DF_MMAK DF(_MIDDLEMAK)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_preonic_grid(
        KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_DEL,
@@ -55,9 +57,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       DF_QWER,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
        DF_APT, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  KC_INS,
       DF_GAME, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      DF_MMAK, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
-    )
+    ),
+    [_MIDDLEMAK] = LAYOUT_preonic_grid(
+       KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_DEL,
+       KC_TAB,    KC_Q,    KC_W,    KC_L,    KC_D,    KC_G,    KC_K,    KC_F,    KC_O,    KC_U, KC_QUOT, KC_BSPC,
+      CTL_ESC,    KC_N,    KC_S,    KC_R,    KC_T,    KC_P,    KC_Y,    KC_H,    KC_E,    KC_I,    KC_A, CTL_ENT,
+      OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_J,    KC_M, KC_COMM,  KC_DOT,  M_LANG, KC_RSFT,
+      CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, M_LOWER,  KC_SPC,  KC_SPC, M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+    ),
 };
 
 
@@ -68,6 +77,7 @@ const rgblight_segment_t PROGMEM lightlayer_3[] = RGBLIGHT_LAYER_SEGMENTS({0, 1,
 const rgblight_segment_t PROGMEM lightlayer_4[] = RGBLIGHT_LAYER_SEGMENTS({0, 4, HSV_MAGENTA});
 const rgblight_segment_t PROGMEM lightlayer_5[] = RGBLIGHT_LAYER_SEGMENTS({RGBLED_NUM-4, 4, HSV_AZURE});
 const rgblight_segment_t PROGMEM lightlayer_6[] = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_ORANGE});
+const rgblight_segment_t PROGMEM lightlayer_7[] = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_PINK});
 const rgblight_segment_t PROGMEM lightlayer_capsword[] = RGBLIGHT_LAYER_SEGMENTS({0, 2, HSV_RED}, {RGBLED_NUM-2, 2,});
 
 const rgblight_segment_t* const PROGMEM lightlayers[] = RGBLIGHT_LAYERS_LIST(
@@ -78,6 +88,7 @@ const rgblight_segment_t* const PROGMEM lightlayers[] = RGBLIGHT_LAYERS_LIST(
     lightlayer_4,
     lightlayer_5,
     lightlayer_6,
+    lightlayer_7,
     lightlayer_capsword
 );
 
@@ -91,7 +102,7 @@ float caps_word_off_song[][2] = SONG(CAPS_LOCK_OFF_SOUND);
 #endif
 
 void caps_word_set_keymap(bool active) {
-    rgblight_set_layer_state(_ADJUST+1, active);
+    rgblight_set_layer_state(_CAPSWORD, active);
     #ifdef AUDIO_ENABLE
     if (active) {
         PLAY_SONG(caps_word_on_song);
@@ -101,16 +112,28 @@ void caps_word_set_keymap(bool active) {
     #endif
 }
 
+bool process_record_keymap(uint16_t keycode, keyrecord_t* record) {
+    switch (keycode) {
+        case DF_MMAK:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_MIDDLEMAK);
+            }
+            return false;
+    };
+    return true;
+}
+
 layer_state_t default_layer_state_set_keymap(layer_state_t state) {
     for (int i = 0; i <= _GAME; ++i) {
         rgblight_set_layer_state(i, layer_state_cmp(state, i));
     }
+    rgblight_set_layer_state(_MIDDLEMAK, layer_state_cmp(state, _MIDDLEMAK));
     return state;
 }
 
 layer_state_t layer_state_set_keymap(layer_state_t state) {
     state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-    for (int i = 0; i <= _ADJUST; ++i) {
+    for (int i = _LANG; i <= _ADJUST; ++i) {
         rgblight_set_layer_state(i, layer_state_cmp(state, i));
     }
     return state;
