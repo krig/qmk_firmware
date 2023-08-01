@@ -29,3 +29,15 @@ bool is_oneshot_cancel_key(uint16_t keycode);
 // change keys allows stacking multiple oneshot modifiers, and carrying them
 // between layers.
 bool is_oneshot_ignored_key(uint16_t keycode);
+
+// krig: added
+typedef struct {
+    oneshot_state ctrl;
+    oneshot_state alt;
+    oneshot_state gui;
+    oneshot_state shift;
+    oneshot_state r_alt;
+} oneshot_context;
+
+void process_record_oneshot(oneshot_context* ctx, uint16_t keycode, keyrecord_t* record);
+

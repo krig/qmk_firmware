@@ -1,3 +1,4 @@
+#include "krig.h"
 #include "oneshot.h"
 
 void update_oneshot(
@@ -55,3 +56,39 @@ void update_oneshot(
         }
     }
 }
+
+void process_record_oneshot(oneshot_context* ctx, uint16_t keycode, keyrecord_t* record)
+{
+    update_oneshot(&(ctx->shift), KC_LSFT, OS_SFT, keycode, record);
+    update_oneshot(&(ctx->ctrl), KC_LCTL, OS_CTL, keycode, record);
+    update_oneshot(&(ctx->alt), KC_LALT, OS_ALT, keycode, record);
+    update_oneshot(&(ctx->r_alt), KC_RALT, OS_RALT, keycode, record);
+    update_oneshot(&(ctx->gui), KC_LGUI, OS_GUI, keycode, record);
+}
+
+bool is_oneshot_cancel_key(uint16_t keycode) {
+    switch (keycode) {
+    case M_LOWER:
+    case M_RAISE:
+        return true;
+    default:
+        return false;
+    }
+}
+
+bool is_oneshot_ignored_key(uint16_t keycode) {
+    switch (keycode) {
+    case M_LOWER:
+    case M_RAISE:
+    case SFT_ENT:
+    case OS_SFT:
+    case OS_CTL:
+    case OS_ALT:
+    case OS_RALT:
+    case OS_GUI:
+        return true;
+    default:
+        return false;
+    }
+}
+

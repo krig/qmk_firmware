@@ -25,3 +25,12 @@ void update_swapper(
     }
 }
 
+#include "krig.h"
+
+static bool cmd_tab_active = false;
+static bool cmd_grv_active = false;
+
+void process_record_swapper(uint16_t keycode, keyrecord_t* record) {
+    update_swapper(&cmd_tab_active, KC_LGUI, KC_TAB, CMD_TAB, keycode, record);
+    update_swapper(&cmd_grv_active, KC_LGUI, KC_GRV, CMD_GRV, keycode, record);
+}

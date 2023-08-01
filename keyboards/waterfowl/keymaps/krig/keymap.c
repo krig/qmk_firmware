@@ -65,48 +65,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-bool is_oneshot_cancel_key(uint16_t keycode) {
-    switch (keycode) {
-    case M_LOWER:
-    case M_RAISE:
-        return true;
-    default:
-        return false;
-    }
-}
-
-bool is_oneshot_ignored_key(uint16_t keycode) {
-    switch (keycode) {
-    case M_LOWER:
-    case M_RAISE:
-    case SFT_ENT:
-    case OS_SFT:
-    case OS_CTL:
-    case OS_ALT:
-    case OS_RALT:
-    case OS_GUI:
-        return true;
-    default:
-        return false;
-    }
-}
-
-static oneshot_state os_shft_state = os_up_unqueued;
-static oneshot_state os_ctrl_state = os_up_unqueued;
-static oneshot_state os_alt_state = os_up_unqueued;
-static oneshot_state os_ralt_state = os_up_unqueued;
-static oneshot_state os_gui_state = os_up_unqueued;
-static bool cmd_tab_active = false;
-static bool cmd_grv_active = false;
+static oneshot_context os_ctx;
 
 bool process_record_keymap(uint16_t keycode, keyrecord_t* record) {
-    update_swapper(&cmd_tab_active, KC_LGUI, KC_TAB, CMD_TAB, keycode, record);
-    update_swapper(&cmd_grv_active, KC_LGUI, KC_GRV, CMD_GRV, keycode, record);
-    update_oneshot(&os_shft_state, KC_LSFT, OS_SFT, keycode, record);
-    update_oneshot(&os_ctrl_state, KC_LCTL, OS_CTL, keycode, record);
-    update_oneshot( &os_alt_state, KC_LALT, OS_ALT, keycode, record);
-    update_oneshot( &os_ralt_state, KC_RALT, OS_RALT, keycode, record);
-    update_oneshot( &os_gui_state, KC_LGUI, OS_GUI, keycode, record);
+    process_record_swapper(keycode, record);
+    process_record_oneshot(&os_ctx, keycode, record);
     return true;
 }
 
@@ -159,11 +122,11 @@ static void print_oneshot_state(oneshot_state state, const char* up, const char*
 
 bool oled_task_user(void) {
     if (is_keyboard_master()) {
-        print_oneshot_state(os_ctrl_state, PSTR("C"), PSTR("c"));
-        print_oneshot_state(os_alt_state, PSTR("A"), PSTR("a"));
-        print_oneshot_state(os_gui_state, PSTR("G"), PSTR("g"));
-        print_oneshot_state(os_shft_state, PSTR("S"), PSTR("s"));
-        print_oneshot_state(os_ralt_state, PSTR("R"), PSTR("r"));
+        print_oneshot_state(os_ctx.ctrl, PSTR("C"), PSTR("c"));
+        print_oneshot_state(os_ctx.alt, PSTR("A"), PSTR("a"));
+        print_oneshot_state(os_ctx.gui, PSTR("G"), PSTR("g"));
+        print_oneshot_state(os_ctx.shift, PSTR("S"), PSTR("s"));
+        print_oneshot_state(os_ctx.r_alt, PSTR("R"), PSTR("r"));
         oled_write_P(PSTR("\n"), false);
         // Host Keyboard Layer Status
         if (layer_state_cmp(default_layer_state, _QWERTY)) {

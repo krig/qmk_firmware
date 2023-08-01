@@ -18,3 +18,5 @@ void update_swapper(
     uint16_t keycode,
     keyrecord_t *record
 );
+
+void process_record_swapper(uint16_t keycode, keyrecord_t* record);
