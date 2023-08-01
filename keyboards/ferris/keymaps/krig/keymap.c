@@ -7,18 +7,20 @@
 #include "features/oneshot.h"
 #include "features/swapper.h"
 
+#define LAYOUT_wrapper(...)             LAYOUT(__VA_ARGS__)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_QWERTY] = LAYOUT(
-        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
-        KC_A,    KC_S,    KC_D,    KC_F,    KC_G,     KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT,
-        KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,     KC_N,    KC_M, KC_COMM,  KC_DOT,  M_LANG,
-                                M_LOWER,  KC_SPC,  SFT_ENT, M_RAISE
+  [_QWERTY] = LAYOUT_wrapper(
+        QWERTY_L1, QWERTY_R1,
+        QWERTY_L2, QWERTY_R2,
+        QWERTY_L3, QWERTY_R3,
+        M_LOWER,  KC_SPC,  SFT_ENT, M_RAISE
   ),
-  [_APTV3] = LAYOUT(
-        KC_W,    KC_G,    KC_D,    KC_F,    KC_B,     KC_Q,    KC_L,    KC_U,    KC_O,    KC_Y,
-        KC_R,    KC_S,    KC_T,    KC_H,    KC_K,     KC_J,    KC_N,    KC_E,    KC_A,    KC_I,
-        KC_X,    KC_C,    KC_M,    KC_P,    KC_V,     KC_Z, KC_COMM,  KC_DOT, KC_QUOT,  M_LANG,
-                                M_LOWER,  KC_SPC,  SFT_ENT, M_RAISE
+  [_ALTERN] = LAYOUT_wrapper(
+        ALTERN_L1, ALTERN_R1,
+        ALTERN_L2, ALTERN_R2,
+        ALTERN_L3, ALTERN_R3,
+        M_LOWER,  KC_SPC,  SFT_ENT, M_RAISE
   ),
   [_GAME] = LAYOUT(
       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
@@ -46,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_ADJUST] = LAYOUT(
      _______,    KC_1,    KC_2,    KC_3, DF_QWER,  _______,   KC_F1,   KC_F2,   KC_F3, _______,
-        KC_0,    KC_4,    KC_5,    KC_6,  DF_APT,  _______,   KC_F4,   KC_F5,   KC_F6,  KC_F10,
+        KC_0,    KC_4,    KC_5,    KC_6, DF_ALTR,  _______,   KC_F4,   KC_F5,   KC_F6,  KC_F10,
      _______,    KC_7,    KC_8,    KC_9, DF_GAME,  _______,   KC_F7,   KC_F8,   KC_F9, _______,
                                 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
   )

@@ -15,17 +15,19 @@
  */
 #include "krig.h"
 
+#define LAYOUT_wrapper(...)             LAYOUT(__VA_ARGS__)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_QWERTY] = LAYOUT(
-       WS_ALL,  KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
-      WS_NEXT, CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
-      WS_PREV, OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT,  M_LANG, KC_RSFT,
+    [_QWERTY] = LAYOUT_wrapper(
+       WS_ALL,  KC_TAB,    QWERTY_L1,    QWERTY_R1, KC_BSPC,
+      WS_NEXT, CTL_ESC,    QWERTY_L2,    QWERTY_R2, CTL_ENT,
+      WS_PREV, OSM_SFT,    QWERTY_L3,    QWERTY_R3, KC_RSFT,
        QK_REP, CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, M_LOWER,  KC_SPC,          M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
-    [_APTV3] = LAYOUT(
-       WS_ALL,  KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
-      WS_NEXT, CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
-      WS_PREV, OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT,  M_LANG, KC_RSFT,
+    [_ALTERN] = LAYOUT_wrapper(
+       WS_ALL,  KC_TAB,    ALTERN_L1,    ALTERN_R1, KC_BSPC,
+      WS_NEXT, CTL_ESC,    ALTERN_L2,    ALTERN_R2, CTL_ENT,
+      WS_PREV, OSM_SFT,    ALTERN_L3,    ALTERN_R3, KC_RSFT,
        QK_REP, CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, M_LOWER,  KC_SPC,          M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_GAME] = LAYOUT(
@@ -47,10 +49,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
     ),
     [_ADJUST] = LAYOUT(
-      _______, _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      QK_BOOT, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
+      DF_QWER, _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+      DF_ALTR, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      DF_GAME, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, QK_BOOT
     )
 };
 

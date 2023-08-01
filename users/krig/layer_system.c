@@ -8,16 +8,12 @@ bool krig_process_default_layers(uint16_t keycode, keyrecord_t* record) {
                 set_single_persistent_default_layer(_QWERTY);
             }
             return false;
-        case DF_APT:
+        case DF_ALTR:
             if (record->event.pressed) {
-                set_single_persistent_default_layer(_APTV3);
+                set_single_persistent_default_layer(_ALTERN);
             }
             return false;
-        case DF_GAME:
-            if (record->event.pressed) {
-                set_single_persistent_default_layer(_GAME);
-            }
-            return false;
+        // don't persist gaming layer
     };
     return true;
 }

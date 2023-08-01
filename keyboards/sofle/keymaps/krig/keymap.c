@@ -23,16 +23,16 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = LAYOUT_wrapper(
   KG_NUMROW
-   KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T, /* ----- ----- */    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
-  CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G, /* ----- ----- */    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
-  OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_MUTE, KC_MPLY,    KC_N,    KC_M, KC_COMM,  KC_DOT,  M_LANG, KC_RSFT,
+   KC_TAB,    QWERTY_L1, /* ----- ----- */    QWERTY_R1, KC_BSPC,
+  CTL_ESC,    QWERTY_L2, /* ----- ----- */    QWERTY_R2, CTL_ENT,
+  OSM_SFT,    QWERTY_L3, KC_MUTE, KC_MPLY,    QWERTY_R3, KC_RSFT,
   KG_THUMBROW
 ),
-[_APTV3] = LAYOUT_wrapper(
+[_ALTERN] = LAYOUT_wrapper(
   KG_NUMROW
-   KC_TAB,    KC_W,    KC_C,    KC_D,    KC_F,    KC_B, /* ----- ----- */    KC_Q,    KC_L,    KC_U,    KC_O,    KC_Y, KC_BSPC,
-  CTL_ESC,    KC_R,    KC_S,    KC_T,    KC_H,    KC_K, /* ----- ----- */    KC_J,    KC_N,    KC_E,    KC_A,    KC_I, CTL_ENT,
-  OSM_SFT,    KC_X,    KC_C,    KC_M,    KC_P,    KC_V, KC_MUTE, KC_MPLY,    KC_Z, KC_COMM,  KC_DOT, KC_QUOT,  M_LANG, KC_RSFT,
+   KC_TAB,    ALTERN_L1, /* ----- ----- */    ALTERN_R1, KC_BSPC,
+  CTL_ESC,    ALTERN_L2, /* ----- ----- */    ALTERN_R2, CTL_ENT,
+  OSM_SFT,    ALTERN_L3, KC_MUTE, KC_MPLY,    ALTERN_R3, KC_RSFT,
   KG_THUMBROW
 ),
 [_GAME] = LAYOUT_wrapper(
@@ -65,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 [_ADJUST] = LAYOUT(
   DF_QWER,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
-   DF_APT, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______,  KC_INS,
+  DF_ALTR, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______,  KC_INS,
   DF_GAME, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
                     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
@@ -99,8 +99,8 @@ static void print_status_narrow(void) {
          case _QWERTY:
              oled_write_P(PSTR("qwrty"), false);
              break;
-         case _APTV3:
-             oled_write_P(PSTR("APTv3"), false);
+         case _ALTERN:
+             oled_write_P(PSTR("alter"), false);
              break;
          case _GAME:
              oled_write_P(PSTR("GAME!"), false);
@@ -116,7 +116,7 @@ static void print_status_narrow(void) {
      oled_set_cursor(0, 7);
      switch (get_highest_layer(layer_state)) {
          case _QWERTY:
-         case _APTV3:
+         case _ALTERN:
          case _GAME:
              oled_write_P(PSTR("....."), false);
              break;
