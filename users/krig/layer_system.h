@@ -27,8 +27,6 @@ enum custom_layers {
 #define DF_QWER  DF(_QWERTY)
 #define DF_ALTR  DF(_ALTERN)
 #define DF_GAME  DF(_GAME)
-#define M_LANG LT(_LANG, KC_SLSH)
-#define M_LANG2 LT(_LANG, KC_DOT)
 
 bool krig_process_default_layers(uint16_t keycode, keyrecord_t* record);
 
