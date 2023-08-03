@@ -42,8 +42,8 @@ bool krig_process_default_layers(uint16_t keycode, keyrecord_t* record);
 
 // alternative keyboard layouts, only include one
 //#include "layout/middlemaknh.h"
-#include "layout/middlemakmodkg.h"
+/* #include "layout/middlemakmodkg.h" */
 //#include "layout/handsref.h"
-//#include "layout/aptv3.h"
+#include "layout/aptv3.h"
 //#include "layout/colemakdh.h"
 
