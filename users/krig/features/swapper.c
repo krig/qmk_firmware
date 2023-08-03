@@ -1,6 +1,6 @@
 #include "swapper.h"
 
-void update_swapper(
+bool update_swapper(
     bool *active,
     uint16_t cmdish,
     uint16_t tabish,
@@ -24,11 +24,13 @@ void update_swapper(
     } else if (*active) {
         if (keycode == trigger_alt && record->event.pressed) {
             register_code(tabish_alt);
+            return false;
         } else {
             unregister_code(cmdish);
             *active = false;
         }
     }
+    return true;
 }
 
 #include "krig.h"

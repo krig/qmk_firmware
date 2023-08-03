@@ -68,8 +68,10 @@ void process_record_oneshot(oneshot_context* ctx, uint16_t keycode, keyrecord_t*
 
 bool is_oneshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
-    case M_LOWER:
-    case M_RAISE:
+    case THUMB_L1:
+    case THUMB_L2:
+    case THUMB_R1:
+    case THUMB_R2:
         return true;
     default:
         return false;
@@ -78,9 +80,10 @@ bool is_oneshot_cancel_key(uint16_t keycode) {
 
 bool is_oneshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
-    case M_LOWER:
-    case M_RAISE:
-    case SFT_ENT:
+    case THUMB_L1:
+    case THUMB_L2:
+    case THUMB_R1:
+    case THUMB_R2:
     case OS_SFT:
     case OS_CTL:
     case OS_ALT:
