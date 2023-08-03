@@ -17,8 +17,8 @@ enum custom_layers {
 };
 
 #ifdef KRIG_34KEY
-#define M_LOWER LT(_LOWER, KC_ESC)
-#define M_RAISE LT(_RAISE, KC_BSPC)
+#define M_LOWER LT(_LOWER, KC_TAB)
+#define M_RAISE LT(_RAISE, KC_ENT)
 #else
 #define M_LOWER MO(_LOWER)
 #define M_RAISE MO(_RAISE)

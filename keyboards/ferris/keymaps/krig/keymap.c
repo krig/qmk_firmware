@@ -8,25 +8,29 @@
 #include "features/swapper.h"
 
 #define LAYOUT_wrapper(...)             LAYOUT(__VA_ARGS__)
+#define CTL_W LCTL(KC_W)
+#define CTL_U LCTL(KC_U)
+#define CTL_D LCTL(KC_D)
+#define SFTBSPC LSFT_T(KC_BSPC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_wrapper(
         QWERTY_L1, QWERTY_R1,
         QWERTY_L2, QWERTY_R2,
         QWERTY_L3, QWERTY_R3,
-        M_LOWER,  KC_SPC,  SFT_ENT, M_RAISE
+        M_LOWER,  KC_SPC,  SFTBSPC, M_RAISE
   ),
   [_ALTERN] = LAYOUT_wrapper(
         ALTERN_L1, ALTERN_R1,
         ALTERN_L2, ALTERN_R2,
         ALTERN_L3, ALTERN_R3,
-        M_LOWER,  KC_SPC,  SFT_ENT, M_RAISE
+        M_LOWER,  KC_SPC,  SFTBSPC, M_RAISE
   ),
   [_GAME] = LAYOUT(
       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
      KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,     KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT,
-     KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,     KC_N,    KC_M, KC_COMM,  KC_DOT,  M_LANG,
-                                M_LOWER,  KC_SPC,  SFT_ENT, M_RAISE
+     KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,     KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,
+                                M_LOWER,  KC_SPC,  SFTBSPC, M_RAISE
   ),
   [_LANG] = LAYOUT(
      _______, _______, _______, _______, _______,  _______, _______, _______, _______, _______,
@@ -35,9 +39,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS
   ),
   [_LOWER] = LAYOUT(
-     _______, CW_TOGG, CMD_GRV, CMD_TAB, _______,   KC_INS, KC_PGDN,   KC_UP, KC_PGUP,  KC_DEL,
-      OS_CTL,  OS_ALT,  OS_GUI,  OS_SFT, OS_RALT,  KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT,  KC_END,
-      GUI__Z,  GUI__X,  GUI__C,  KC_TAB,  GUI__V,  _______, _______, _______, _______, _______,
+      KC_ESC, CW_TOGG, CMD_GRV, CMD_TAB,   CTL_W,   KC_INS, KC_PGDN,   KC_UP, KC_PGUP,  KC_DEL,
+      OS_ALT,  OS_CTL,  OS_GUI,  OS_SFT, OS_RALT,  KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT,  KC_END,
+      GUI__Z,  GUI__X,  GUI__C,  GUI__V, _______,  _______,   CTL_U,   CTL_D, ZOOM_IN, ZOOM_UT,
                                KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS
   ),
   [_RAISE] = LAYOUT(

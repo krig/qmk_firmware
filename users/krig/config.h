@@ -19,6 +19,8 @@
 
 #undef TAPPING_TOGGLE
 #define TAPPING_TOGGLE 1
+#undef TAPPING_TERM
+#define TAPPING_TERM 150
 #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 
 #ifdef AUDIO_ENABLE
@@ -26,7 +28,7 @@
     #define STARTUP_SONG SONG(MINOR_SOUND)
 #endif
 
-/* define these in keyboards to enable various features
+/*
 #define KRIG_CUSTOM_SHIFT
 #define KRIG_CUSTOM_LAYERS
 #define KRIG_CUSTOM_SEQUENCES
