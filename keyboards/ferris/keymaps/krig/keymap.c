@@ -39,9 +39,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS
   ),
   [_LOWER] = LAYOUT(
-      KC_ESC, CW_TOGG, CMD_GRV, CMD_TAB,   CTL_W,   KC_INS, KC_PGDN,   KC_UP, KC_PGUP,  KC_DEL,
+      KC_TAB, CW_TOGG, CMD_GRV, CMD_TAB,   CTL_W,   KC_INS, KC_PGDN,   KC_UP, KC_PGUP,  KC_DEL,
       OS_ALT,  OS_CTL,  OS_GUI,  OS_SFT, OS_RALT,  KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT,  KC_END,
-      GUI__Z,  GUI__X,  GUI__C,  GUI__V, _______,  _______,   CTL_U,   CTL_D, ZOOM_IN, ZOOM_UT,
+      GUI__Z,  GUI__X,  GUI__C,  GUI__V, _______,  _______,   CTL_D,   CTL_U, ZOOM_IN, ZOOM_UT,
                                KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS
   ),
   [_RAISE] = LAYOUT(
