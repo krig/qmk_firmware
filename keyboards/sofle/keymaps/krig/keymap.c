@@ -16,20 +16,19 @@
   */
 #include "krig.h"
 
-#define KG_NUMROW KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5, /* ----- ----- */    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_DEL,
-#define KG_THUMBROW OS_ALT, OS_CTL, OS_GUI, M_LOWER, KC_SPC, SFT_ENT, M_RAISE, OS_GUI, OS_CTL, OS_RALT
+#define KG_THUMBROW OS_ALT, OS_CTL, OS_GUI, THUMB_L2, THUMB_L1, THUMB_R1, THUMB_R2, OS_GUI, OS_CTL, OS_RALT
 #define LAYOUT_wrapper(...)             LAYOUT(__VA_ARGS__)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = LAYOUT_wrapper(
-  KG_NUMROW
+       KC_GRV,     NUMROW_L,     NUMROW_R,  KC_DEL,
    KC_TAB,    QWERTY_L1, /* ----- ----- */    QWERTY_R1, KC_BSPC,
   CTL_ESC,    QWERTY_L2, /* ----- ----- */    QWERTY_R2, CTL_ENT,
   OSM_SFT,    QWERTY_L3, KC_MUTE, KC_MPLY,    QWERTY_R3, KC_RSFT,
   KG_THUMBROW
 ),
 [_ALTERN] = LAYOUT_wrapper(
-  KG_NUMROW
+       KC_GRV,     NUMROW_L,     NUMROW_R,  KC_DEL,
    KC_TAB,    ALTERN_L1, /* ----- ----- */    ALTERN_R1, KC_BSPC,
   CTL_ESC,    ALTERN_L2, /* ----- ----- */    ALTERN_R2, CTL_ENT,
   OSM_SFT,    ALTERN_L3, KC_MUTE, KC_MPLY,    ALTERN_R3, KC_RSFT,
@@ -39,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    KC_ESC,  KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4, /* ----- ----- */    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_DEL,
    KC_TAB,  KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R, /* ----- ----- */    KC_T,    KC_Y,    KC_I,    KC_O,    KC_P, KC_BSPC,
   KC_LCTL, KC_LSFT,    KC_A,    KC_S,    KC_D,    KC_F, /* ----- ----- */    KC_G,    KC_H,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
-  KC_LSFT, KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V, KC_MUTE, KC_MPLY,    KC_B,    KC_N, KC_COMM,  KC_DOT,  M_LANG, KC_RSFT,
+  KC_LSFT, KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V, KC_MUTE, KC_MPLY,    KC_B,    KC_N, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
   KG_THUMBROW
 ),
 [_LANG] = LAYOUT(
@@ -56,11 +55,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, SQ_PHEX,    KC_7,    KC_8,    KC_9, _______, _______, _______, _______, _______, _______, _______, _______, _______,
                     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
-[_RAISE] = LAYOUT(
-  _______, _______, SQ_LTLT, SQ_GTGT, SQ_PATH, _______,                   SQ_PIPE, SQ_AMPR, SQ_LTAR, SQ_RTAR, _______, _______,
-  _______,  KC_GRV, KC_TILD, KC_HASH, KC_PERC,   KC_LT,                   SQ_COLN, KC_AMPR, KC_LBRC, KC_RBRC, SQ_EXPI, _______,
-  _______, KC_EXLM, KC_MINS, KC_PLUS,  KC_EQL,   KC_AT,                   KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, _______,
-  _______, KC_QUES, KC_SLSH, KC_ASTR, KC_UNDS,   KC_GT, _______, _______, KC_CIRC,  KC_DLR, KC_LCBR, KC_RCBR, KC_BSLS, _______,
+[_RAISE] = LAYOUT_wrapper(
+  _______, SYMBOLS_L0,                   SYMBOLS_R0, _______,
+  _______, SYMBOLS_L1,                   SYMBOLS_R1, _______,
+  _______, SYMBOLS_L2,                   SYMBOLS_R2, _______,
+  _______, SYMBOLS_L3, _______, _______, SYMBOLS_R3, _______,
                      GUI__X,  GUI__C,  GUI__V, _______, _______, _______, _______, _______, _______, _______
 ),
 [_ADJUST] = LAYOUT(

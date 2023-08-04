@@ -9,30 +9,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_TAB, QWERTY_L1, KC_MINS,   SQ_AE,    QWERTY_R1, KC_BSPC,
     CTL_ESC, QWERTY_L2, KC_UNDS,   SQ_AA,    QWERTY_R2, CTL_ENT,
     OSM_SFT, QWERTY_L3,                      QWERTY_R3, KC_RSFT,
-    CW_TOGG, CTL_SFT,  KC_LALT, KC_LGUI, M_LOWER,       KC_CIRC,  KC_DLR,          M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,
-                                     KC_SPC, KC_TAB, KC_LGUI,  KC_RGUI,  KC_BSPC,  SFT_ENT
+    CW_TOGG, CTL_SFT,  KC_LALT, KC_LGUI, THUMB_L2,       KC_CIRC,  KC_DLR,          THUMB_R2, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,
+                                     THUMB_L1, KC_TAB, KC_LGUI,  KC_RGUI,  KC_BSPC,  THUMB_R1
   ),
   [_ALTERN] = LAYOUT_wrapper(
      KC_GRV, NUMROW_L, KC_TILD,   SQ_OE,    NUMROW_R, KC_DEL,
      KC_TAB, ALTERN_L1, KC_MINS,   SQ_AE,    ALTERN_R1, KC_BSPC,
     CTL_ESC, ALTERN_L2, KC_UNDS,   SQ_AA,    ALTERN_R2, CTL_ENT,
     OSM_SFT, ALTERN_L3,                      ALTERN_R3, KC_RSFT,
-    CW_TOGG, CTL_SFT,  KC_LALT, KC_LGUI, M_LOWER,       KC_CIRC,  KC_DLR,          M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,
-                                     KC_SPC, KC_TAB, KC_LGUI,  KC_RGUI,  KC_BSPC,  SFT_ENT
+    CW_TOGG, CTL_SFT,  KC_LALT, KC_LGUI, THUMB_L2,       KC_CIRC,  KC_DLR,          THUMB_R2, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,
+                                     THUMB_L1, KC_TAB, KC_LGUI,  KC_RGUI,  KC_BSPC,  THUMB_R1
   ),
-  [_GAME] = LAYOUT_moonlander(
+  [_GAME] = LAYOUT_wrapper(
      KC_ESC, KC_GRV,   KC_1,     KC_2,    KC_3,    KC_4,    KC_5,   SQ_OE,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_DEL,
      KC_TAB, KC_TAB,   KC_Q,     KC_W,    KC_E,    KC_R,    KC_T,   SQ_AE,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
     KC_LSFT, KC_LCTL,  KC_A,     KC_S,    KC_D,    KC_F,    KC_G,   SQ_AA,    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
-    KC_LCTL, KC_LSFT,  KC_Z,     KC_X,    KC_C,    KC_V,                      KC_N,    KC_M, KC_COMM,  KC_DOT,  M_LANG, KC_RSFT,
-    CW_TOGG, CTL_SFT,  KC_LALT, KC_LGUI, M_LOWER,       KC_CIRC,  KC_DLR,          M_RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,
-                                     KC_SPC, KC_TAB, KC_LGUI,  KC_RGUI,  KC_BSPC,  SFT_ENT
+    KC_LCTL, KC_LSFT,  KC_Z,     KC_X,    KC_C,    KC_V,                      KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
+    CW_TOGG, CTL_SFT,  KC_LALT, KC_LGUI, THUMB_L2,       KC_CIRC,  KC_DLR,          THUMB_R2, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,
+                                     THUMB_L1, KC_TAB, KC_LGUI,  KC_RGUI,  KC_BSPC,  THUMB_R1
   ),
   [_LANG] = LAYOUT_moonlander(
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______,   SQ_AA,   SQ_AE,   SQ_OE, _______, _______,
-    _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, KC_TRNS, _______,
+    _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______,          _______, _______,          _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______
   ),
@@ -44,11 +44,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______,          _______, _______,          _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______
   ),
-  [_RAISE] = LAYOUT_moonlander(
-    _______, _______, SQ_LTLT, SQ_GTGT, SQ_PATH, _______, _______, _______, SQ_PIPE, SQ_AMPR, SQ_LTAR, SQ_RTAR, _______, _______,
-    _______,  KC_GRV, KC_TILD, KC_HASH, KC_PERC,   KC_LT, _______, _______, SQ_COLN, KC_AMPR, KC_LBRC, KC_RBRC, SQ_EXPI, _______,
-    _______, KC_EXLM, KC_MINS, KC_PLUS,  KC_EQL,   KC_AT, _______, _______, KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, _______,
-    _______, KC_QUES, KC_SLSH, KC_ASTR, KC_UNDS,   KC_GT,                   KC_CIRC,  KC_DLR, KC_LCBR, KC_RCBR, KC_BSLS, _______,
+  [_RAISE] = LAYOUT_wrapper(
+    _______, SYMBOLS_L0, _______, _______, SYMBOLS_R0, _______,
+    _______, SYMBOLS_L1, _______, _______, SYMBOLS_R1, _______,
+    _______, SYMBOLS_L2, _______, _______, SYMBOLS_R2, _______,
+    _______, SYMBOLS_L3,                   SYMBOLS_R3, _______,
     _______, _______, _______, _______, _______,          _______, _______,          _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______
   ),

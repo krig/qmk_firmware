@@ -48,10 +48,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_RAISE] = LAYOUT_wrapper(
-      _______, _______, SQ_LTLT, SQ_GTGT, SQ_PATH, _______, SQ_PIPE, SQ_AMPR, SQ_LTAR, SQ_RTAR, _______, _______,
-      _______,  KC_GRV, KC_TILD, KC_SLSH, KC_PERC,   KC_LT, SQ_COLN, KC_AMPR, KC_LBRC, KC_RBRC, SQ_EXPI, _______,
-      _______, KC_EXLM, KC_MINS, KC_PLUS,  KC_EQL,   KC_AT, KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN, KC_SCLN, _______,
-      _______, KC_QUES, KC_UNDS, KC_ASTR, KC_HASH,   KC_GT, KC_CIRC,  KC_DLR, KC_LCBR, KC_RCBR, KC_BSLS, _______,
+      _______, SYMBOLS_L0, SYMBOLS_R0, _______,
+      _______, SYMBOLS_L1, SYMBOLS_R1, _______,
+      _______, SYMBOLS_L2, SYMBOLS_R2, _______,
+      _______, SYMBOLS_L3, SYMBOLS_R3, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_ADJUST] = LAYOUT_wrapper(
