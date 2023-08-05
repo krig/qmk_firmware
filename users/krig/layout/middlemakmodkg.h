@@ -1,13 +1,13 @@
 #pragma once
-// Middlemak-ModKG
+// Middlemak-NHJK
 // https://github.com/krig
-// q w l d b  y f o u '
-// r s n t g  m h e i a
-// z x c p v  j k , . /
+// q w l d g  y f o u '
+// n s r t p  m h e i a
+// z x c v b  j k , . /
 
-#define ALTERN_L1 KC_Q, KC_W, KC_L, KC_D, KC_V
-#define ALTERN_L2 KC_R, KC_S, KC_N, KC_T, KC_G
-#define ALTERN_L3 LT(_LANG, KC_Z), KC_X, KC_C, KC_P, KC_B
+#define ALTERN_L1 KC_Q, KC_W, KC_L, KC_D, KC_G
+#define ALTERN_L2 KC_N, KC_S, KC_R, KC_T, KC_P
+#define ALTERN_L3 LT(_LANG, KC_Z), KC_X, KC_C, KC_V, KC_B
 
 #define ALTERN_R1 KC_Y, KC_F, KC_O, KC_U, KC_QUOT
 #define ALTERN_R2 KC_M, KC_H, KC_E, KC_I, KC_A
