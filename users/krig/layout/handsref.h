@@ -13,6 +13,6 @@
 
 #define ALTERN_R1 KC_Y, KC_K, KC_O, KC_J, KC_QUOT
 #define ALTERN_R2 KC_W, KC_U, KC_E, KC_I, KC_A
-#define ALTERN_R3 KC_Z, KC_F, KC_COMM, KC_DOT, M_LANG
+#define ALTERN_R3 KC_Z, KC_F, KC_SLSH, KC_DOT, KC_COMM
 
 
