@@ -16,6 +16,7 @@ enum custom_keycodes {
     LLOCK,                // layer lock
     CMD_TAB,              // single-key cmd+tab (features/swapper)
     CMD_GRV,              // single-key cmd+` (features/swapper)
+    SW_CTLW,              // single-key ctl+w for vim
     OS_SFT,               // One-shot keys (features/oneshot)
     OS_ALT,
     OS_RALT,
