@@ -43,10 +43,5 @@ bool krig_process_default_layers(uint16_t keycode, keyrecord_t* record);
 // symbol layer
 #include "layout/symbols.h"
 
-// alternative keyboard layouts, only include one
-//#include "layout/middlemaknh.h"
-/* #include "layout/middlemakmodkg.h" */
-#include "layout/handsref.h"
-//#include "layout/aptv3.h"
-//#include "layout/colemakdh.h"
-
+// alternative keyboard layout (highly experimental)
+#include "layout/cmpmak.h"
