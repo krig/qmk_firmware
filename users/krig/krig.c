@@ -8,6 +8,23 @@ const custom_shift_key_t custom_shift_keys[] = {
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_key_t);
 #endif
 
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+#ifdef KRIG_CUSTOM_LAYERS
+    if ((keycode & QK_LAYER_TAP) == QK_LAYER_TAP) {
+        if (QK_LAYER_TAP_GET_LAYER(keycode) != _LANG) {
+            return true;
+        }
+    }
+#endif
+    switch (keycode) {
+        case LSFT_T(KC_ENT):
+            return true;
+        default:
+            return false;
+    }
+}
+
+
 __attribute__ ((weak))
 bool process_record_keymap(uint16_t keycode, keyrecord_t* record) {
     return true;
