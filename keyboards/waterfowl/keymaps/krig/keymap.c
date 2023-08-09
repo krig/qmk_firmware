@@ -112,6 +112,9 @@ static void print_oneshot_state(oneshot_state state, const char* up, const char*
         case os_up_queued:
             oled_write_P(up, false);
         break;
+        case os_up_queued_used:
+            oled_write_P(PSTR("^"), false);
+        break;
         case os_down_unused:
             oled_write_P(PSTR("?"), false);
         break;

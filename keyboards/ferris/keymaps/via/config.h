@@ -3,9 +3,6 @@
 
 #pragma once
 
-// Good defaults for home row modifiers
-#define TAPPING_TERM 230
-
 // Handle master/slave detection on low cost Promicro
 #ifdef __AVR__
 #    define SPLIT_USB_DETECT

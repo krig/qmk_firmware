@@ -7,3 +7,4 @@ REPEAT_KEY_ENABLE = yes
 SPACE_CADET_ENABLE = no
 
 SRC += krig.c
+SRC += features/achordion.c

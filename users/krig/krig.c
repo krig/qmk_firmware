@@ -1,4 +1,5 @@
 #include "krig.h"
+#include "features/achordion.h"
 
 #ifdef KRIG_CUSTOM_SHIFT
 #include "features/custom_shift_keys.h"
@@ -8,29 +9,15 @@ const custom_shift_key_t custom_shift_keys[] = {
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_key_t);
 #endif
 
-bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
-#ifdef KRIG_CUSTOM_LAYERS
-    if ((keycode & QK_LAYER_TAP) == QK_LAYER_TAP) {
-        if (QK_LAYER_TAP_GET_LAYER(keycode) != _LANG) {
-            return true;
-        }
-    }
-#endif
-    switch (keycode) {
-        case LSFT_T(KC_ENT):
-            return true;
-        default:
-            return false;
-    }
-}
-
-
 __attribute__ ((weak))
 bool process_record_keymap(uint16_t keycode, keyrecord_t* record) {
     return true;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+    if (!process_achordion(keycode, record)) {
+        return false;
+    }
     if (!process_record_keymap(keycode, record)) {
         return false;
     }
@@ -127,3 +114,24 @@ layer_state_t default_layer_state_set_user(layer_state_t state) {
     return default_layer_state_set_keymap(state);
 }
 #endif
+
+
+void matrix_scan_user(void) {
+  achordion_task();
+}
+
+bool achordion_chord(uint16_t tap_hold_keycode,
+                     keyrecord_t* tap_hold_record,
+                     uint16_t other_keycode,
+                     keyrecord_t* other_record) {
+    // Get base keycode
+    if ((tap_hold_keycode >= QK_MOD_TAP && tap_hold_keycode <= QK_MOD_TAP_MAX) ||
+        (tap_hold_keycode >= QK_LAYER_TAP && tap_hold_keycode <= QK_LAYER_TAP_MAX)) {
+        tap_hold_keycode &= 0xff;
+    }
+    // Allow same-hand holds if the held key is non-alpha
+    if (tap_hold_keycode > KC_Z) { return true; }
+
+    // Otherwise, follow the opposite hands rule.
+    return achordion_opposite_hands(tap_hold_record, other_record);
+}
