@@ -44,4 +44,8 @@ bool krig_process_default_layers(uint16_t keycode, keyrecord_t* record);
 #include "layout/symbols.h"
 
 // alternative keyboard layout (highly experimental)
+#ifdef KRIG_KANARY
+#include "layout/kanary.h"
+#else
 #include "layout/wmpneu.h"
+#endif
