@@ -47,5 +47,5 @@ bool krig_process_default_layers(uint16_t keycode, keyrecord_t* record);
 #ifdef KRIG_KANARY
 #include "layout/kanary.h"
 #else
-#include "layout/wmpneu.h"
+#include "layout/cmpneu.h"
 #endif
