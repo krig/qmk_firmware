@@ -3,9 +3,9 @@
 //
 // experimental layout
 //
-// q c m p b z y o u /
+// q c m p b z y o u '
 // r s n t g j h e i a
-// w f l d v x k ' . ,
+// w f l d v x k / . ,
 
 #define ALTERN_L1 KC_Q, KC_C, KC_M, KC_P, KC_B
 #define ALTERN_L2 KC_R, KC_S, KC_N, KC_T, KC_G
