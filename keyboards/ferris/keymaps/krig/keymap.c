@@ -41,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TAB, CW_TOGG, CMD_GRV, CMD_TAB, SW_CTLW,   KC_INS, KC_PGDN,   KC_UP, KC_PGUP,  KC_DEL,
       OS_ALT,  OS_CTL,  OS_GUI,  OS_SFT, OS_RALT,  KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT,  KC_END,
       GUI__Z,  GUI__X,  GUI__C,  GUI__V, _______,  DB_TOGG, QK_REP,  QK_AREP, ZOOM_IN, ZOOM_UT,
-                               KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS
+                               KC_TRNS, KC_TRNS,    KC_TAB, KC_TRNS
   ),
   [_RAISE] = LAYOUT_wrapper(
     SYMBOLS_L1, SYMBOLS_R1,
