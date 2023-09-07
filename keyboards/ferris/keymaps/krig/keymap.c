@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS
   ),
   [_LOWER] = LAYOUT(
-      KC_TAB, CW_TOGG, CMD_GRV, CMD_TAB, SW_CTLW,   KC_INS, KC_PGDN,   KC_UP, KC_PGUP,  KC_DEL,
+     _______, CW_TOGG, CMD_GRV, CMD_TAB, SW_CTLW,   KC_INS, KC_PGDN,   KC_UP, KC_PGUP,  KC_DEL,
       OS_ALT,  OS_CTL,  OS_GUI,  OS_SFT, OS_RALT,  KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT,  KC_END,
       GUI__Z,  GUI__X,  GUI__C,  GUI__V, _______,  DB_TOGG, QK_REP,  QK_AREP, ZOOM_IN, ZOOM_UT,
                                KC_TRNS, KC_TRNS,    KC_TAB, KC_TRNS
@@ -51,8 +51,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_ADJUST] = LAYOUT(
      _______,    KC_1,    KC_2,    KC_3, DF_QWER,  _______,   KC_F1,   KC_F2,   KC_F3, _______,
-        KC_0,    KC_4,    KC_5,    KC_6, DF_ALTR,  _______,   KC_F4,   KC_F5,   KC_F6,  KC_F10,
-     _______,    KC_7,    KC_8,    KC_9, DF_GAME,  _______,   KC_F7,   KC_F8,   KC_F9, _______,
+        KC_0,    KC_4,    KC_5,    KC_6, DF_GAME,  _______,   KC_F4,   KC_F5,   KC_F6,  KC_F10,
+     _______,    KC_7,    KC_8,    KC_9, _______,  _______,   KC_F7,   KC_F8,   KC_F9, QK_BOOT,
                                 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
   )
 };
