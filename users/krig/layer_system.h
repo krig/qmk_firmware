@@ -23,7 +23,7 @@ enum custom_layers {
 #define THUMB_R2 LT(_RAISE, KC_BSPC)
 #else
 #define THUMB_L1 KC_SPC
-#define THUMB_R1 KC_ENT
+#define THUMB_R1 LSFT_T(KC_ENT)
 #define THUMB_L2 MO(_LOWER)
 #define THUMB_R2 MO(_RAISE)
 #endif
