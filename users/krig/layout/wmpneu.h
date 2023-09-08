@@ -12,7 +12,11 @@
 
 #define ALTERN_L1 KC_Q, KC_C, KC_M, KC_G, KC_Z
 #define ALTERN_L2 KC_R, KC_S, KC_N, KC_T, KC_P
+#ifdef KRIG_NO_LANG
+#define ALTERN_L3 KC_W, KC_B, KC_L, KC_D, KC_V
+#else
 #define ALTERN_L3 LT(_LANG, KC_W), KC_B, KC_L, KC_D, KC_V
+#endif
 #define ALTERN_R1 KC_X, KC_Y, KC_O, KC_U, KC_QUOT
 #define ALTERN_R2 KC_K, KC_H, KC_E, KC_I, KC_A
 #define ALTERN_R3 KC_SLSH, KC_F, KC_J, KC_DOT, KC_COMM
