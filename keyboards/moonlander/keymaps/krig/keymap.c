@@ -5,19 +5,19 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_wrapper(
-     KC_GRV,  NUMROW_L,    KC_0,      KC_1,     NUMROW_R, KC_DEL,
-     KC_TAB, QWERTY_L1, KC_MINS,   KC_PGUP,    QWERTY_R1,  SQ_AA,
-    CTL_ESC, QWERTY_L2, KC_UNDS,   KC_PGDN,    QWERTY_R2,  SQ_AE,
-    OSM_SFT, QWERTY_L3,                        QWERTY_R3,  SQ_OE,
-    CW_TOGG,   CTL_SFT, KC_LALT, KC_LGUI, THUMB_L2,       OSM_SFT,  OSM_SFT,          THUMB_R2, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,
+     KC_GRV,  NUMROW_L,    KC_0,   KC_PGUP,     NUMROW_R, KC_DEL,
+     KC_TAB, QWERTY_L1, CW_TOGG,   KC_PGDN,    QWERTY_R1,  SQ_AA,
+    CTL_ESC, QWERTY_L2, OSM_SFT,   OSM_SFT,    QWERTY_R2,  SQ_AE,
+    KC_LSFT, QWERTY_L3,                        QWERTY_R3,  SQ_OE,
+    CW_TOGG,   CTL_SFT, KC_LALT, KC_LGUI, THUMB_L2,       OSM_SFT,  KC_RGUI,          THUMB_R2, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,
                                      THUMB_L1, KC_ESC, QK_REP,  QK_AREP,    KC_BSPC,  THUMB_R1
   ),
   [_ALTERN] = LAYOUT_wrapper(
-     KC_GRV,  NUMROW_L,    KC_0,      KC_1,     NUMROW_R, KC_DEL,
-     KC_TAB, ALTERN_L1, KC_MINS,   KC_PGUP,    ALTERN_R1,  SQ_AA,
-    CTL_ESC, ALTERN_L2, KC_UNDS,   KC_PGDN,    ALTERN_R2,  SQ_AE,
-    OSM_SFT, ALTERN_L3,                        ALTERN_R3,  SQ_OE,
-    CW_TOGG, CTL_SFT,  KC_LALT, KC_LGUI, THUMB_L2,        OSM_SFT,  OSM_SFT,          THUMB_R2, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,
+     KC_GRV,  NUMROW_L,    KC_0,   KC_PGUP,     NUMROW_R, KC_DEL,
+     KC_TAB, ALTERN_L1, CW_TOGG,   KC_PGDN,    ALTERN_R1,  SQ_AA,
+    CTL_ESC, ALTERN_L2, OSM_SFT,   OSM_SFT,    ALTERN_R2,  SQ_AE,
+    KC_LSFT, ALTERN_L3,                        ALTERN_R3,  SQ_OE,
+    CW_TOGG, CTL_SFT,  KC_LALT, KC_LGUI, THUMB_L2,        OSM_SFT,  KC_RGUI,          THUMB_R2, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,
                                      THUMB_L1, KC_ESC, QK_REP,  QK_AREP,     KC_BSPC,  THUMB_R1
   ),
   [_GAME] = LAYOUT_wrapper(
@@ -25,7 +25,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_TAB, KC_TAB,   KC_Q,     KC_W,    KC_E,    KC_R,    KC_T, KC_PGUP,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, SQ_AA,
     KC_LSFT, KC_LCTL,  KC_A,     KC_S,    KC_D,    KC_F,    KC_G, KC_PGDN,    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, SQ_AE,
     KC_LCTL, KC_LSFT,  KC_Z,     KC_X,    KC_C,    KC_V,                      KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, SQ_OE,
-    CW_TOGG, CTL_SFT,  KC_LALT, KC_LGUI, THUMB_L2,        OSM_SFT,  OSM_SFT,          THUMB_R2, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,
+    CW_TOGG, CTL_SFT,  KC_LALT, KC_LGUI, THUMB_L2,        OSM_SFT,  KC_RGUI,          THUMB_R2, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,
                                      THUMB_L1, KC_ESC, QK_REP,  QK_AREP,     KC_BSPC,  THUMB_R1
   ),
   [_LANG] = LAYOUT_moonlander(
