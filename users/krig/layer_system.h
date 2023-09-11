@@ -16,17 +16,10 @@ enum custom_layers {
 #endif
 };
 
-#ifdef KRIG_34KEY
 #define THUMB_L1 KC_SPC
 #define THUMB_R1 LSFT_T(KC_ENT)
 #define THUMB_L2 LT(_LOWER, KC_ESC)
 #define THUMB_R2 LT(_RAISE, KC_BSPC)
-#else
-#define THUMB_L1 KC_SPC
-#define THUMB_R1 LSFT_T(KC_ENT)
-#define THUMB_L2 MO(_LOWER)
-#define THUMB_R2 MO(_RAISE)
-#endif
 
 #define DF_QWER  DF(_QWERTY)
 #define DF_ALTR  DF(_ALTERN)
