@@ -30,6 +30,12 @@ bool krig_process_default_layers(uint16_t keycode, keyrecord_t* record);
 #define NUMROW_L KC_1,     KC_2,    KC_3,    KC_4,    KC_5
 #define NUMROW_R KC_6,     KC_7,    KC_8,    KC_9,    KC_0
 
+#ifndef KRIG_NO_LANG
+#define K_LANG(key) LT(_LANG, key)
+#else
+#define K_LANG(key) key
+#endif
+
 // standard qwerty layout
 #include "layout/qwerty.h"
 
