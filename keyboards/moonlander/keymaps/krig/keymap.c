@@ -40,9 +40,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_LOWER] = LAYOUT_moonlander(
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_MOD, RGB_TOG,
-    _______, _______,    KC_1,    KC_2,    KC_3, _______, _______, _______,  KC_INS, KC_PGDN,   KC_UP, KC_PGUP,  KC_DEL, _______,
-    _______,    KC_0,    KC_4,    KC_5,    KC_6, _______, _______, _______, KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT,  KC_END, _______,
-    _______, SQ_PHEX,    KC_7,    KC_8,    KC_9, _______,                   _______, SQ_PATH, ZOOM_UT, ZOOM_IN, KC_BSLS, _______,
+    _______, _______,    KC_1,    KC_2,    KC_3, KC_K, _______, _______,  KC_INS, KC_PGDN,   KC_UP, KC_PGUP,  KC_DEL, _______,
+    _______,    KC_0,    KC_4,    KC_5,    KC_6, KC_J, _______, _______, KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT,  KC_END, _______,
+    _______, SQ_PHEX,    KC_7,    KC_8,    KC_9, S(KC_G),                   _______, SQ_PATH, ZOOM_UT, ZOOM_IN, KC_BSLS, _______,
     _______, _______, _______, _______, _______,          _______, _______,          _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, KC_TAB
   ),
