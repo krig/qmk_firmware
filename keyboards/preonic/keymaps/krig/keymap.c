@@ -9,25 +9,25 @@
 #include "krig.h"
 
 #define LAYOUT_wrapper(...) LAYOUT_preonic_grid(__VA_ARGS__)
-#define BOTTOM_ROW CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, THUMB_L2, KC_SPC,  KC_SPC, THUMB_R2, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+#define BOTTOM_ROW CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, THUMB_L2, THUMB_L1,  THUMB_R1, THUMB_R2, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_wrapper(
-       KC_GRV,     NUMROW_L,     NUMROW_R,  KC_DEL,
+       KC_GRV,     NUMROW_L,     NUMROW_R, GUI_SPC,
        KC_TAB,    QWERTY_L1,    QWERTY_R1, KC_BSPC,
       CTL_ESC,    QWERTY_L2,    QWERTY_R2, CTL_ENT,
       OSM_SFT,    QWERTY_L3,    QWERTY_R3, KC_RSFT,
       BOTTOM_ROW
     ),
     [_ALTERN] = LAYOUT_wrapper(
-       KC_GRV,     NUMROW_L,     NUMROW_R,  KC_DEL,
+       KC_GRV,     NUMROW_L,     NUMROW_R, GUI_SPC,
        KC_TAB,    ALTERN_L1,    ALTERN_R1, KC_BSPC,
       CTL_ESC,    ALTERN_L2,    ALTERN_R2, CTL_ENT,
       OSM_SFT,    ALTERN_L3,    ALTERN_R3, KC_RSFT,
       BOTTOM_ROW
     ),
     [_GAME] = LAYOUT_wrapper(
-      QK_GESC,     NUMROW_L,     NUMROW_R,  KC_DEL,
+      QK_GESC,     NUMROW_L,     NUMROW_R, KC_F9,
        KC_TAB,    QWERTY_L1,    QWERTY_R1, KC_BSPC,
       KC_LCTL,    QWERTY_L2,    QWERTY_R2, CTL_ENT,
       KC_LSFT,    QWERTY_L3,    QWERTY_R3, KC_RSFT,
@@ -42,9 +42,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_LOWER] = LAYOUT_wrapper(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, KC_1,    KC_2,    KC_3,    _______,  KC_INS, KC_PGDN,   KC_UP, KC_PGUP,  KC_DEL, _______,
-      _______,    KC_0, KC_4,    KC_5,    KC_6,    _______, KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT,  KC_END, _______,
-      _______, SQ_PHEX, KC_7,    KC_8,    KC_9,    _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, KC_1,    KC_2,    KC_3,       KC_K,  KC_INS, KC_PGDN,   KC_UP, KC_PGUP,  KC_DEL, _______,
+      _______,    KC_0, KC_4,    KC_5,    KC_6,       KC_J, KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT,  KC_END, _______,
+      _______, SQ_PHEX, KC_7,    KC_8,    KC_9,    S(KC_G), _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_RAISE] = LAYOUT_wrapper(
