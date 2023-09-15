@@ -17,9 +17,14 @@ enum custom_layers {
 };
 
 #define THUMB_L1 KC_SPC
-#define THUMB_R1 LSFT_T(KC_ENT)
 #define THUMB_L2 LT(_LOWER, KC_ESC)
-#define THUMB_R2 LT(_RAISE, KC_BSPC)
+#define THUMB_L3 QK_REP
+#define THUMB_L4 QK_AREP
+
+#define THUMB_R1 LSFT_T(KC_BSPC)
+#define THUMB_R2 LT(_RAISE, KC_ENT)
+#define THUMB_R3 RGUI_T(KC_TAB)
+#define THUMB_R4 RCTL_T(KC_DEL)
 
 #define DF_QWER  DF(_QWERTY)
 #define DF_ALTR  DF(_ALTERN)

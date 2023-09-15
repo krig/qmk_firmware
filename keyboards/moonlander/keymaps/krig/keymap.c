@@ -3,10 +3,10 @@
 #define MOON_LED_LEVEL LED_LEVEL
 #define LAYOUT_wrapper(...)             LAYOUT_moonlander(__VA_ARGS__)
 
-#define MOON_THUMBS     CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, THUMB_L2, /* left side */ \
+#define MOON_THUMBS     KC_MEH, CTL_SFT, KC_LALT, KC_LGUI, THUMB_L2, /* left side */ \
                         GUI_SPC,  CW_TOGG, /* red thumb buttons */ \
                         THUMB_R2, KC_RGUI, KC_RALT, KC_LEFT, KC_RGHT, /* right side */ \
-                        THUMB_L1, QK_REP, QK_AREP, /* thumbs */ KC_DEL, KC_TAB, THUMB_R1
+                        THUMB_L1, THUMB_L3, THUMB_L4, /* thumbs */ THUMB_R4, THUMB_R3, THUMB_R1
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_wrapper(
