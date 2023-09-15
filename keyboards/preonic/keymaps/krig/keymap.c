@@ -9,7 +9,7 @@
 #include "krig.h"
 
 #define LAYOUT_wrapper(...) LAYOUT_preonic_grid(__VA_ARGS__)
-#define BOTTOM_ROW CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, THUMB_L2, THUMB_L1,  THUMB_L1, THUMB_R2, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+#define BOTTOM_ROW CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, MO(_LOWER), KC_SPC,  KC_SPC, MO(_RAISE), KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_wrapper(
