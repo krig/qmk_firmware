@@ -5,6 +5,8 @@
 #include "features/custom_shift_keys.h"
 const custom_shift_key_t custom_shift_keys[] = {
     { KC_UNDS, KC_MINS },
+    { KC_QUOT, KC_SLSH },
+    { KC_DQUO, KC_QUES },
 };
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_key_t);
 #endif
@@ -120,6 +122,24 @@ void matrix_scan_user(void) {
   achordion_task();
 }
 
+static bool is_finger_key(uint16_t keycode) {
+    return (keycode <= KC_0 || (keycode >= KC_SEMICOLON && keycode <= KC_UP));
+}
+
+uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
+    // Get base keycode
+    if ((tap_hold_keycode >= QK_MOD_TAP && tap_hold_keycode <= QK_MOD_TAP_MAX) ||
+        (tap_hold_keycode >= QK_LAYER_TAP && tap_hold_keycode <= QK_LAYER_TAP_MAX)) {
+        tap_hold_keycode &= 0xff;
+    }
+    if (is_finger_key(tap_hold_keycode)) {
+        return 2000;
+    } else {
+        return 200;
+    }
+}
+
+
 bool achordion_chord(uint16_t tap_hold_keycode,
                      keyrecord_t* tap_hold_record,
                      uint16_t other_keycode,
@@ -129,9 +149,20 @@ bool achordion_chord(uint16_t tap_hold_keycode,
         (tap_hold_keycode >= QK_LAYER_TAP && tap_hold_keycode <= QK_LAYER_TAP_MAX)) {
         tap_hold_keycode &= 0xff;
     }
-    // Allow same-hand holds if the held key is non-alpha
-    if (tap_hold_keycode > KC_Z) { return true; }
 
-    // Otherwise, follow the opposite hands rule.
-    return achordion_opposite_hands(tap_hold_record, other_record);
+    static const uint16_t homerow_qwerty[] = { QWERTY_R2 };
+    static const uint16_t homerow_altern[] = { ALTERN_R2 };
+    const uint16_t* homerow = homerow_qwerty;
+    if (IS_LAYER_ON_STATE(default_layer_state, _ALTERN)) {
+        homerow = homerow_altern;
+    }
+    if (is_finger_key(tap_hold_keycode)) {
+        for (int i = 0; i < (sizeof(homerow_qwerty) / sizeof(homerow_qwerty[0])); ++i) {
+            if (other_keycode == homerow[i])
+                return true;
+        }
+        return false;
+    } else {
+        return true;
+    }
 }
