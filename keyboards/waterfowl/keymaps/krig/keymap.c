@@ -19,7 +19,7 @@
 #include "features/swapper.h"
 
 #define LAYOUT_wrapper(...)             LAYOUT(__VA_ARGS__)
-#define THUMB_ROW KC_MPRV,      THUMB_L2,  THUMB_L1,  KC_DEL, KC_MCTL, KC_MPLY,  KC_TAB, THUMB_R1, THUMB_R2,          KC_MNXT
+#define THUMB_ROW KC_MPRV,      THUMB_L2,  THUMB_L1,  THUMB_L3, KC_MCTL, KC_MPLY,  THUMB_R3, THUMB_R1, THUMB_R2,          KC_MNXT
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_wrapper(
@@ -47,9 +47,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
   ),
   [_LOWER] = LAYOUT(
-    _______, CW_TOGG, CMD_GRV, CMD_TAB, _______,   KC_INS, KC_PGDN,   KC_UP, KC_PGUP,  KC_DEL,
+    _______, CW_TOGG, CMD_GRV, CMD_TAB, GUI_SPC,   KC_INS, _______,   KC_UP, _______,  KC_DEL,
      OS_CTL,  OS_ALT,  OS_GUI,  OS_SFT, OS_RALT,  KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT,  KC_END,
-     GUI__Z,  GUI__X,  GUI__C,  KC_TAB,  GUI__V,  _______, _______, _______, _______, _______,
+     GUI__Z,  GUI__X,  GUI__C,  KC_TAB,  GUI__V,  _______, KC_PGDN, KC_PGUP, ZOOM_UT, ZOOM_IN,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
   ),
   [_RAISE] = LAYOUT_wrapper(
