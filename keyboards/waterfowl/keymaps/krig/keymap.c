@@ -46,11 +46,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______,  _______, _______, _______, _______, _______,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
   ),
-  [_LOWER] = LAYOUT(
-    _______, CW_TOGG, CMD_GRV, CMD_TAB, GUI_SPC,   KC_INS, _______,   KC_UP, _______,  KC_DEL,
-     OS_CTL,  OS_ALT,  OS_GUI,  OS_SFT, OS_RALT,  KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT,  KC_END,
-     GUI__Z,  GUI__X,  GUI__C,  KC_TAB,  GUI__V,  _______, KC_PGDN, KC_PGUP, ZOOM_UT, ZOOM_IN,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+  [_LOWER] = LAYOUT_wrapper(
+    LOWER_L1, LOWER_R1,
+    LOWER_L2, LOWER_R2,
+    LOWER_L3, LOWER_R3,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TAB, KC_TRNS, KC_TRNS
   ),
   [_RAISE] = LAYOUT_wrapper(
     SYMBOLS_L1, SYMBOLS_R1,

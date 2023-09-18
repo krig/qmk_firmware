@@ -44,6 +44,9 @@ bool krig_process_default_layers(uint16_t keycode, keyrecord_t* record);
 // standard qwerty layout
 #include "layout/qwerty.h"
 
+// lower / nav layer
+#include "layout/lower.h"
+
 // symbol layer
 #include "layout/symbols.h"
 
