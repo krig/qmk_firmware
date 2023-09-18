@@ -24,21 +24,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    KC_TAB,        QWERTY_L1,                   QWERTY_R1, KC_BSPC,
   CTL_ESC,        QWERTY_L2,                   QWERTY_R2, KC_RALT,
   OSM_SFT,        QWERTY_L3, CW_TOGG,  QK_REP, QWERTY_R3, KC_RSFT,
-  KC_LALT, KC_LGUI, THUMB_L2,  THUMB_L1, THUMB_R1, THUMB_R2, KC_PGDN, KC_PGUP
+  KC_LALT, KC_LGUI, THUMB_L2,  THUMB_L1, THUMB_R1, THUMB_R2, RGUI_T(KC_PGDN), RALT_T(KC_PGUP)
  ),
  [_ALTERN] = LAYOUT_wrapper(
    KC_GRV,         NUMROW_L,                    NUMROW_R,  KC_DEL,
    KC_TAB,        ALTERN_L1,                   ALTERN_R1, KC_BSPC,
   CTL_ESC,        ALTERN_L2,                   ALTERN_R2, KC_RALT,
   OSM_SFT,        ALTERN_L3, CW_TOGG,  QK_REP, ALTERN_R3, KC_RSFT,
-  KC_LALT, KC_LGUI, THUMB_L2,  THUMB_L1, THUMB_R1, THUMB_R2, KC_PGDN, KC_PGUP
+  KC_LALT, KC_LGUI, THUMB_L2,  THUMB_L1, THUMB_R1, THUMB_R2, RGUI_T(KC_PGDN), RALT_T(KC_PGUP)
  ),
  [_GAME] = LAYOUT_wrapper(
    KC_ESC,  KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_DEL,
    KC_TAB,  KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
   KC_LCTL, KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,                      KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, KC_RALT,
   KC_LSFT, KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V, CW_TOGG,  QK_REP,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
-                             KC_LALT, KC_LGUI, THUMB_L2,  THUMB_L1, THUMB_R1, THUMB_R2, KC_PGDN, KC_PGUP
+                             KC_LALT, KC_LGUI, THUMB_L2,  THUMB_L1, THUMB_R1, THUMB_R2, RGUI_T(KC_PGDN), RALT_T(KC_PGUP)
  ),
  [_LOWER] = LAYOUT_wrapper(
   _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
@@ -52,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, SYMBOLS_L1,                   SYMBOLS_R1, _______,
   _______, SYMBOLS_L2,                   SYMBOLS_R2, _______,
   _______, SYMBOLS_L3, _______, QK_AREP, SYMBOLS_R3, _______,
-                             _______, _______, _______, _______, _______, _______, _______, _______
+                             _______, _______, _______, _______,  KC_TAB, _______, _______, _______
  ),
  [_ADJUST] = LAYOUT(
   DF_QWER,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
