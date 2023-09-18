@@ -4,5 +4,6 @@ OLED_ENABLE = yes
 MOUSEKEY_ENABLE = no
 EXTRAKEY_ENABLE = yes
 
+SRC += features/custom_shift_keys.c
 SRC += features/krig_caps_word.c
 SRC += layer_system.c

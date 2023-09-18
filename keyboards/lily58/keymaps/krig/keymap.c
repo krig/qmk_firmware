@@ -20,23 +20,23 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [_QWERTY] = LAYOUT_wrapper(
-   KC_GRV,         NUMROW_L,                    NUMROW_R,  KC_DEL,
+   KC_GRV,         NUMROW_L,                    NUMROW_R, KC_RALT,
    KC_TAB,        QWERTY_L1,                   QWERTY_R1, KC_BSPC,
-  CTL_ESC,        QWERTY_L2,                   QWERTY_R2, KC_RALT,
+  CTL_ESC,        QWERTY_L2,                   QWERTY_R2, KC_RCTL,
   OSM_SFT,        QWERTY_L3, CW_TOGG,  QK_REP, QWERTY_R3, KC_RSFT,
   KC_LALT, KC_LGUI, THUMB_L2,  THUMB_L1, THUMB_R1, THUMB_R2, RGUI_T(KC_PGDN), RALT_T(KC_PGUP)
  ),
  [_ALTERN] = LAYOUT_wrapper(
-   KC_GRV,         NUMROW_L,                    NUMROW_R,  KC_DEL,
+   KC_GRV,         NUMROW_L,                    NUMROW_R, KC_RALT,
    KC_TAB,        ALTERN_L1,                   ALTERN_R1, KC_BSPC,
-  CTL_ESC,        ALTERN_L2,                   ALTERN_R2, KC_RALT,
+  CTL_ESC,        ALTERN_L2,                   ALTERN_R2, KC_RCTL,
   OSM_SFT,        ALTERN_L3, CW_TOGG,  QK_REP, ALTERN_R3, KC_RSFT,
   KC_LALT, KC_LGUI, THUMB_L2,  THUMB_L1, THUMB_R1, THUMB_R2, RGUI_T(KC_PGDN), RALT_T(KC_PGUP)
  ),
  [_GAME] = LAYOUT_wrapper(
-   KC_ESC,  KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_DEL,
+   KC_ESC,  KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_RALT,
    KC_TAB,  KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
-  KC_LCTL, KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,                      KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, KC_RALT,
+  KC_LCTL, KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,                      KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, KC_RCTL,
   KC_LSFT, KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V, CW_TOGG,  QK_REP,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
                              KC_LALT, KC_LGUI, THUMB_L2,  THUMB_L1, THUMB_R1, THUMB_R2, RGUI_T(KC_PGDN), RALT_T(KC_PGUP)
  ),
