@@ -34,4 +34,5 @@
 #define KRIG_CUSTOM_LAYERS
 #define KRIG_CUSTOM_SEQUENCES
 #define KRIG_CAPS_WORD
+#define KRIG_NO_LANG
 */

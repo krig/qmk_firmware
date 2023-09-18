@@ -12,12 +12,6 @@ bool krig_process_default_layers(uint16_t keycode, keyrecord_t* record) {
                 }
             }
             return false;
-        case DF_ALTR:
-            if (record->event.pressed) {
-                set_single_persistent_default_layer(_ALTERN);
-            }
-            return false;
-        // don't persist gaming layer
     };
     return true;
 }

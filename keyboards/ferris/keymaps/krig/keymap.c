@@ -47,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     SYMBOLS_L1, SYMBOLS_R1,
     SYMBOLS_L2, SYMBOLS_R2,
     SYMBOLS_L3, SYMBOLS_R3,
-    KC_TRNS, GUI_SPC, KC_TRNS, KC_TRNS
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
   ),
   [_ADJUST] = LAYOUT(
     _______,    KC_1,    KC_2,    KC_3, DF_QWER,  _______,   KC_F1,   KC_F2,   KC_F3, _______,

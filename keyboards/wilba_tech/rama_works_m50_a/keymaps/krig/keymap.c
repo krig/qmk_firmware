@@ -37,12 +37,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       WS_PREV, OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
        QK_REP, CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, MO(_LOWER),  KC_SPC,          MO(_RAISE), KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
-    [_LANG] = LAYOUT_wrapper(
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______,   SQ_AA,   SQ_AE,   SQ_OE, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
-    ),
     [_LOWER] = LAYOUT_wrapper(
       _______, CMD_TAB, LOWER_L1, LOWER_R1,   SQ_AA,
       _______, CMD_GRV, LOWER_L2, LOWER_R2,   SQ_AE,
@@ -57,8 +51,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_ADJUST] = LAYOUT(
       DF_QWER, _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
-      DF_ALTR, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_INS,
-      DF_GAME, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      DF_GAME, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_INS,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, QK_BOOT
     )
 };
@@ -128,10 +122,12 @@ void backlight_effect_indicators(void) {
         r = 0x02; g = 0x30; b = 0x47;
         backlight_set_color(LC_LOWER, r, g, b);
         backlight_set_color(LC_SPACE, r, g, b);
+    #ifndef KRIG_NO_LANG
     } else if (IS_LAYER_ON(_LANG)) {
         backlight_set_color(LC_QMK, 255, 0, 0);
         backlight_set_color(LC_BOOT, 255, 0, 0);
         backlight_set_color(LC_GAME, 0, 255, 0);
+    #endif
     } else {
     }
 }

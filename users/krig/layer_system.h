@@ -7,7 +7,9 @@ enum custom_layers {
 #ifdef KRIG_EXTRA_DEFAULT_LAYERS
     KRIG_EXTRA_DEFAULT_LAYERS
 #endif
+#ifndef KRIG_NO_LANG
     _LANG,
+#endif
     _LOWER,
     _RAISE,
     _ADJUST,
@@ -26,8 +28,8 @@ enum custom_layers {
 #define THUMB_R3 RGUI_T(KC_TAB)
 #define THUMB_R4 RCTL_T(KC_DEL)
 
+// toggles between qwerty and AKL
 #define DF_QWER  DF(_QWERTY)
-#define DF_ALTR  DF(_ALTERN)
 #define DF_GAME  DF(_GAME)
 
 bool krig_process_default_layers(uint16_t keycode, keyrecord_t* record);
