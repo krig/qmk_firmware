@@ -37,10 +37,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       WS_PREV, OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
        QK_REP, CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, MO(_LOWER),  KC_SPC,          MO(_RAISE), KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
     ),
-    [_LOWER] = LAYOUT(
-      _______, CMD_TAB, _______,  KC_1,   KC_2,    KC_3,    _______, _______, SQ_AMPR, KC_UNDS, KC_HASH, _______, KC_DEL,
-      _______, CMD_GRV,    KC_0,  KC_4,   KC_5,    KC_6,    _______, SQ_PIPE, SQ_COLN, SQ_AA,   SQ_OE,   SQ_AE,   _______,
-      _______, _______, SQ_PHEX,  KC_7,   KC_8,    KC_9,    _______, _______, SQ_PATH, ZOOM_UT, ZOOM_IN, KC_BSLS, KC_GRV,
+    [_LANG] = LAYOUT_wrapper(
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______,   SQ_AA,   SQ_AE,   SQ_OE, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
+    ),
+    [_LOWER] = LAYOUT_wrapper(
+      _______, CMD_TAB, LOWER_L1, LOWER_R1,   SQ_AA,
+      _______, CMD_GRV, LOWER_L2, LOWER_R2,   SQ_AE,
+      _______, _______, LOWER_L3, LOWER_R3,   SQ_OE,
       _______, _______, _______, _______, _______, _______, _______,          _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END
     ),
     [_RAISE] = LAYOUT_wrapper(
