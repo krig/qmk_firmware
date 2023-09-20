@@ -1,20 +1,18 @@
 #pragma once
 
+// disable dedicated swedish layer for keyboards that have
+// enough keys to put swedish on the base layer
+// #define KRIG_NO_LANG
+
 enum custom_layers {
     _QWERTY,
     _ALTERN,
     _GAME,
-#ifdef KRIG_EXTRA_DEFAULT_LAYERS
-    KRIG_EXTRA_DEFAULT_LAYERS
-#endif
-#ifndef KRIG_NO_LANG
-    _LANG,
-#endif
     _LOWER,
     _RAISE,
     _ADJUST,
-#ifdef KRIG_EXTRA_LAYERS
-    KRIG_EXTRA_LAYERS
+#ifndef KRIG_NO_LANG
+    _LANG
 #endif
 };
 

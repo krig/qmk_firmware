@@ -1,7 +1,7 @@
 #ifdef KRIG_34KEY
 #define LOWER_L1 _______, CW_TOGG, CMD_GRV, CMD_TAB, SW_CTLW
 #define LOWER_L2  OS_CTL,  OS_ALT,  OS_GUI,  OS_SFT, OS_RALT
-#define LOWER_L3  GUI__Z,  GUI__X,  GUI__C,  GUI__V, _______
+#define LOWER_L3  GUI__Z,  GUI__X,  GUI__C,  GUI__V, MO(_LANG)
 #else
 #define LOWER_L1 _______, KC_1,    KC_2,    KC_3,       KC_K
 #define LOWER_L2    KC_0, KC_4,    KC_5,    KC_6,       KC_J
