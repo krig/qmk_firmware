@@ -6,8 +6,11 @@
 const custom_shift_key_t custom_shift_keys[] = {
     { KC_UNDS, KC_MINS },
     { KC_QUOT, KC_SLSH },
-    { KC_DQUO, KC_QUES },
+    { KC_DQUO,  KC_GRV },
+    {  KC_DOT, KC_EXLM },
+    { KC_COMM, KC_QUES },
 };
+
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_key_t);
 #endif
 
