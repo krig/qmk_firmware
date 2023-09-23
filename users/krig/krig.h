@@ -24,6 +24,7 @@ enum custom_keycodes {
     OS_RALT,
     OS_CTL,
     OS_GUI,
+    OS_ADJUST,
 
     NEW_SAFE_RANGE,
 };

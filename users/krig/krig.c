@@ -4,9 +4,6 @@
 #ifdef KRIG_CUSTOM_SHIFT
 #include "features/custom_shift_keys.h"
 const custom_shift_key_t custom_shift_keys[] = {
-    { KC_UNDS, KC_MINS },
-    { KC_QUOT, KC_SLSH },
-    { KC_DQUO,  KC_GRV },
     {  KC_DOT, KC_EXLM },
     { KC_COMM, KC_QUES },
 };
@@ -120,9 +117,13 @@ layer_state_t default_layer_state_set_user(layer_state_t state) {
 }
 #endif
 
+__attribute__ ((weak))
+void matrix_scan_keymap(void) {
+}
 
 void matrix_scan_user(void) {
-  achordion_task();
+    achordion_task();
+    matrix_scan_keymap();
 }
 
 static bool is_finger_key(uint16_t keycode) {

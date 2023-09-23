@@ -46,3 +46,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define KRIG_CUSTOM_LAYERS
 #define KRIG_CUSTOM_SEQUENCES
 #define KRIG_CAPS_WORD
+
+#define FLOW_COUNT 7
+#define FLOW_LAYERS_COUNT 3
+

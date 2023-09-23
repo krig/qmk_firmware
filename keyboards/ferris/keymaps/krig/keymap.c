@@ -4,13 +4,30 @@
  */
 
 #include "krig.h"
-#include "features/oneshot.h"
+#include "features/flow.h"
 #include "features/swapper.h"
 
 #define LAYOUT_wrapper(...)             LAYOUT(__VA_ARGS__)
 #define CTL_W LCTL(KC_W)
 #define CTL_U LCTL(KC_U)
 #define CTL_D LCTL(KC_D)
+
+// flow_config should correspond to following format:
+// * layer keycode
+// * modifier keycode
+const uint16_t flow_config[FLOW_COUNT][2] = {
+    {_LOWER, OS_ALT},
+    {_LOWER, OS_GUI},
+    {_LOWER, OS_CTL},
+    {_LOWER, OS_SFT},
+    {_LOWER, OS_RALT},
+};
+// for layers configuration follow this format:
+// * custom layer key
+// * layer name
+const uint16_t flow_layers_config[FLOW_LAYERS_COUNT][2] = {
+    {OS_ADJUST, _ADJUST},
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_wrapper(
@@ -57,11 +74,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-static oneshot_context os_ctx;
-
 bool process_record_keymap(uint16_t keycode, keyrecord_t* record) {
     process_record_swapper(keycode, record);
-    process_record_oneshot(&os_ctx, keycode, record);
+    if (!update_flow(keycode, record->event.pressed, record->event.key)) return false;
     return true;
 }
 
+void matrix_scan_keymap(void) {
+    flow_matrix_scan();
+}
