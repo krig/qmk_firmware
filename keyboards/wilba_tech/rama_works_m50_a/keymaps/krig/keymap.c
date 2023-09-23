@@ -23,19 +23,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        WS_ALL,  KC_TAB,    QWERTY_L1,    QWERTY_R1, KC_BSPC,
       WS_NEXT, CTL_ESC,    QWERTY_L2,    QWERTY_R2, CTL_ENT,
       WS_PREV, OSM_SFT,    QWERTY_L3,    QWERTY_R3, KC_RSFT,
-       QK_REP, CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, MO(_NAV),  KC_SPC,          MO(_SYM), LT(_NUM, KC_LEFT), KC_DOWN,   KC_UP, KC_RGHT
+       QK_REP, KC_MEH, CTL_SFT, KC_LALT, KC_LGUI, MO(_NAV),  KC_SPC,          MO(_SYM), LT(_NUM, KC_LEFT), KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_ALTERN] = LAYOUT_wrapper(
        WS_ALL,  KC_TAB,    ALTERN_L1,    ALTERN_R1, KC_BSPC,
       WS_NEXT, CTL_ESC,    ALTERN_L2,    ALTERN_R2, CTL_ENT,
       WS_PREV, OSM_SFT,    ALTERN_L3,    ALTERN_R3, KC_RSFT,
-       QK_REP, CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, MO(_NAV),  KC_SPC,          MO(_SYM), LT(_NUM, KC_LEFT), KC_DOWN,   KC_UP, KC_RGHT
+       QK_REP, KC_MEH, CTL_SFT, KC_LALT, KC_LGUI, MO(_NAV),  KC_SPC,          MO(_SYM), LT(_NUM, KC_LEFT), KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_GAME] = LAYOUT(
        WS_ALL,  KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
       WS_NEXT, CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
       WS_PREV, OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
-       QK_REP, CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, MO(_NAV),  KC_SPC,          MO(_SYM), LT(_NUM, KC_LEFT), KC_DOWN,   KC_UP, KC_RGHT
+       QK_REP, KC_MEH, CTL_SFT, KC_LALT, KC_LGUI, MO(_NAV),  KC_SPC,          MO(_SYM), LT(_NUM, KC_LEFT), KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_NAV] = LAYOUT_wrapper(
       _______, CMD_TAB, L_NAV_L1, L_NAV_R1, _______,

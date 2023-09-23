@@ -116,15 +116,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
             return false;
     }
     #endif
-    #ifdef KRIG_CUSTOM_LAYERS
     if (!krig_process_default_layers(keycode, record)) {
         return false;
     }
-    #endif
     return true;
 }
 
-#ifdef KRIG_CUSTOM_LAYERS
 __attribute__ ((weak))
 layer_state_t layer_state_set_keymap (layer_state_t state) {
   return state;
@@ -143,7 +140,6 @@ layer_state_t default_layer_state_set_keymap (layer_state_t state) {
 layer_state_t default_layer_state_set_user(layer_state_t state) {
     return default_layer_state_set_keymap(state);
 }
-#endif
 
 __attribute__ ((weak))
 void matrix_scan_keymap(void) {
@@ -156,7 +152,7 @@ void matrix_scan_user(void) {
 }
 
 static bool is_finger_key(uint16_t keycode) {
-    return (keycode <= KC_0 || (keycode >= KC_SEMICOLON && keycode <= KC_UP));
+    return (keycode <= KC_0 || (keycode >= KC_SEMICOLON && keycode <= KC_SLASH));
 }
 
 uint16_t achordion_timeout(uint16_t tap_hold_keycode) {

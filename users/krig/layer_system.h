@@ -4,8 +4,8 @@ enum custom_layers {
     _ALTERN,
     _QWERTY,
     _GAME,
-    _NUM,
     _NAV,
+    _NUM,
     _SYM,
     _ADJUST,
 };
