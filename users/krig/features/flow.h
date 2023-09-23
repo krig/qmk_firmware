@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 // copied from keyboards/a_dux/keymaps/daliusd/readme.md
+// see https://github.com/qmk/qmk_firmware/pull/16174
 
 #include QMK_KEYBOARD_H
 

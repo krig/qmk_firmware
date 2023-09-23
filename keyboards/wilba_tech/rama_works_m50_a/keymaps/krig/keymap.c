@@ -23,30 +23,36 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        WS_ALL,  KC_TAB,    QWERTY_L1,    QWERTY_R1, KC_BSPC,
       WS_NEXT, CTL_ESC,    QWERTY_L2,    QWERTY_R2, CTL_ENT,
       WS_PREV, OSM_SFT,    QWERTY_L3,    QWERTY_R3, KC_RSFT,
-       QK_REP, CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, MO(_LOWER),  KC_SPC,          MO(_RAISE), KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+       QK_REP, CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, MO(_NAV),  KC_SPC,          MO(_SYM), LT(_NUM, KC_LEFT), KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_ALTERN] = LAYOUT_wrapper(
        WS_ALL,  KC_TAB,    ALTERN_L1,    ALTERN_R1, KC_BSPC,
       WS_NEXT, CTL_ESC,    ALTERN_L2,    ALTERN_R2, CTL_ENT,
       WS_PREV, OSM_SFT,    ALTERN_L3,    ALTERN_R3, KC_RSFT,
-       QK_REP, CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, MO(_LOWER),  KC_SPC,          MO(_RAISE), KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+       QK_REP, CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, MO(_NAV),  KC_SPC,          MO(_SYM), LT(_NUM, KC_LEFT), KC_DOWN,   KC_UP, KC_RGHT
     ),
     [_GAME] = LAYOUT(
        WS_ALL,  KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
       WS_NEXT, CTL_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
       WS_PREV, OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
-       QK_REP, CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, MO(_LOWER),  KC_SPC,          MO(_RAISE), KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+       QK_REP, CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, MO(_NAV),  KC_SPC,          MO(_SYM), LT(_NUM, KC_LEFT), KC_DOWN,   KC_UP, KC_RGHT
     ),
-    [_LOWER] = LAYOUT_wrapper(
-      _______, CMD_TAB, LOWER_L1, LOWER_R1,   SQ_AA,
-      _______, CMD_GRV, LOWER_L2, LOWER_R2,   SQ_AE,
-      _______, _______, LOWER_L3, LOWER_R3,   SQ_OE,
+    [_NAV] = LAYOUT_wrapper(
+      _______, CMD_TAB, L_NAV_L1, L_NAV_R1, _______,
+      _______, CMD_GRV, L_NAV_L2, L_NAV_R2, _______,
+      _______, _______, L_NAV_L3, L_NAV_R3, _______,
       _______, _______, _______, _______, _______, _______, _______,          _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END
     ),
-    [_RAISE] = LAYOUT_wrapper(
-      _______, _______, SYMBOLS_L1, SYMBOLS_R1, _______,
-      _______, _______, SYMBOLS_L2, SYMBOLS_R2, _______,
-      _______, _______, SYMBOLS_L3, SYMBOLS_R3, _______,
+    [_NUM] = LAYOUT_wrapper(
+      _______, _______, L_NUM_L1, L_NUM_R1, _______,
+      _______, _______, L_NUM_L2, L_NUM_R2, _______,
+      _______, _______, L_NUM_L3, L_NUM_R3, _______,
+      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
+    ),
+    [_SYM] = LAYOUT_wrapper(
+      _______, _______, L_SYM_L1, L_SYM_R1, _______,
+      _______, _______, L_SYM_L2, L_SYM_R2, _______,
+      _______, _______, L_SYM_L3, L_SYM_R3, _______,
       _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
     ),
     [_ADJUST] = LAYOUT(
@@ -114,20 +120,18 @@ void backlight_effect_indicators(void) {
         backlight_set_color(LC_RAISE, r, g, b);
         backlight_set_color(LC_SPACE, r, g, b);
         backlight_set_color(LC_QMK, 255, 0, 0);
-    } else if (IS_LAYER_ON(_RAISE)) {
+    } else if (IS_LAYER_ON(_SYM)) {
         r = 0x02; g = 0x30; b = 0x47;
         backlight_set_color(LC_RAISE, r, g, b);
         backlight_set_color(LC_SPACE, r, g, b);
-    } else if (IS_LAYER_ON(_LOWER)) {
+    } else if (IS_LAYER_ON(_NAV)) {
         r = 0x02; g = 0x30; b = 0x47;
         backlight_set_color(LC_LOWER, r, g, b);
         backlight_set_color(LC_SPACE, r, g, b);
-    #ifndef KRIG_NO_LANG
-    } else if (IS_LAYER_ON(_LANG)) {
+    } else if (IS_LAYER_ON(_NUM)) {
         backlight_set_color(LC_QMK, 255, 0, 0);
         backlight_set_color(LC_BOOT, 255, 0, 0);
         backlight_set_color(LC_GAME, 0, 255, 0);
-    #endif
     } else {
     }
 }

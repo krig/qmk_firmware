@@ -16,43 +16,50 @@
   */
 #include "krig.h"
 
-#define KG_THUMBROW OS_ALT, OS_CTL, OS_GUI, THUMB_L2, THUMB_L1, THUMB_R1, THUMB_R2, OS_GUI, OS_CTL, OS_RALT
+#define KG_THUMBROW KC_LALT, KC_LCTL, KC_LGUI, THUMB_L2, THUMB_L1, THUMB_R1, THUMB_R2, KC_RGUI, KC_RCTL, KC_RALT
 #define LAYOUT_wrapper(...)             LAYOUT(__VA_ARGS__)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = LAYOUT_wrapper(
-       KC_GRV,     NUMROW_L,     NUMROW_R,  KC_DEL,
+       KC_GRV,     NUMROW_L,     NUMROW_R,  KC_RALT,
    KC_TAB,    QWERTY_L1, /* ----- ----- */    QWERTY_R1, KC_BSPC,
   CTL_ESC,    QWERTY_L2, /* ----- ----- */    QWERTY_R2, CTL_ENT,
   OSM_SFT,    QWERTY_L3, KC_MUTE, KC_MPLY,    QWERTY_R3, KC_RSFT,
   KG_THUMBROW
 ),
 [_ALTERN] = LAYOUT_wrapper(
-       KC_GRV,     NUMROW_L,     NUMROW_R,  KC_DEL,
+       KC_GRV,     NUMROW_L,     NUMROW_R,  KC_RALT,
    KC_TAB,    ALTERN_L1, /* ----- ----- */    ALTERN_R1, KC_BSPC,
   CTL_ESC,    ALTERN_L2, /* ----- ----- */    ALTERN_R2, CTL_ENT,
   OSM_SFT,    ALTERN_L3, KC_MUTE, KC_MPLY,    ALTERN_R3, KC_RSFT,
   KG_THUMBROW
 ),
 [_GAME] = LAYOUT_wrapper(
-   KC_ESC,  KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4, /* ----- ----- */    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_DEL,
+   KC_ESC,  KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4, /* ----- ----- */    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_RALT,
    KC_TAB,  KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R, /* ----- ----- */    KC_T,    KC_Y,    KC_I,    KC_O,    KC_P, KC_BSPC,
   KC_LCTL, KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F, /* ----- ----- */    KC_G,    KC_H,    KC_K,    KC_L, KC_QUOT, CTL_ENT,
   KC_LSFT, KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V, KC_MUTE, KC_MPLY,    KC_B,    KC_N, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
   KG_THUMBROW
 ),
-[_LOWER] = LAYOUT_wrapper(
+[_NAV] = LAYOUT_wrapper(
     LLOCK, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
-  _______,   LOWER_L1,                   LOWER_R1, SQ_AA,
-  _______,   LOWER_L2,                   LOWER_R2, SQ_AE,
-  _______,   LOWER_L3, _______, _______, LOWER_R3, SQ_OE,
+  _______,   L_NAV_L1,                   L_NAV_R1, _______,
+  _______,   L_NAV_L2,                   L_NAV_R2, _______,
+  _______,   L_NAV_L3, _______, _______, L_NAV_R3, _______,
                     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
-[_RAISE] = LAYOUT_wrapper(
-  _______, SYMBOLS_L0,                   SYMBOLS_R0, _______,
-  _______, SYMBOLS_L1,                   SYMBOLS_R1, _______,
-  _______, SYMBOLS_L2,                   SYMBOLS_R2, _______,
-  _______, SYMBOLS_L3, _______, _______, SYMBOLS_R3, _______,
+[_NUM] = LAYOUT_wrapper(
+    LLOCK, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
+  _______,   L_NUM_L1,                   L_NUM_R1, _______,
+  _______,   L_NUM_L2,                   L_NUM_R2, _______,
+  _______,   L_NUM_L3, _______, _______, L_NUM_R3, _______,
+                    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+),
+[_SYM] = LAYOUT_wrapper(
+  _______, L_SYM_L0,                   L_SYM_R0, _______,
+  _______, L_SYM_L1,                   L_SYM_R1, _______,
+  _______, L_SYM_L2,                   L_SYM_R2, _______,
+  _______, L_SYM_L3, _______, _______, L_SYM_R3, _______,
                      GUI__X,  GUI__C,  GUI__V, _______, _______, _______, _______, _______, _______, _______
 ),
 [_ADJUST] = LAYOUT(
@@ -95,7 +102,7 @@ static void print_status_narrow(void) {
              oled_write_P(PSTR("alter"), false);
              break;
          case _GAME:
-             oled_write_P(PSTR("GAME!"), false);
+             oled_write_P(PSTR("uhc!!"), false);
              break;
          default:
              oled_write_P(PSTR("wat"), false);
@@ -112,17 +119,15 @@ static void print_status_narrow(void) {
          case _GAME:
              oled_write_P(PSTR("....."), false);
              break;
-         case _LOWER:
-             oled_write_P(PSTR("lower"), false);
+         case _NAV:
+             oled_write_P(PSTR("nav"), false);
              break;
-         case _RAISE:
-             oled_write_P(PSTR("raise"), false);
+         case _NUM:
+             oled_write_P(PSTR("num"), false);
              break;
-         #ifndef KRIG_NO_LANG
-         case _LANG:
-             oled_write_P(PSTR("lang"), false);
+         case _SYM:
+             oled_write_P(PSTR("sym"), false);
              break;
-         #endif
          case _ADJUST:
              oled_write_P(PSTR("adjst"), false);
              break;

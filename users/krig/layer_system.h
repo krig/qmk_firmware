@@ -1,28 +1,22 @@
 #pragma once
 
-// disable dedicated swedish layer for keyboards that have
-// enough keys to put swedish on the base layer
-// #define KRIG_NO_LANG
-
 enum custom_layers {
-    _QWERTY,
     _ALTERN,
+    _QWERTY,
     _GAME,
-    _LOWER,
-    _RAISE,
+    _NUM,
+    _NAV,
+    _SYM,
     _ADJUST,
-#ifndef KRIG_NO_LANG
-    _LANG
-#endif
 };
 
 #define THUMB_L1 KC_SPC
-#define THUMB_L2 LT(_LOWER, KC_ESC)
+#define THUMB_L2 LT(_NAV, KC_ESC)
 #define THUMB_L3 QK_REP
 #define THUMB_L4 QK_AREP
 
-#define THUMB_R1 LSFT_T(KC_BSPC)
-#define THUMB_R2 LT(_RAISE, KC_ENT)
+#define THUMB_R1 LT(_NUM, KC_BSPC)
+#define THUMB_R2 LT(_SYM, KC_ENT)
 #define THUMB_R3 RGUI_T(KC_TAB)
 #define THUMB_R4 RCTL_T(KC_DEL)
 
@@ -35,24 +29,9 @@ bool krig_process_default_layers(uint16_t keycode, keyrecord_t* record);
 #define NUMROW_L KC_1,     KC_2,    KC_3,    KC_4,    KC_5
 #define NUMROW_R KC_6,     KC_7,    KC_8,    KC_9,    KC_0
 
-#ifndef KRIG_NO_LANG
-#define K_LANG(key) LT(_LANG, key)
-#else
-#define K_LANG(key) key
-#endif
+#include "layout/qwerty.h" // standard layout
+#include "layout/kheia.h"  // alternative layout
+#include "layout/l_nav.h"  // navigation layer
+#include "layout/l_num.h"  // number layer
+#include "layout/l_sym.h"  // symbol layer
 
-// standard qwerty layout
-#include "layout/qwerty.h"
-
-// lower / nav layer
-#include "layout/lower.h"
-
-// symbol layer
-#include "layout/symbols.h"
-
-// alternative keyboard layout (highly experimental)
-#ifdef KRIG_KANARY
-#include "layout/kanary.h"
-#else
-#include "layout/wmpneu.h"
-#endif

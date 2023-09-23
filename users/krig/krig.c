@@ -1,4 +1,5 @@
 #include "krig.h"
+#include "features/flow.h"
 #include "features/achordion.h"
 
 #ifdef KRIG_CUSTOM_SHIFT
@@ -11,6 +12,30 @@ const custom_shift_key_t custom_shift_keys[] = {
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_key_t);
 #endif
 
+// flow_config should correspond to following format:
+// * layer keycode
+// * modifier keycode
+const uint16_t flow_config[FLOW_COUNT][2] = {
+    {_NAV, KC_LALT},
+    {_NAV, KC_LGUI},
+    {_NAV, KC_LCTL},
+    {_NAV, KC_LSFT},
+    {_NAV, KC_RALT},
+
+    {_NUM, KC_LALT},
+    {_NUM, KC_LGUI},
+    {_NUM, KC_LCTL},
+    {_NUM, KC_LSFT},
+    {_NUM, KC_RALT},
+};
+// for layers configuration follow this format:
+// * custom layer key
+// * layer name
+const uint16_t flow_layers_config[FLOW_LAYERS_COUNT][2] = {
+    {OSL_ADJ, _ADJUST},
+};
+
+
 __attribute__ ((weak))
 bool process_record_keymap(uint16_t keycode, keyrecord_t* record) {
     return true;
@@ -18,6 +43,9 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t* record) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     if (!process_achordion(keycode, record)) {
+        return false;
+    }
+    if (!update_flow(keycode, record->event.pressed, record->event.key)) {
         return false;
     }
     if (!process_record_keymap(keycode, record)) {
@@ -103,7 +131,7 @@ layer_state_t layer_state_set_keymap (layer_state_t state) {
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    state = update_tri_layer_state(state, _NAV, _SYM, _ADJUST);
     return layer_state_set_keymap(state);
 }
 
@@ -123,6 +151,7 @@ void matrix_scan_keymap(void) {
 
 void matrix_scan_user(void) {
     achordion_task();
+    flow_matrix_scan();
     matrix_scan_keymap();
 }
 

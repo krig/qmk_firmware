@@ -15,7 +15,6 @@
 */
 
 #include "krig.h"
-#include "features/oneshot.h"
 #include "features/swapper.h"
 
 #define LAYOUT_wrapper(...)             LAYOUT(__VA_ARGS__)
@@ -40,37 +39,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,     KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,
     THUMB_ROW
   ),
-  [_LANG] = LAYOUT(
-    _______, _______, _______, _______, _______,  _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______,  _______,   SQ_AA,   SQ_AE,   SQ_OE, _______,
-    _______, _______, _______, _______, _______,  _______, _______, _______, _______, _______,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-  ),
-  [_LOWER] = LAYOUT_wrapper(
-    LOWER_L1, LOWER_R1,
-    LOWER_L2, LOWER_R2,
-    LOWER_L3, LOWER_R3,
+  [_NAV] = LAYOUT_wrapper(
+    L_NAV_L1, L_NAV_R1,
+    L_NAV_L2, L_NAV_R2,
+    L_NAV_L3, L_NAV_R3,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TAB, KC_TRNS, KC_TRNS
   ),
-  [_RAISE] = LAYOUT_wrapper(
-    SYMBOLS_L1, SYMBOLS_R1,
-    SYMBOLS_L2, SYMBOLS_R2,
-    SYMBOLS_L3, SYMBOLS_R3,
+  [_NUM] = LAYOUT_wrapper(
+    L_NUM_L1, L_NUM_R1,
+    L_NUM_L2, L_NUM_R2,
+    L_NUM_L3, L_NUM_R3,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+  ),
+  [_SYM] = LAYOUT_wrapper(
+    L_SYM_L1, L_SYM_R1,
+    L_SYM_L2, L_SYM_R2,
+    L_SYM_L3, L_SYM_R3,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
   ),
   [_ADJUST] = LAYOUT(
-    _______,    KC_1,    KC_2,    KC_3, DF_QWER,  _______,   KC_F1,   KC_F2,   KC_F3, _______,
-       KC_0,    KC_4,    KC_5,    KC_6, DF_GAME,  _______,   KC_F4,   KC_F5,   KC_F6,  KC_F10,
-    _______,    KC_7,    KC_8,    KC_9, _______,  _______,   KC_F7,   KC_F8,   KC_F9, QK_BOOT,
+      KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,
+    DF_QWER, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    DF_GAME, _______, _______, _______, _______, _______, _______, _______, _______, QK_BOOT,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
   )
 };
 
-static oneshot_context os_ctx;
-
 bool process_record_keymap(uint16_t keycode, keyrecord_t* record) {
     process_record_swapper(keycode, record);
-    process_record_oneshot(&os_ctx, keycode, record);
     return true;
 }
 
@@ -104,33 +100,8 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     return false;
 }
 
-static void print_oneshot_state(oneshot_state state, const char* up, const char* down) {
-    switch (state) {
-        case os_up_unqueued:
-            oled_write_P(PSTR("-"), false);
-        break;
-        case os_up_queued:
-            oled_write_P(up, false);
-        break;
-        case os_up_queued_used:
-            oled_write_P(PSTR("^"), false);
-        break;
-        case os_down_unused:
-            oled_write_P(PSTR("?"), false);
-        break;
-        case os_down_used:
-            oled_write_P(down, false);
-        break;
-    }
-}
-
 bool oled_task_user(void) {
     if (is_keyboard_master()) {
-        print_oneshot_state(os_ctx.ctrl, PSTR("C"), PSTR("c"));
-        print_oneshot_state(os_ctx.alt, PSTR("A"), PSTR("a"));
-        print_oneshot_state(os_ctx.gui, PSTR("G"), PSTR("g"));
-        print_oneshot_state(os_ctx.shift, PSTR("S"), PSTR("s"));
-        print_oneshot_state(os_ctx.r_alt, PSTR("R"), PSTR("r"));
         oled_write_P(PSTR("\n"), false);
         // Host Keyboard Layer Status
         if (layer_state_cmp(default_layer_state, _QWERTY)) {
@@ -148,24 +119,22 @@ bool oled_task_user(void) {
             case _QWERTY:
             case _ALTERN:
             case _GAME:
-                oled_write_P(PSTR("...\n\n"), false);
+                oled_write_P(PSTR("....\n\n"), false);
                 break;
-            #ifndef KRIG_NO_LANG
-            case _LANG:
-                oled_write_P(PSTR("lang\n\n"), false);
+            case _NAV:
+                oled_write_P(PSTR("<-->\n\n"), false);
                 break;
-            #endif
-            case _LOWER:
-                oled_write_P(PSTR("lower\n\n"), false);
+            case _NUM:
+                oled_write_P(PSTR("1234\n\n"), false);
                 break;
-            case _RAISE:
-                oled_write_P(PSTR("raise\n\n"), false);
+            case _SYM:
+                oled_write_P(PSTR(":();\n\n"), false);
                 break;
             case _ADJUST:
-                oled_write_P(PSTR("adjust\n\n"), false);
+                oled_write_P(PSTR("ffff\n\n"), false);
                 break;
             default:
-                oled_write_ln_P(PSTR("unknown\n\n"), false);
+                oled_write_ln_P(PSTR("????\n\n"), false);
                 break;
         }
         if (is_caps_word_on()) {

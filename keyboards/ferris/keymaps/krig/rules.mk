@@ -6,6 +6,4 @@ CONSOLE_ENABLE = yes
 
 SRC += features/custom_shift_keys.c
 SRC += features/krig_caps_word.c
-SRC += features/flow.c
 SRC += features/swapper.c
-SRC += layer_system.c

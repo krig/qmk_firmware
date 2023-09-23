@@ -18,13 +18,7 @@ enum custom_keycodes {
     LLOCK,                // layer lock
     CMD_TAB,              // single-key cmd+tab (features/swapper)
     CMD_GRV,              // single-key cmd+` (features/swapper)
-    SW_CTLW,              // single-key ctl+w for vim
-    OS_SFT,               // One-shot keys (features/oneshot)
-    OS_ALT,
-    OS_RALT,
-    OS_CTL,
-    OS_GUI,
-    OS_ADJUST,
+    OSL_ADJ,              // flow one-shot adjust layer
 
     NEW_SAFE_RANGE,
 };
@@ -41,6 +35,7 @@ enum custom_keycodes {
 #define GUI__W LGUI(KC_W)
 #define GUI__X LGUI(KC_X)
 #define GUI__Z LGUI(KC_Z)
+#define GUI__B LGUI(KC_B)
 #define GUI_SPC LGUI(KC_SPC)
 
 // Mac OS spaces navigation
@@ -55,6 +50,8 @@ enum custom_keycodes {
 #define OSM_GUI OSM(MOD_LGUI)
 #define OSM_SFT OSM(MOD_LSFT)
 
+#define LCTL_W LCTL(KC_W)
+
 // Preonic specials
 #define CTL_ENT RCTL_T(KC_ENT)
 #define CTL_ESC LCTL_T(KC_ESC)
@@ -66,9 +63,9 @@ enum custom_keycodes {
 #define SFT_ENT LSFT_T(KC_ENT)
 
 // Swedish letters (Eurkey layout)
-#define SQ_AA RALT(KC_W)
-#define SQ_OE RALT(KC_O)
-#define SQ_AE RALT(KC_A)
+#define SWE_AA RALT(KC_W)
+#define SWE_OE RALT(KC_O)
+#define SWE_AE RALT(KC_A)
 
 // Convenience
 #define ZOOM_IN LGUI(KC_PLUS)
@@ -79,9 +76,7 @@ enum custom_keycodes {
 #include "features/custom_shift_keys.h"
 #endif
 
-#ifdef KRIG_CUSTOM_LAYERS
 #include "layer_system.h"
-#endif
 
 #ifdef KRIG_CAPS_WORD
 #include "features/krig_caps_word.h"

@@ -23,36 +23,43 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    KC_GRV,         NUMROW_L,                    NUMROW_R, KC_RALT,
    KC_TAB,        QWERTY_L1,                   QWERTY_R1, KC_BSPC,
   CTL_ESC,        QWERTY_L2,                   QWERTY_R2, KC_RCTL,
-  OSM_SFT,        QWERTY_L3, CW_TOGG,  QK_REP, QWERTY_R3, KC_RSFT,
+  OSM_SFT,        QWERTY_L3, QK_REP,  QK_AREP, QWERTY_R3, KC_RSFT,
   KC_LALT, KC_LGUI, THUMB_L2,  THUMB_L1, THUMB_R1, THUMB_R2, RGUI_T(KC_PGDN), RALT_T(KC_PGUP)
  ),
  [_ALTERN] = LAYOUT_wrapper(
    KC_GRV,         NUMROW_L,                    NUMROW_R, KC_RALT,
    KC_TAB,        ALTERN_L1,                   ALTERN_R1, KC_BSPC,
   CTL_ESC,        ALTERN_L2,                   ALTERN_R2, KC_RCTL,
-  OSM_SFT,        ALTERN_L3, CW_TOGG,  QK_REP, ALTERN_R3, KC_RSFT,
+  OSM_SFT,        ALTERN_L3, QK_REP,  QK_AREP, ALTERN_R3, KC_RSFT,
   KC_LALT, KC_LGUI, THUMB_L2,  THUMB_L1, THUMB_R1, THUMB_R2, RGUI_T(KC_PGDN), RALT_T(KC_PGUP)
  ),
  [_GAME] = LAYOUT_wrapper(
    KC_ESC,  KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_RALT,
    KC_TAB,  KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
   KC_LCTL, KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,                      KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, KC_RCTL,
-  KC_LSFT, KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V, CW_TOGG,  QK_REP,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
+  KC_LSFT, KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V, QK_REP,  QK_AREP,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
                              KC_LALT, KC_LGUI, THUMB_L2,  THUMB_L1, THUMB_R1, THUMB_R2, RGUI_T(KC_PGDN), RALT_T(KC_PGUP)
  ),
- [_LOWER] = LAYOUT_wrapper(
+ [_NAV] = LAYOUT_wrapper(
   _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
-  _______, LOWER_L1,                   LOWER_R1, SQ_AA,
-  _______, LOWER_L2,                   LOWER_R2, SQ_AE,
-  _______, LOWER_L3, _______, QK_AREP, LOWER_R3, SQ_OE,
-                             _______, _______, _______, _______, _______, _______, _______, _______
+  _______, L_NAV_L1,                   L_NAV_R1, _______,
+  _______, L_NAV_L2,                   L_NAV_R2, _______,
+  _______, L_NAV_L3, _______, _______, L_NAV_R3, _______,
+                             _______, _______, _______, _______, KC_TAB, _______, _______, _______
  ),
- [_RAISE] = LAYOUT_wrapper(
-  _______, SYMBOLS_L0,                   SYMBOLS_R0, _______,
-  _______, SYMBOLS_L1,                   SYMBOLS_R1, _______,
-  _______, SYMBOLS_L2,                   SYMBOLS_R2, _______,
-  _______, SYMBOLS_L3, _______, QK_AREP, SYMBOLS_R3, _______,
-                             _______, _______, _______, _______,  KC_TAB, _______, _______, _______
+ [_NUM] = LAYOUT_wrapper(
+  _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
+  _______, L_NUM_L1,                   L_NUM_R1, _______,
+  _______, L_NUM_L2,                   L_NUM_R2, _______,
+  _______, L_NUM_L3, _______, _______, L_NUM_R3, _______,
+                             _______, _______, _______, _______, KC_TAB, _______, _______, _______
+ ),
+ [_SYM] = LAYOUT_wrapper(
+  _______, L_SYM_L0,                   L_SYM_R0, _______,
+  _______, L_SYM_L1,                   L_SYM_R1, _______,
+  _______, L_SYM_L2,                   L_SYM_R2, _______,
+  _______, L_SYM_L3, _______, _______, L_SYM_R3, _______,
+                             _______, _______, _______, _______,  _______, _______, _______, _______
  ),
  [_ADJUST] = LAYOUT(
   DF_QWER,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
@@ -68,38 +75,12 @@ void oled_render_logo_r2g(void);
 
 void oled_render_state_krig(void) {
      if (layer_state_cmp(default_layer_state, _QWERTY)) {
-            oled_write_ln_P(PSTR("QWERTY"), false);
+            oled_write_ln_P(PSTR("qwerty"), false);
      } else if (layer_state_cmp(default_layer_state, _ALTERN)) {
-            oled_write_ln_P(PSTR("ALTERN"), false);
+            oled_write_ln_P(PSTR("alt"), false);
      } else if (layer_state_cmp(default_layer_state, _GAME)) {
-            oled_write_ln_P(PSTR("UHC"), false);
+            oled_write_ln_P(PSTR("game"), false);
      }
-    oled_write_P(PSTR("Layer: "), false);
-    switch (get_highest_layer(layer_state)) {
-        case _QWERTY:
-        case _ALTERN:
-        case _GAME:
-            oled_write_ln_P(PSTR("-"), false);
-            break;
-         #ifndef KRIG_NO_LANG
-        case _LANG:
-            oled_write_ln_P(PSTR("Lang"), false);
-            break;
-         #endif
-        case _LOWER:
-            oled_write_ln_P(PSTR("Lower"), false);
-            break;
-        case _RAISE:
-            oled_write_ln_P(PSTR("Raise"), false);
-            break;
-        case _ADJUST:
-            oled_write_ln_P(PSTR("Adjust"), false);
-            break;
-        default:
-            oled_write_ln_P(PSTR("Unknown"), false);
-            break;
-    }
-
  }
 
 bool oled_task_user() {

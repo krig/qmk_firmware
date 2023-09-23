@@ -40,9 +40,7 @@ void update_swapper(
 #include "krig.h"
 
 static bool cmd_tab_active = false;
-static bool ctl_w_active = false;
 
 void process_record_swapper(uint16_t keycode, keyrecord_t* record) {
     update_swapper(&cmd_tab_active, KC_LGUI, KC_TAB, KC_GRV, CMD_TAB, CMD_GRV, keycode, record);
-    update_swapper(&ctl_w_active, KC_LCTL, KC_W, 0, SW_CTLW, 0, keycode, record);
 }

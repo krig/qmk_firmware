@@ -29,10 +29,11 @@
     #define STARTUP_SONG SONG(MINOR_SOUND)
 #endif
 
+#define FLOW_COUNT 10
+#define FLOW_LAYERS_COUNT 1
+
 /*
 #define KRIG_CUSTOM_SHIFT
-#define KRIG_CUSTOM_LAYERS
 #define KRIG_CUSTOM_SEQUENCES
 #define KRIG_CAPS_WORD
-#define KRIG_NO_LANG
 */

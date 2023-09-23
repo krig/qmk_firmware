@@ -11,7 +11,9 @@
 // swap x and z just to avoid spelling XML
 // q c h p v   y f o j '
 // r s n t g   w u e i a
-// x m l d b   z k / . ,
+// z m l d b   x k / . ,
+
+#ifndef ALTERN_L1
 
 #define ALTERN_L1 KC_Q, KC_C, KC_H, KC_P, KC_V
 #define ALTERN_L2 KC_R, KC_S, KC_N, KC_T, KC_G
@@ -21,4 +23,4 @@
 #define ALTERN_R2 KC_W, KC_U, KC_E, KC_I, KC_A
 #define ALTERN_R3 KC_X, KC_K, KC_SLSH, KC_DOT, KC_COMM
 
-
+#endif

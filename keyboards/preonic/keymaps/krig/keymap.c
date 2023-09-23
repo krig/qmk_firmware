@@ -9,21 +9,21 @@
 #include "krig.h"
 
 #define LAYOUT_wrapper(...) LAYOUT_preonic_grid(__VA_ARGS__)
-#define BOTTOM_ROW CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, MO(_LOWER), KC_SPC,  KC_SPC, MO(_RAISE), KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+#define BOTTOM_ROW CW_TOGG, CTL_SFT, KC_LALT, KC_LGUI, MO(_NAV), KC_SPC,  KC_SPC, MO(_SYM), LT(_NUM, KC_LEFT), KC_DOWN,   KC_UP, KC_RGHT
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_QWERTY] = LAYOUT_wrapper(
-       KC_GRV,     NUMROW_L,     NUMROW_R, GUI_SPC,
-       KC_TAB,    QWERTY_L1,    QWERTY_R1, KC_BSPC,
-      CTL_ESC,    QWERTY_L2,    QWERTY_R2, CTL_ENT,
-      OSM_SFT,    QWERTY_L3,    QWERTY_R3, KC_RSFT,
-      BOTTOM_ROW
-    ),
     [_ALTERN] = LAYOUT_wrapper(
        KC_GRV,     NUMROW_L,     NUMROW_R, GUI_SPC,
        KC_TAB,    ALTERN_L1,    ALTERN_R1, KC_BSPC,
       CTL_ESC,    ALTERN_L2,    ALTERN_R2, CTL_ENT,
       OSM_SFT,    ALTERN_L3,    ALTERN_R3, KC_RSFT,
+      BOTTOM_ROW
+    ),
+    [_QWERTY] = LAYOUT_wrapper(
+       KC_GRV,     NUMROW_L,     NUMROW_R, GUI_SPC,
+       KC_TAB,    QWERTY_L1,    QWERTY_R1, KC_BSPC,
+      CTL_ESC,    QWERTY_L2,    QWERTY_R2, CTL_ENT,
+      OSM_SFT,    QWERTY_L3,    QWERTY_R3, KC_RSFT,
       BOTTOM_ROW
     ),
     [_GAME] = LAYOUT_wrapper(
@@ -33,25 +33,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LSFT,    QWERTY_L3,    QWERTY_R3, KC_RSFT,
       BOTTOM_ROW
     ),
-    [_LOWER] = LAYOUT_wrapper(
+    [_NAV] = LAYOUT_wrapper(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, LOWER_L1, LOWER_R1, SQ_AA,
-      _______, LOWER_L2, LOWER_R2, SQ_AE,
-      _______, LOWER_L3, LOWER_R3, SQ_OE,
+      _______, L_NAV_L1, L_NAV_R1, _______,
+      _______, L_NAV_L2, L_NAV_R2, _______,
+      _______, L_NAV_L3, L_NAV_R3, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
-    [_RAISE] = LAYOUT_wrapper(
-      _______, SYMBOLS_L0, SYMBOLS_R0, _______,
-      _______, SYMBOLS_L1, SYMBOLS_R1, _______,
-      _______, SYMBOLS_L2, SYMBOLS_R2, _______,
-      _______, SYMBOLS_L3, SYMBOLS_R3, _______,
+    [_NUM] = LAYOUT_wrapper(
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, L_NUM_L1, L_NUM_R1, _______,
+      _______, L_NUM_L2, L_NUM_R2, _______,
+      _______, L_NUM_L3, L_NUM_R3, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    ),
+    [_SYM] = LAYOUT_wrapper(
+      _______, L_SYM_L0, L_SYM_R0, _______,
+      _______, L_SYM_L1, L_SYM_R1, _______,
+      _______, L_SYM_L2, L_SYM_R2, _______,
+      _______, L_SYM_L3, L_SYM_R3, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
     [_ADJUST] = LAYOUT_wrapper(
       DF_QWER,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
       DF_GAME, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  KC_INS,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      RGB_TOG, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      RGB_MOD, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, QK_BOOT
     ),
 };
@@ -105,7 +112,7 @@ layer_state_t default_layer_state_set_keymap(layer_state_t state) {
 }
 
 layer_state_t layer_state_set_keymap(layer_state_t state) {
-    state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    state = update_tri_layer_state(state, _NAV, _SYM, _ADJUST);
     for (int i = _GAME + 1; i <= _ADJUST; ++i) {
         rgblight_set_layer_state(i, layer_state_cmp(state, i));
     }
