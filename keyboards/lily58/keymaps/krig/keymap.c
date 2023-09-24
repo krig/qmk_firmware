@@ -63,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  ),
  [_ADJUST] = LAYOUT(
   DF_QWER,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
-  DF_GAME, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______,  KC_INS,
+  DF_GAME, _______, _______, _______, _______, _______,                   RGB_TOG, RGB_MOD, RGB_M_P, RGB_M_B, _______,  KC_INS,
   _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, QK_BOOT,
                              _______, _______, _______, _______, _______, _______, _______, _______
@@ -73,19 +73,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 void oled_render_keylog_r2g(void);
 void oled_render_logo_r2g(void);
 
-void oled_render_state_krig(void) {
-     if (layer_state_cmp(default_layer_state, _QWERTY)) {
-            oled_write_ln_P(PSTR("qwerty"), false);
-     } else if (layer_state_cmp(default_layer_state, _ALTERN)) {
-            oled_write_ln_P(PSTR("alt"), false);
-     } else if (layer_state_cmp(default_layer_state, _GAME)) {
-            oled_write_ln_P(PSTR("game"), false);
-     }
- }
-
 bool oled_task_user() {
      if (is_keyboard_master()) {
-         oled_render_state_krig();
+         switch (get_highest_layer(default_layer_state)) {
+             case _ALTERN: oled_write_ln_P(PSTR("altern"), false); break;
+             case _QWERTY: oled_write_ln_P(PSTR("qwerty"), false); break;
+             case _GAME: oled_write_ln_P(PSTR("uhc"), false); break;
+         }
+         switch (get_highest_layer(layer_state)) {
+             case _NAV: oled_write_ln_P(PSTR("nav"), false); break;
+             case _NUM: oled_write_ln_P(PSTR("num"), false); break;
+             case _SYM: oled_write_ln_P(PSTR("sym"), false); break;
+             case _ADJUST: oled_write_ln_P(PSTR("adj"), false); break;
+         }
          oled_render_keylog_r2g();
      } else {
          oled_render_logo_r2g();

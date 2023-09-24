@@ -27,7 +27,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       BOTTOM_ROW
     ),
     [_GAME] = LAYOUT_wrapper(
-      QK_GESC,     NUMROW_L,     NUMROW_R, KC_F9,
+       KC_GRV,     NUMROW_L,     NUMROW_R, KC_ESC,
        KC_TAB,    QWERTY_L1,    QWERTY_R1, KC_BSPC,
       KC_LCTL,    QWERTY_L2,    QWERTY_R2, CTL_ENT,
       KC_LSFT,    QWERTY_L3,    QWERTY_R3, KC_RSFT,
