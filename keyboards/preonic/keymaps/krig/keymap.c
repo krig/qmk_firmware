@@ -9,7 +9,7 @@
 #include "krig.h"
 
 #define LAYOUT_wrapper(...) LAYOUT_preonic_grid(__VA_ARGS__)
-#define BOTTOM_ROW KC_MEH, CTL_SFT, KC_LALT, KC_LGUI, MO(_NAV), KC_SPC,  KC_SPC, MO(_SYM), LT(_NUM, KC_LEFT), KC_DOWN,   KC_UP, KC_RGHT
+#define BOTTOM_ROW KC_MEH, CTL_SFT, KC_LALT, KC_LGUI, MO(_NAV), KC_SPC,  LT(_NUM, KC_SPC), LT(_SYM, KC_BSPC), KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_ALTERN] = LAYOUT_wrapper(
@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, L_NAV_L1, L_NAV_R1, _______,
       _______, L_NAV_L2, L_NAV_R2, _______,
       _______, L_NAV_L3, L_NAV_R3, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+      _______, _______, _______, _______, _______, _______, KC_TAB, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END
     ),
     [_NUM] = LAYOUT_wrapper(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
