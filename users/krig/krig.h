@@ -1,8 +1,6 @@
 #pragma once
 #include QMK_KEYBOARD_H
 
-
-
 enum custom_keycodes {
     SQ_COLN = SAFE_RANGE, // ::
     SQ_AMPR,              // &&

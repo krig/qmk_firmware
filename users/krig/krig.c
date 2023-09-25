@@ -151,6 +151,20 @@ void matrix_scan_user(void) {
     matrix_scan_keymap();
 }
 
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case THUMB_L2:
+        case THUMB_R1:
+        case THUMB_R2:
+        case LT(_NUM, KC_SPC):
+        case LT(_SYM, KC_BSPC):
+            return true;
+        default:
+            // Do not select the hold action when another key is pressed.
+            return false;
+    }
+}
+
 static bool is_finger_key(uint16_t keycode) {
     return (keycode <= KC_0 || (keycode >= KC_SEMICOLON && keycode <= KC_SLASH));
 }
