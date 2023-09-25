@@ -16,17 +16,17 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_ke
 // * layer keycode
 // * modifier keycode
 const uint16_t flow_config[FLOW_COUNT][2] = {
-    {_NAV, KC_LALT},
-    {_NAV, KC_LGUI},
-    {_NAV, KC_LCTL},
-    {_NAV, KC_LSFT},
-    {_NAV, KC_RALT},
+    {THUMB_L2, KC_LALT},
+    {THUMB_L2, KC_LGUI},
+    {THUMB_L2, KC_LCTL},
+    {THUMB_L2, KC_LSFT},
+    {THUMB_L2, KC_RALT},
 
-    {_NUM, KC_LALT},
-    {_NUM, KC_LGUI},
-    {_NUM, KC_LCTL},
-    {_NUM, KC_LSFT},
-    {_NUM, KC_RALT},
+    {THUMB_R1, KC_LALT},
+    {THUMB_R1, KC_LGUI},
+    {THUMB_R1, KC_LCTL},
+    {THUMB_R1, KC_LSFT},
+    {THUMB_R1, KC_RALT},
 };
 // for layers configuration follow this format:
 // * custom layer key
