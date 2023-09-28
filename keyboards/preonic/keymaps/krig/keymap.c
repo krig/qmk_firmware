@@ -7,6 +7,7 @@
  */
 
 #include "krig.h"
+#include "features/layer_lock.h"
 
 #define LAYOUT_wrapper(...) LAYOUT_preonic_grid(__VA_ARGS__)
 #define BOTTOM_ROW KC_MEH, CTL_SFT, KC_LALT, KC_LGUI, MO(_NAV), KC_SPC,  LT(_NUM, KC_SPC), LT(_SYM, KC_BSPC), KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT

@@ -16,9 +16,10 @@
 
 #include "krig.h"
 #include "features/swapper.h"
+#include "features/layer_lock.h"
 
 #define LAYOUT_wrapper(...)             LAYOUT(__VA_ARGS__)
-#define THUMB_ROW KC_MPRV,      THUMB_L2,  THUMB_L1,  THUMB_L3, KC_MCTL, KC_MPLY,  THUMB_R3, THUMB_R1, THUMB_R2,          KC_MNXT
+#define THUMB_ROW KC_MPRV,      THUMB_L3,  THUMB_L2,  THUMB_L1, KC_MCTL, KC_MPLY,  THUMB_R1, THUMB_R2, THUMB_R3,          KC_MNXT
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_wrapper(
@@ -43,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     L_NAV_L1, L_NAV_R1,
     L_NAV_L2, L_NAV_R2,
     L_NAV_L3, L_NAV_R3,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TAB, KC_TRNS, KC_TRNS
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TAB,  KC_TRNS, KC_TRNS, KC_TRNS
   ),
   [_NUM] = LAYOUT_wrapper(
     L_NUM_L1, L_NUM_R1,
@@ -66,6 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_keymap(uint16_t keycode, keyrecord_t* record) {
+    if (!process_layer_lock(keycode, record, LLOCK)) { return false; }
     process_record_swapper(keycode, record);
     return true;
 }
