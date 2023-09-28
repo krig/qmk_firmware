@@ -10,7 +10,7 @@
 #include "features/layer_lock.h"
 
 #define LAYOUT_wrapper(...) LAYOUT_preonic_grid(__VA_ARGS__)
-#define BOTTOM_ROW KC_MEH, CTL_SFT, KC_LALT, KC_LGUI, MO(_NAV), KC_SPC,  LT(_NUM, KC_SPC), LT(_SYM, KC_BSPC), KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+#define BOTTOM_ROW TG(_MOUSE), CTL_SFT, KC_LALT, KC_LGUI, MO(_NAV), KC_SPC,  LT(_NUM, KC_SPC), LT(_SYM, KC_BSPC), KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_ALTERN] = LAYOUT_wrapper(
@@ -55,6 +55,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, L_SYM_L3, L_SYM_R3, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
+    [_MOUSE] = LAYOUT_wrapper(
+      _______, L_MOUSE_L0, L_MOUSE_R0, _______,
+      _______, L_MOUSE_L1, L_MOUSE_R1, _______,
+      _______, L_MOUSE_L2, L_MOUSE_R2, _______,
+      _______, L_MOUSE_L3, L_MOUSE_R3, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    ),
     [_ADJUST] = LAYOUT_wrapper(
       DF_QWER,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
       DF_GAME, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  KC_INS,
@@ -71,7 +78,8 @@ const rgblight_segment_t PROGMEM lightlayer_2[] = RGBLIGHT_LAYER_SEGMENTS({RGBLE
 const rgblight_segment_t PROGMEM lightlayer_3[] = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_YELLOW}, {RGBLED_NUM-1, 1, HSV_BLUE});
 const rgblight_segment_t PROGMEM lightlayer_4[] = RGBLIGHT_LAYER_SEGMENTS({0, 4, HSV_MAGENTA});
 const rgblight_segment_t PROGMEM lightlayer_5[] = RGBLIGHT_LAYER_SEGMENTS({RGBLED_NUM-4, 4, HSV_AZURE});
-const rgblight_segment_t PROGMEM lightlayer_6[] = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_ORANGE});
+const rgblight_segment_t PROGMEM lightlayer_6[] = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_PURPLE});
+const rgblight_segment_t PROGMEM lightlayer_7[] = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_ORANGE});
 const rgblight_segment_t PROGMEM lightlayer_capsword[] = RGBLIGHT_LAYER_SEGMENTS({0, 2, HSV_RED}, {RGBLED_NUM-2, 2,});
 
 const rgblight_segment_t* const PROGMEM lightlayers[] = RGBLIGHT_LAYERS_LIST(
@@ -82,6 +90,7 @@ const rgblight_segment_t* const PROGMEM lightlayers[] = RGBLIGHT_LAYERS_LIST(
     lightlayer_4,
     lightlayer_5,
     lightlayer_6,
+    lightlayer_7,
     lightlayer_capsword
 );
 
