@@ -10,25 +10,25 @@
 #include "features/layer_lock.h"
 
 #define LAYOUT_wrapper(...) LAYOUT_preonic_grid(__VA_ARGS__)
-#define BOTTOM_ROW TG(_MOUSE), CTL_SFT, KC_LALT, KC_LGUI, MO(_NAV), KC_SPC,  LT(_NUM, KC_SPC), LT(_SYM, KC_BSPC), KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+#define BOTTOM_ROW KC_MEH, CTL_SFT, KC_LALT, KC_LGUI, MO(_NAV), KC_SPC,  LT(_NUM, KC_SPC), LT(_SYM, KC_BSPC), KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_ALTERN] = LAYOUT_wrapper(
-       KC_GRV,     NUMROW_L,     NUMROW_R, GUI_SPC,
+       KC_GRV,     NUMROW_L,     NUMROW_R, TG(_MOUSE),
        KC_TAB,    ALTERN_L1,    ALTERN_R1, KC_BSPC,
       CTL_ESC,    ALTERN_L2,    ALTERN_R2, CTL_ENT,
       OSM_SFT,    ALTERN_L3,    ALTERN_R3, KC_RSFT,
       BOTTOM_ROW
     ),
     [_QWERTY] = LAYOUT_wrapper(
-       KC_GRV,     NUMROW_L,     NUMROW_R, GUI_SPC,
+       KC_GRV,     NUMROW_L,     NUMROW_R, TG(_MOUSE),
        KC_TAB,    QWERTY_L1,    QWERTY_R1, KC_BSPC,
       CTL_ESC,    QWERTY_L2,    QWERTY_R2, CTL_ENT,
       OSM_SFT,    QWERTY_L3,    QWERTY_R3, KC_RSFT,
       BOTTOM_ROW
     ),
     [_GAME] = LAYOUT_wrapper(
-       KC_GRV,     NUMROW_L,     NUMROW_R, KC_ESC,
+       KC_GRV,     NUMROW_L,     NUMROW_R, TG(_MOUSE),
        KC_TAB,    QWERTY_L1,    QWERTY_R1, KC_BSPC,
       KC_LCTL,    QWERTY_L2,    QWERTY_R2, CTL_ENT,
       KC_LSFT,    QWERTY_L3,    QWERTY_R3, KC_RSFT,
