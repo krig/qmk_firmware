@@ -1,4 +1,5 @@
 #include "krig.h"
+#include "features/layer_lock.h"
 
 #define MOON_LED_LEVEL LED_LEVEL
 #define LAYOUT_wrapper(...)             LAYOUT_moonlander(__VA_ARGS__)
@@ -31,7 +32,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     MOON_THUMBS
   ),
   [_NAV] = LAYOUT_wrapper(
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_MOD, RGB_TOG,
+    _______,   LLOCK, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_MOD, RGB_TOG,
     _______, L_NAV_L1, _______, _______, L_NAV_R1, _______,
     _______, L_NAV_L2, _______, _______, L_NAV_R2, _______,
     _______, L_NAV_L3,                   L_NAV_R3, _______,
@@ -39,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, KC_TAB
   ),
   [_NUM] = LAYOUT_wrapper(
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_MOD, RGB_TOG,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, L_NUM_L1, _______, _______, L_NUM_R1, _______,
     _______, L_NUM_L2, _______, _______, L_NUM_R2, _______,
     _______, L_NUM_L3,                   L_NUM_R3, _______,
@@ -54,6 +55,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______,          _______, _______,          _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______
   ),
+  [_MOUSE] = LAYOUT_wrapper(
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    _______, L_MOUSE_L1, _______, _______, L_MOUSE_R1, _______,
+    _______, L_MOUSE_L2, _______, _______, L_MOUSE_R2, _______,
+    _______, L_MOUSE_L3,                   L_MOUSE_R3, _______,
+    _______, _______, _______, _______, _______,          _______, _______,          _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______
+  ),
   [_ADJUST] = LAYOUT_moonlander(
     DF_QWER,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5, _______, _______,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
     DF_GAME, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
@@ -64,6 +73,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
+bool process_record_keymap(uint16_t keycode, keyrecord_t* record) {
+    if (!process_layer_lock(keycode, record, LLOCK)) {
+        return false;
+    }
+    return true;
+}
 
 extern rgb_config_t rgb_matrix_config;
 
@@ -103,6 +118,9 @@ layer_state_t layer_state_set_keymap(layer_state_t state) {
             break;
         case _SYM:
             led_5 = true;
+            break;
+        case _MOUSE:
+            led_4 = led_6 = true;
             break;
         case _ADJUST:
             led_4 = led_5 = true;

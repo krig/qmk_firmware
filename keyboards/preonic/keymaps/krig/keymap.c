@@ -128,3 +128,10 @@ layer_state_t layer_state_set_keymap(layer_state_t state) {
     }
     return state;
 }
+
+bool process_record_keymap(uint16_t keycode, keyrecord_t* record) {
+    if (!process_layer_lock(keycode, record, LLOCK)) {
+        return false;
+    }
+    return true;
+}

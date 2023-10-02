@@ -56,10 +56,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool process_record_keymap(uint16_t keycode, keyrecord_t* record) {
     process_record_swapper(keycode, record);
-    process_record_swapper(keycode, record);
     if (!process_layer_lock(keycode, record, LLOCK)) {
         return false;
     }
-    process_record_swapper(keycode, record);
     return true;
 }
