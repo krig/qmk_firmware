@@ -46,9 +46,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     L_SYM_L3, L_SYM_R3,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
   ),
+  [_MOUSE] = LAYOUT_wrapper(
+    L_MOUSE_L1, L_MOUSE_R1,
+    L_MOUSE_L2, L_MOUSE_R2,
+    L_MOUSE_L3, L_MOUSE_R3,
+    KC_TRNS, KC_TRNS, KC_BTN1, KC_TRNS
+  ),
   [_ADJUST] = LAYOUT(
       KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,
-    DF_QWER, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    DF_QWER, TG(_MOUSE), _______, _______, _______, _______, _______, _______, _______, _______,
     DF_GAME, _______, _______, _______, _______, _______, _______, _______, _______, QK_BOOT,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
   )
