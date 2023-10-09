@@ -5,7 +5,7 @@
 #define LAYOUT_wrapper(...)             LAYOUT_moonlander(__VA_ARGS__)
 
 #define MOON_THUMBS     KC_MEH, CTL_SFT, KC_LALT, KC_LGUI, THUMB_L2, /* left side */ \
-                        GUI_SPC,  CW_TOGG, /* red thumb buttons */ \
+                        OSM_SFT,  OSM_SFT, /* red thumb buttons */ \
                         THUMB_R2, KC_RGUI, KC_RALT, KC_LEFT, KC_RGHT, /* right side */ \
                         THUMB_L1, THUMB_L3, THUMB_L4, /* thumbs */ THUMB_R4, THUMB_R3, THUMB_R1
 
