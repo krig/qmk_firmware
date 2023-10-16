@@ -6,5 +6,5 @@
 
 #define L_NUM_R1 _______, _______, _______, _______, _______
 #define L_NUM_R2 _______, KC_LSFT, KC_LGUI, KC_LCTL, KC_LALT
-#define L_NUM_R3 _______, _______, _______, _______, _______
+#define L_NUM_R3 _______,  KC_DOT, KC_COMM, _______, _______
 
