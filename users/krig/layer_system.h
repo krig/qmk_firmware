@@ -23,7 +23,7 @@ enum custom_layers {
 #define THUMB_L4 QK_AREP
 #endif
 
-#define THUMB_R1 LT(_NUM, KC_ENT)
+#define THUMB_R1 LSFT_T(KC_ENT)
 #define THUMB_R2 LT(_SYM, KC_BSPC)
 #define THUMB_R3 RGUI_T(KC_TAB)
 #define THUMB_R4 RCTL_T(KC_DEL)
