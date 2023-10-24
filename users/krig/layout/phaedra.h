@@ -2,9 +2,9 @@
 // phaedra
 //
 // experimental layout
-//   x c m g q  z y o u ,
-//   r s n t b  p h a e i
-//   w v l d k  j f ' / .
+//   x c m g z  q y o u ,
+//   r s n t k  j h a e i
+//   w v l d b  p f ' / .
 
 #ifndef ALTERN_L1
 
