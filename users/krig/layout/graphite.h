@@ -20,7 +20,7 @@
 
 #define ALTERN_R1 KC_QUOT, KC_F, KC_O, KC_U, KC_J
 #define ALTERN_R2 KC_Y, KC_H, KC_A, KC_E, KC_I
-#define ALTERN_R3 KC_K, KC_P, KC_DOT, KC_SLSH, KC_COMM
+#define ALTERN_R3 KC_K, KC_P, KC_DOT, KC_MINS, KC_COMM
 
 #endif
 
