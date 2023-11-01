@@ -1,5 +1,6 @@
 #pragma once
-// Middlemak NH (swedish mod)
+// NOSFERATEIA
+// originally based on Middlemak-NH
 // https://github.com/KeyboardLayout2/Middlemak-NH
 // b w l p z   j y o u '
 // n s r t g   f h e i a ä
