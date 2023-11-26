@@ -4,7 +4,7 @@
 #define L_NAV_L2 KC_LALT, KC_LCTL, KC_LGUI, KC_LSFT, KC_RALT
 #define L_NAV_L3  GUI__Z,  GUI__X,  GUI__C,  GUI__V, _______
 
-#define L_NAV_R1  KC_INS, KC_HOME,   KC_UP,  KC_END, _______
-#define L_NAV_R2  KC_DEL, KC_LEFT, KC_DOWN, KC_RGHT,  SWE_AE
-#define L_NAV_R3 MO(_NUM), KC_PGDN, KC_PGUP,  SWE_AA,  SWE_OE
+#define L_NAV_R1  KC_INS,  KC_DEL,MO(_NUM), _______,  SWE_AA
+#define L_NAV_R2 KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,  SWE_AE
+#define L_NAV_R3 KC_HOME, KC_PGDN, KC_PGUP,  KC_END,  SWE_OE
 
