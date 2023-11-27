@@ -18,6 +18,7 @@
 #include "features/swapper.h"
 #include "features/layer_lock.h"
 
+#define TG_MOUS TG(_MOUSE)
 #define LAYOUT_wrapper(...)             LAYOUT(__VA_ARGS__)
 #define THUMB_ROW KC_MPRV,      THUMB_L3,  THUMB_L2,  THUMB_L1, KC_MCTL, KC_MPLY,  THUMB_R1, THUMB_R2, THUMB_R3,          KC_MNXT
 
@@ -58,17 +59,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     L_SYM_L3, L_SYM_R3,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
   ),
-  [_ADJUST] = LAYOUT(
+  [_MOUSE] = LAYOUT_wrapper(
+    L_MOUSE_L1, L_MOUSE_R1,
+    L_MOUSE_L2, L_MOUSE_R2,
+    L_MOUSE_L3, L_MOUSE_R3,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_BTN1, KC_TRNS, KC_TRNS, KC_TRNS
+  ),
+   [_ADJUST] = LAYOUT(
       KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,
-    DF_QWER, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    DF_GAME, _______, _______, _______, _______, _______, _______, _______, _______, QK_BOOT,
+       KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
+    DF_QWER, DF_GAME, TG_MOUS, _______, _______, _______, _______, _______, _______, QK_BOOT,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
   )
 };
 
 bool process_record_keymap(uint16_t keycode, keyrecord_t* record) {
-    if (!process_layer_lock(keycode, record, LLOCK)) { return false; }
     process_record_swapper(keycode, record);
+    if (!process_layer_lock(keycode, record, LLOCK)) { return false; }
     return true;
 }
 
@@ -131,6 +138,9 @@ bool oled_task_user(void) {
                 break;
             case _SYM:
                 oled_write_P(PSTR(":();\n\n"), false);
+                break;
+            case _MOUSE:
+                oled_write_P(PSTR("mous\n\n"), false);
                 break;
             case _ADJUST:
                 oled_write_P(PSTR("ffff\n\n"), false);
